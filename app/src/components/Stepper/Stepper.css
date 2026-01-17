@@ -1,0 +1,86 @@
+/* Stepper Component */
+.kwami-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 16px;
+  background: var(--surface-color);
+  box-shadow:
+    4px 4px 8px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light);
+}
+
+.kwami-stepper-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 12px;
+  background: var(--surface-color);
+  box-shadow:
+    3px 3px 6px var(--shadow-dark),
+    -3px -3px 6px var(--shadow-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  transition: all 0.15s ease;
+}
+
+.kwami-stepper-btn:hover:not(.disabled) {
+  color: var(--accent-light, #ff9500);
+  transform: scale(1.05);
+}
+
+[data-theme="dark"] .kwami-stepper-btn:hover:not(.disabled) {
+  color: var(--accent-dark, #ff9500);
+}
+
+.kwami-stepper-btn:active:not(.disabled) {
+  transform: scale(0.95);
+  box-shadow:
+    inset 2px 2px 4px var(--shadow-dark),
+    inset -2px -2px 4px var(--shadow-light);
+}
+
+.kwami-stepper-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.kwami-stepper-value {
+  min-width: 48px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  background: var(--surface-color);
+  box-shadow:
+    inset 2px 2px 4px var(--shadow-dark),
+    inset -2px -2px 4px var(--shadow-light);
+  font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-color);
+  transition: transform 0.15s ease;
+}
+
+.kwami-stepper-value.bump-up {
+  animation: bumpUp 0.15s ease;
+}
+
+.kwami-stepper-value.bump-down {
+  animation: bumpDown 0.15s ease;
+}
+
+@keyframes bumpUp {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes bumpDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+  100% { transform: translateY(0); }
+}

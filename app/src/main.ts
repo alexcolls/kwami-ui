@@ -11,6 +11,12 @@ import { Tooltip, initTooltip } from './components/Tooltip/Tooltip'
 import { Box } from './components/Box/Box'
 import { Expandable, initExpandable } from './components/Expandable/Expandable'
 import { ColorPicker, initColorPicker } from './components/ColorPicker/ColorPicker'
+import { Checkbox, initCheckbox } from './components/Checkbox/Checkbox'
+import { Radio, initRadio } from './components/Radio/Radio'
+import { Stepper, initStepper } from './components/Stepper/Stepper'
+import { Fader, initFader } from './components/Fader/Fader'
+import { Tabs, initTabs } from './components/Tabs/Tabs'
+import { Accordion, initAccordion } from './components/Accordion/Accordion'
 
 // Theme state
 interface Theme {
@@ -120,9 +126,15 @@ function initApp(): void {
       ${Box({ title: 'Selector', content: Selector(), id: 'selector' })}
       ${Box({ title: 'Slider', content: Slider(), id: 'slider' })}
       ${Box({ title: 'Knob', content: Knob(), id: 'knob' })}
+      ${Box({ title: 'Fader', content: Fader(), id: 'fader' })}
       ${Box({ title: 'Popover', content: Popover(), id: 'popover' })}
       ${Box({ title: 'Tooltip', content: Tooltip(), id: 'tooltip' })}
       ${Box({ title: 'Color Picker', content: ColorPicker(), id: 'colorpicker' })}
+      ${Box({ title: 'Checkbox', content: Checkbox(), id: 'checkbox' })}
+      ${Box({ title: 'Radio', content: Radio(), id: 'radio' })}
+      ${Box({ title: 'Stepper', content: Stepper(), id: 'stepper' })}
+      ${Box({ title: 'Tabs', content: Tabs(), id: 'tabs' })}
+      ${Box({ title: 'Accordion', content: Accordion(), id: 'accordion' })}
     </main>
   `;
 
@@ -137,9 +149,15 @@ function initApp(): void {
   const selectorWrapper = document.querySelector('[data-component="selector"]') as HTMLElement;
   const sliderWrapper = document.querySelector('[data-component="slider"]') as HTMLElement;
   const knobWrapper = document.querySelector('[data-component="knob"]') as HTMLElement;
+  const faderWrapper = document.querySelector('[data-component="fader"]') as HTMLElement;
   const popoverWrapper = document.querySelector('[data-component="popover"]') as HTMLElement;
   const tooltipWrapper = document.querySelector('[data-component="tooltip"]') as HTMLElement;
   const colorPickerWrapper = document.querySelector('[data-component="colorpicker"]') as HTMLElement;
+  const checkboxWrapper = document.querySelector('[data-component="checkbox"]') as HTMLElement;
+  const radioWrapper = document.querySelector('[data-component="radio"]') as HTMLElement;
+  const stepperWrapper = document.querySelector('[data-component="stepper"]') as HTMLElement;
+  const tabsWrapper = document.querySelector('[data-component="tabs"]') as HTMLElement;
+  const accordionWrapper = document.querySelector('[data-component="accordion"]') as HTMLElement;
 
   if (buttonWrapper) initButton(buttonWrapper);
   if (toggleWrapper) initToggle(toggleWrapper);
@@ -148,9 +166,15 @@ function initApp(): void {
   if (selectorWrapper) initSelector(selectorWrapper);
   if (sliderWrapper) initSlider(sliderWrapper);
   if (knobWrapper) initKnob(knobWrapper);
+  if (faderWrapper) initFader(faderWrapper);
   if (popoverWrapper) initPopover(popoverWrapper);
   if (tooltipWrapper) initTooltip(tooltipWrapper);
   if (colorPickerWrapper) initColorPicker(colorPickerWrapper);
+  if (checkboxWrapper) initCheckbox(checkboxWrapper);
+  if (radioWrapper) initRadio(radioWrapper);
+  if (stepperWrapper) initStepper(stepperWrapper);
+  if (tabsWrapper) initTabs(tabsWrapper);
+  if (accordionWrapper) initAccordion(accordionWrapper);
 
   // Theme control event listeners
   const themeToggle = document.getElementById('theme-toggle');
