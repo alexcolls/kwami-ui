@@ -1,6 +1,7 @@
 import './style.css'
 import { Button, initButton } from './components/Button/Button'
 import { Toggle, initToggle } from './components/Toggle/Toggle'
+import { Activator, initActivator } from './components/Activator/Activator'
 import { Switch, initSwitch } from './components/Switch/Switch'
 import { Input, initInput } from './components/Input/Input'
 import { Selector, initSelector } from './components/Selector/Selector'
@@ -121,6 +122,7 @@ function initApp(): void {
     <main class="components-grid">
       ${Expandable({ title: 'Button', content: Button(), id: 'button' })}
       ${Box({ title: 'Toggle', content: Toggle(), id: 'toggle' })}
+      ${Box({ title: 'Activator', content: Activator(), id: 'activator' })}
       ${Box({ title: 'Switch', content: Switch(), id: 'switch' })}
       ${Box({ title: 'Input', content: Input(), id: 'input' })}
       ${Box({ title: 'Selector', content: Selector(), id: 'selector' })}
@@ -144,6 +146,7 @@ function initApp(): void {
   // Initialize component event listeners
   const buttonWrapper = document.querySelector('[data-component="button"]') as HTMLElement;
   const toggleWrapper = document.querySelector('[data-component="toggle"]') as HTMLElement;
+  const activatorWrapper = document.querySelector('[data-component="activator"]') as HTMLElement;
   const switchWrapper = document.querySelector('[data-component="switch"]') as HTMLElement;
   const inputWrapper = document.querySelector('[data-component="input"]') as HTMLElement;
   const selectorWrapper = document.querySelector('[data-component="selector"]') as HTMLElement;
@@ -161,6 +164,7 @@ function initApp(): void {
 
   if (buttonWrapper) initButton(buttonWrapper);
   if (toggleWrapper) initToggle(toggleWrapper);
+  if (activatorWrapper) initActivator(activatorWrapper);
   if (switchWrapper) initSwitch(switchWrapper);
   if (inputWrapper) initInput(inputWrapper);
   if (selectorWrapper) initSelector(selectorWrapper);
