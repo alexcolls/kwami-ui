@@ -1,0 +1,445 @@
+/* Toast Component - Neumorphic Style */
+.kwami-toast-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Trigger button bezel */
+.kwami-toast-trigger-bezel {
+  padding: 6px;
+  border-radius: 14px;
+  background: linear-gradient(
+    145deg,
+    #e0e0e0 0%,
+    #d0d0d0 50%,
+    #c0c0c0 100%
+  );
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.12),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.7),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .kwami-toast-trigger-bezel {
+  background: linear-gradient(
+    145deg,
+    #252525 0%,
+    #1a1a1a 50%,
+    #0f0f0f 100%
+  );
+  box-shadow:
+    inset 0 4px 12px rgba(0, 0, 0, 0.6),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.02),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Trigger button */
+.kwami-toast-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  height: 44px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+}
+
+/* Trigger face */
+.kwami-toast-trigger-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #f5f5f5 20%,
+    #e8e8e8 50%,
+    #d8d8d8 80%,
+    #c8c8c8 100%
+  );
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 2px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.1s ease;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .kwami-toast-trigger-face {
+  background: linear-gradient(
+    160deg,
+    #4a4a4a 0%,
+    #3a3a3a 20%,
+    #2d2d2d 50%,
+    #222222 80%,
+    #1a1a1a 100%
+  );
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 2px 3px rgba(255, 255, 255, 0.06),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Trigger highlight */
+.kwami-toast-trigger-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border-radius: 10px 10px 50% 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+[data-theme="dark"] .kwami-toast-trigger-highlight {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 100%
+  );
+}
+
+/* Trigger text */
+.kwami-toast-trigger-text {
+  position: relative;
+  z-index: 2;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .kwami-toast-trigger-text {
+  color: #aaa;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Trigger hover */
+.kwami-toast-trigger:hover .kwami-toast-trigger-face {
+  background: linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #f8f8f8 20%,
+    #eeeeee 50%,
+    #e0e0e0 80%,
+    #d0d0d0 100%
+  );
+}
+
+[data-theme="dark"] .kwami-toast-trigger:hover .kwami-toast-trigger-face {
+  background: linear-gradient(
+    160deg,
+    #525252 0%,
+    #424242 20%,
+    #353535 50%,
+    #2a2a2a 80%,
+    #222222 100%
+  );
+}
+
+.kwami-toast-trigger:hover .kwami-toast-trigger-text {
+  color: var(--accent-light, #ff9500);
+}
+
+[data-theme="dark"] .kwami-toast-trigger:hover .kwami-toast-trigger-text {
+  color: var(--accent-dark, #ff9500);
+}
+
+/* Toast notification */
+.kwami-toast {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 280px;
+  max-width: 400px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  z-index: 2000;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    #f8f8f8 0%,
+    #ececec 50%,
+    #e0e0e0 100%
+  );
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 2px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .kwami-toast {
+  background: linear-gradient(
+    160deg,
+    #3a3a3a 0%,
+    #2a2a2a 50%,
+    #1f1f1f 100%
+  );
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 2px 3px rgba(255, 255, 255, 0.05),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Toast positions */
+.kwami-toast-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.kwami-toast-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.kwami-toast-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.kwami-toast-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.kwami-toast-top-center {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.kwami-toast-bottom-center {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Toast animations */
+.kwami-toast.showing {
+  animation: kwami-toast-slide-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.kwami-toast.hiding {
+  animation: kwami-toast-slide-out 0.3s ease forwards;
+}
+
+.kwami-toast.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Slide animations for different positions */
+@keyframes kwami-toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kwami-toast-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.kwami-toast-top-center.showing,
+.kwami-toast-bottom-center.showing {
+  animation: kwami-toast-slide-in-center 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.kwami-toast-top-center.hiding,
+.kwami-toast-bottom-center.hiding {
+  animation: kwami-toast-slide-out-center 0.3s ease forwards;
+}
+
+@keyframes kwami-toast-slide-in-center {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes kwami-toast-slide-out-center {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+/* Toast icon */
+.kwami-toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Toast types */
+.kwami-toast-info .kwami-toast-icon {
+  background: linear-gradient(135deg, #4a90d9, #357abd);
+  color: white;
+  box-shadow: 0 3px 8px rgba(74, 144, 217, 0.35);
+}
+
+.kwami-toast-success .kwami-toast-icon {
+  background: linear-gradient(135deg, #4caf50, #388e3c);
+  color: white;
+  box-shadow: 0 3px 8px rgba(76, 175, 80, 0.35);
+}
+
+.kwami-toast-warning .kwami-toast-icon {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  box-shadow: 0 3px 8px rgba(255, 152, 0, 0.35);
+}
+
+.kwami-toast-error .kwami-toast-icon {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: white;
+  box-shadow: 0 3px 8px rgba(244, 67, 54, 0.35);
+}
+
+/* Toast message */
+.kwami-toast-message {
+  flex: 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .kwami-toast-message {
+  color: #e0e0e0;
+}
+
+/* Toast close button */
+.kwami-toast-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(
+    145deg,
+    rgba(0, 0, 0, 0.03) 0%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  cursor: pointer;
+  color: #888;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .kwami-toast-close {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  color: #999;
+}
+
+.kwami-toast-close:hover {
+  background: linear-gradient(
+    145deg,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  color: #555;
+}
+
+[data-theme="dark"] .kwami-toast-close:hover {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  color: #ccc;
+}
+
+.kwami-toast-close:active {
+  transform: scale(0.9);
+}
+
+/* Progress bar */
+.kwami-toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  border-radius: 0 0 14px 14px;
+  transform-origin: left;
+}
+
+.kwami-toast-info .kwami-toast-progress {
+  background: linear-gradient(90deg, #4a90d9, #357abd);
+}
+
+.kwami-toast-success .kwami-toast-progress {
+  background: linear-gradient(90deg, #4caf50, #388e3c);
+}
+
+.kwami-toast-warning .kwami-toast-progress {
+  background: linear-gradient(90deg, #ff9800, #f57c00);
+}
+
+.kwami-toast-error .kwami-toast-progress {
+  background: linear-gradient(90deg, #f44336, #d32f2f);
+}
+
+@keyframes kwami-toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}

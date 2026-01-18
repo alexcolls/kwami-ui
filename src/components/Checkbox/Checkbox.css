@@ -1,0 +1,92 @@
+/* Checkbox Component */
+.kwami-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.kwami-checkbox-group.kwami-checkbox-group-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.kwami-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.kwami-checkbox input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.kwami-checkbox-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    background: var(--kwami-surface);
+    box-shadow:
+        inset 3px 3px 6px var(--kwami-shadow-dark),
+        inset -3px -3px 6px var(--kwami-shadow-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: transparent;
+}
+
+.kwami-checkbox:hover .kwami-checkbox-box {
+    box-shadow:
+        inset 2px 2px 4px var(--kwami-shadow-dark),
+        inset -2px -2px 4px var(--kwami-shadow-light);
+}
+
+.kwami-checkbox input:checked + .kwami-checkbox-box {
+    background: var(--kwami-accent, #ff9500);
+    box-shadow:
+        2px 2px 6px var(--kwami-shadow-dark),
+        -2px -2px 6px var(--kwami-shadow-light);
+    color: white;
+}
+
+[data-theme="dark"] .kwami-checkbox input:checked + .kwami-checkbox-box {
+    background: var(--kwami-accent, #ff9500);
+}
+
+.kwami-checkbox input:checked + .kwami-checkbox-box iconify-icon {
+    animation: checkPop 0.2s ease;
+}
+
+@keyframes checkPop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.kwami-checkbox-label {
+    font-size: 0.9rem;
+    color: var(--kwami-text);
+    transition: color 0.2s ease;
+}
+
+.kwami-checkbox:hover .kwami-checkbox-label {
+    color: var(--kwami-accent, #ff9500);
+}
+
+[data-theme="dark"] .kwami-checkbox:hover .kwami-checkbox-label {
+    color: var(--kwami-accent, #ff9500);
+}
+
+/* Focus state */
+.kwami-checkbox input:focus-visible + .kwami-checkbox-box {
+    outline: 2px solid var(--kwami-accent, #ff9500);
+    outline-offset: 2px;
+}
+
+[data-theme="dark"] .kwami-checkbox input:focus-visible + .kwami-checkbox-box {
+    outline-color: var(--kwami-accent, #ff9500);
+}

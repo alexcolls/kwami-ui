@@ -1,0 +1,84 @@
+/* IconConfigurator Component */
+.kwami-icon-configurator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+
+.kwami-icon-configurator-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+}
+
+.kwami-icon-configurator-controls {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.6rem;
+    padding: 0.5rem 0;
+}
+
+.kwami-expandable.expanded .kwami-icon-configurator-controls,
+.kwami-expandable.expanding .kwami-icon-configurator-controls {
+    display: flex;
+    animation: kwami-cfg-fadeIn 0.3s ease 0.2s both;
+}
+
+.kwami-icon-configurator:not(.kwami-expandable .kwami-icon-configurator) .kwami-icon-configurator-controls {
+    display: flex;
+}
+
+/* Smaller input for icon name */
+.kwami-cfg-input-sm {
+    font-size: 0.7rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Icon preset grid */
+.kwami-icon-preset-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.35rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background: var(--kwami-surface, #e0e5ec);
+    box-shadow:
+        inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+        inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+}
+
+.kwami-icon-preset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: var(--kwami-surface, #e0e5ec);
+    box-shadow:
+        2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+        -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+    color: var(--kwami-text-secondary, #888);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.kwami-icon-preset:hover {
+    color: var(--kwami-text, #333);
+    transform: scale(1.05);
+}
+
+.kwami-icon-preset.active {
+    box-shadow:
+        inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+        inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+    color: var(--kwami-accent, #ff9500);
+}

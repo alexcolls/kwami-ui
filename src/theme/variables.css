@@ -1,0 +1,143 @@
+/**
+ * Kwami UI - Base Theme Variables
+ * 
+ * Include this CSS to get the default neumorphic theme styling.
+ * All components use these CSS custom properties and will automatically
+ * adapt to your theme customization.
+ * 
+ * To customize, override these variables in your own CSS:
+ * 
+ * :root {
+ *   --kwami-surface: #your-color;
+ *   --kwami-accent: #your-accent;
+ * }
+ */
+
+:root {
+    /* Primary accent color */
+    --kwami-accent: #ff9500;
+
+    /* ============================
+       LIGHT THEME (Default)
+       ============================ */
+    
+    /* Surface colors */
+    --kwami-bg: #e0e5ec;
+    --kwami-surface: #e0e5ec;
+    --kwami-surface-light: #f0f0f0;
+    --kwami-surface-dark: #d0d0d0;
+
+    /* Shadow colors for neumorphic effect */
+    --kwami-shadow-dark: rgba(163, 177, 198, 0.6);
+    --kwami-shadow-light: rgba(255, 255, 255, 0.8);
+
+    /* Text colors */
+    --kwami-text: rgba(0, 0, 0, 0.85);
+    --kwami-text-secondary: rgba(0, 0, 0, 0.55);
+
+    /* Typography */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================
+   DARK THEME
+   ============================ */
+[data-theme="dark"] {
+    --kwami-bg: #1e1e1e;
+    --kwami-surface: #1e1e1e;
+    --kwami-surface-light: #2a2a2a;
+    --kwami-surface-dark: #151515;
+
+    --kwami-shadow-dark: rgba(0, 0, 0, 0.5);
+    --kwami-shadow-light: rgba(255, 255, 255, 0.03);
+
+    --kwami-text: rgba(255, 255, 255, 0.9);
+    --kwami-text-secondary: rgba(255, 255, 255, 0.55);
+}
+
+/* ============================
+   ALTERNATE THEME PRESETS
+   ============================ */
+
+/* Warm Light Theme */
+[data-theme="warm-light"] {
+    --kwami-bg: #f5f0e6;
+    --kwami-surface: #f5f0e6;
+    --kwami-surface-light: #fffbf5;
+    --kwami-surface-dark: #e8e0d4;
+
+    --kwami-shadow-dark: rgba(180, 160, 130, 0.5);
+    --kwami-shadow-light: rgba(255, 255, 255, 0.9);
+}
+
+/* Cool Dark Theme */
+[data-theme="cool-dark"] {
+    --kwami-bg: #1a1d24;
+    --kwami-surface: #1a1d24;
+    --kwami-surface-light: #252a33;
+    --kwami-surface-dark: #12151a;
+
+    --kwami-shadow-dark: rgba(0, 0, 0, 0.6);
+    --kwami-shadow-light: rgba(255, 255, 255, 0.02);
+
+    --kwami-accent: #5e9eff;
+}
+
+/* Purple Theme */
+[data-theme="purple"] {
+    --kwami-bg: #2d2640;
+    --kwami-surface: #2d2640;
+    --kwami-surface-light: #3a3050;
+    --kwami-surface-dark: #221c30;
+
+    --kwami-shadow-dark: rgba(0, 0, 0, 0.6);
+    --kwami-shadow-light: rgba(255, 255, 255, 0.04);
+
+    --kwami-accent: #a78bfa;
+    --kwami-text: rgba(255, 255, 255, 0.9);
+    --kwami-text-secondary: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================
+   UTILITY CLASSES
+   ============================ */
+
+/* Apply neumorphic surface styling */
+.kwami-surface {
+    background: var(--kwami-surface);
+    box-shadow:
+        8px 8px 16px var(--kwami-shadow-dark),
+        -8px -8px 16px var(--kwami-shadow-light);
+}
+
+/* Apply neumorphic inset styling */
+.kwami-inset {
+    background: var(--kwami-surface);
+    box-shadow:
+        inset 4px 4px 8px var(--kwami-shadow-dark),
+        inset -4px -4px 8px var(--kwami-shadow-light);
+}
+
+/* Scrollbar Styling */
+.kwami-scrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.kwami-scrollbar::-webkit-scrollbar-track {
+    background: var(--kwami-surface);
+}
+
+.kwami-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--kwami-surface);
+    border-radius: 5px;
+    box-shadow:
+        inset 2px 2px 4px var(--kwami-shadow-dark),
+        inset -2px -2px 4px var(--kwami-shadow-light);
+}
+
+.kwami-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--kwami-accent);
+}

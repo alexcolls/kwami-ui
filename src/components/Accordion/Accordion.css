@@ -1,0 +1,66 @@
+/* Accordion Component */
+.kwami-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.kwami-accordion-item {
+  border-radius: 12px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  overflow: hidden;
+}
+
+.kwami-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  border: none;
+  background: transparent;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--kwami-text, rgba(0, 0, 0, 0.85));
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kwami-accordion-header:hover {
+  color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-accordion-header iconify-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: var(--kwami-text-secondary, rgba(0, 0, 0, 0.55));
+}
+
+.kwami-accordion-item.expanded .kwami-accordion-header iconify-icon {
+  transform: rotate(180deg);
+  color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.kwami-accordion-body {
+  padding: 0 0.85rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--kwami-text-secondary, rgba(0, 0, 0, 0.55));
+  line-height: 1.5;
+}
+
+/* Expanded state indicator */
+.kwami-accordion-item.expanded {
+  box-shadow:
+    3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
+    inset 0 0 0 1px color-mix(in srgb, var(--kwami-accent, #ff9500) 20%, transparent);
+}

@@ -1,0 +1,95 @@
+/* Radio Component */
+.kwami-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.kwami-radio-group.kwami-radio-group-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.kwami-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.kwami-radio input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.kwami-radio-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--kwami-surface);
+    box-shadow:
+        inset 3px 3px 6px var(--kwami-shadow-dark),
+        inset -3px -3px 6px var(--kwami-shadow-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.kwami-radio:hover .kwami-radio-circle {
+    box-shadow:
+        inset 2px 2px 4px var(--kwami-shadow-dark),
+        inset -2px -2px 4px var(--kwami-shadow-light);
+}
+
+.kwami-radio-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0);
+}
+
+.kwami-radio input:checked + .kwami-radio-circle {
+    box-shadow:
+        2px 2px 6px var(--kwami-shadow-dark),
+        -2px -2px 6px var(--kwami-shadow-light);
+}
+
+.kwami-radio input:checked + .kwami-radio-circle .kwami-radio-dot {
+    background: var(--kwami-accent, #ff9500);
+    transform: scale(1);
+    box-shadow: 0 0 8px var(--kwami-accent, #ff9500);
+}
+
+[data-theme="dark"] .kwami-radio input:checked + .kwami-radio-circle .kwami-radio-dot {
+    background: var(--kwami-accent, #ff9500);
+    box-shadow: 0 0 8px var(--kwami-accent, #ff9500);
+}
+
+.kwami-radio-label {
+    font-size: 0.9rem;
+    color: var(--kwami-text);
+    transition: color 0.2s ease;
+}
+
+.kwami-radio:hover .kwami-radio-label {
+    color: var(--kwami-accent, #ff9500);
+}
+
+[data-theme="dark"] .kwami-radio:hover .kwami-radio-label {
+    color: var(--kwami-accent, #ff9500);
+}
+
+/* Focus state */
+.kwami-radio input:focus-visible + .kwami-radio-circle {
+    outline: 2px solid var(--kwami-accent, #ff9500);
+    outline-offset: 2px;
+}
+
+[data-theme="dark"] .kwami-radio input:focus-visible + .kwami-radio-circle {
+    outline-color: var(--kwami-accent, #ff9500);
+}

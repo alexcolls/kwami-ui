@@ -1,0 +1,235 @@
+/* Core Button Styles with CSS Custom Properties for Theming */
+
+.kwami-button-bezel {
+  /* Customizable bezel colors */
+  --kwami-btn-bezel-start: #e0e0e0;
+  --kwami-btn-bezel-mid: #d0d0d0;
+  --kwami-btn-bezel-end: #c0c0c0;
+  --kwami-btn-bezel-shadow-inset: rgba(0, 0, 0, 0.12);
+  --kwami-btn-bezel-shadow-highlight: rgba(255, 255, 255, 0.7);
+  --kwami-btn-bezel-shadow-outer: rgba(0, 0, 0, 0.08);
+  --kwami-btn-bezel-radius: 14px;
+  --kwami-btn-bezel-padding: 6px;
+
+  position: relative;
+  padding: var(--kwami-btn-bezel-padding);
+  border-radius: var(--kwami-btn-bezel-radius);
+  background: linear-gradient(
+    145deg,
+    var(--kwami-btn-bezel-start) 0%,
+    var(--kwami-btn-bezel-mid) 50%,
+    var(--kwami-btn-bezel-end) 100%
+  );
+  box-shadow:
+    inset 0 3px 8px var(--kwami-btn-bezel-shadow-inset),
+    inset 0 -2px 4px var(--kwami-btn-bezel-shadow-highlight),
+    0 2px 6px var(--kwami-btn-bezel-shadow-outer);
+  display: inline-block;
+}
+
+[data-theme="dark"] .kwami-button-bezel {
+  --kwami-btn-bezel-start: #252525;
+  --kwami-btn-bezel-mid: #1a1a1a;
+  --kwami-btn-bezel-end: #0f0f0f;
+  --kwami-btn-bezel-shadow-inset: rgba(0, 0, 0, 0.6);
+  --kwami-btn-bezel-shadow-highlight: rgba(255, 255, 255, 0.02);
+  --kwami-btn-bezel-shadow-outer: rgba(0, 0, 0, 0.4);
+}
+
+.kwami-button {
+  /* Customizable button dimensions */
+  --kwami-btn-min-width: 100px;
+  --kwami-btn-height: 44px;
+  --kwami-btn-padding-x: 28px;
+  --kwami-btn-face-radius: 10px;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--kwami-btn-min-width);
+  height: var(--kwami-btn-height);
+  padding: 0 var(--kwami-btn-padding-x);
+  border: none;
+  border-radius: var(--kwami-btn-face-radius);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.kwami-button-face {
+  /* Customizable face colors */
+  --kwami-btn-face-start: #ffffff;
+  --kwami-btn-face-light: #f5f5f5;
+  --kwami-btn-face-mid: #e8e8e8;
+  --kwami-btn-face-dark: #d8d8d8;
+  --kwami-btn-face-end: #c8c8c8;
+  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.15);
+  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.1);
+  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.9);
+  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.08);
+  --kwami-btn-face-radius: 10px;
+
+  position: absolute;
+  inset: 0;
+  border-radius: var(--kwami-btn-face-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    160deg,
+    var(--kwami-btn-face-start) 0%,
+    var(--kwami-btn-face-light) 20%,
+    var(--kwami-btn-face-mid) 50%,
+    var(--kwami-btn-face-dark) 80%,
+    var(--kwami-btn-face-end) 100%
+  );
+  box-shadow:
+    0 4px 12px var(--kwami-btn-face-shadow-outer),
+    0 2px 4px var(--kwami-btn-face-shadow-mid),
+    inset 0 2px 3px var(--kwami-btn-face-shadow-inner-light),
+    inset 0 -3px 6px var(--kwami-btn-face-shadow-inner-dark);
+  transition: all 0.1s ease;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .kwami-button-face {
+  --kwami-btn-face-start: #4a4a4a;
+  --kwami-btn-face-light: #3a3a3a;
+  --kwami-btn-face-mid: #2d2d2d;
+  --kwami-btn-face-dark: #222222;
+  --kwami-btn-face-end: #1a1a1a;
+  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.4);
+  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.3);
+  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.06);
+  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.4);
+}
+
+.kwami-button-highlight {
+  /* Customizable highlight */
+  --kwami-btn-highlight-color: 255, 255, 255;
+  --kwami-btn-highlight-opacity-start: 0.4;
+  --kwami-btn-highlight-opacity-mid: 0.1;
+  --kwami-btn-highlight-height: 50%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--kwami-btn-highlight-height);
+  border-radius: 10px 10px 50% 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--kwami-btn-highlight-color), var(--kwami-btn-highlight-opacity-start)) 0%,
+    rgba(var(--kwami-btn-highlight-color), var(--kwami-btn-highlight-opacity-mid)) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+[data-theme="dark"] .kwami-button-highlight {
+  --kwami-btn-highlight-opacity-start: 0.08;
+  --kwami-btn-highlight-opacity-mid: 0.02;
+}
+
+.kwami-button-text {
+  /* Customizable text */
+  --kwami-btn-text-color: #555;
+  --kwami-btn-text-shadow: rgba(255, 255, 255, 0.5);
+  --kwami-btn-text-size: 0.75rem;
+  --kwami-btn-text-weight: 600;
+  --kwami-btn-text-spacing: 2px;
+
+  position: relative;
+  z-index: 2;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: var(--kwami-btn-text-size);
+  font-weight: var(--kwami-btn-text-weight);
+  letter-spacing: var(--kwami-btn-text-spacing);
+  text-transform: uppercase;
+  color: var(--kwami-btn-text-color);
+  text-shadow: 0 1px 0 var(--kwami-btn-text-shadow);
+  transition: color 0.15s ease;
+}
+
+[data-theme="dark"] .kwami-button-text {
+  --kwami-btn-text-color: #aaa;
+  --kwami-btn-text-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Hover State */
+.kwami-button:hover .kwami-button-face {
+  --kwami-btn-face-start: #ffffff;
+  --kwami-btn-face-light: #f8f8f8;
+  --kwami-btn-face-mid: #eeeeee;
+  --kwami-btn-face-dark: #e0e0e0;
+  --kwami-btn-face-end: #d0d0d0;
+  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.18);
+  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.12);
+  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.95);
+  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .kwami-button:hover .kwami-button-face {
+  --kwami-btn-face-start: #525252;
+  --kwami-btn-face-light: #424242;
+  --kwami-btn-face-mid: #353535;
+  --kwami-btn-face-dark: #2a2a2a;
+  --kwami-btn-face-end: #222222;
+  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.5);
+  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.4);
+  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.08);
+  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.35);
+}
+
+/* Active/Pressed State */
+.kwami-button:active .kwami-button-face,
+.kwami-button.pressed .kwami-button-face {
+  --kwami-btn-face-start: #d8d8d8;
+  --kwami-btn-face-light: #e0e0e0;
+  --kwami-btn-face-mid: #e8e8e8;
+  --kwami-btn-face-dark: #f0f0f0;
+  --kwami-btn-face-end: #f5f5f5;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    inset 0 3px 8px rgba(0, 0, 0, 0.12),
+    inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  transform: translateY(2px);
+}
+
+[data-theme="dark"] .kwami-button:active .kwami-button-face,
+[data-theme="dark"] .kwami-button.pressed .kwami-button-face {
+  --kwami-btn-face-start: #2a2a2a;
+  --kwami-btn-face-light: #282828;
+  --kwami-btn-face-mid: #252525;
+  --kwami-btn-face-dark: #222222;
+  --kwami-btn-face-end: #1a1a1a;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(2px);
+}
+
+.kwami-button:active .kwami-button-highlight,
+.kwami-button.pressed .kwami-button-highlight {
+  opacity: 0.3;
+}
+
+/* Focus State */
+.kwami-button:focus-visible .kwami-button-face {
+  outline: 2px solid var(--accent-primary, rgba(255, 170, 0, 0.6));
+  outline-offset: 2px;
+}
+
+/* Disabled State */
+.kwami-button-bezel.kwami-button-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.kwami-button-disabled .kwami-button {
+  cursor: not-allowed;
+}
