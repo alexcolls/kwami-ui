@@ -1,0 +1,244 @@
+/* Toggle Component - Multi-state Icon Button */
+
+/* Wrapper for preview + controls */
+.kwami-toggle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+
+.kwami-toggle-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+}
+
+.kwami-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Controls section */
+.kwami-toggle-controls {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.kwami-expandable.expanded .kwami-toggle-controls,
+.kwami-expandable.expanding .kwami-toggle-controls {
+  display: flex;
+  animation: fadeInControls 0.3s ease 0.2s both;
+}
+
+/* Part selector tabs */
+.kwami-toggle-parts {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kwami-toggle-part-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--surface-color);
+  box-shadow:
+    3px 3px 6px var(--shadow-dark),
+    -3px -3px 6px var(--shadow-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+  min-width: 60px;
+}
+
+.kwami-toggle-part-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    4px 4px 8px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light);
+  color: var(--text-primary);
+}
+
+.kwami-toggle-part-btn.active {
+  box-shadow:
+    inset 3px 3px 6px var(--shadow-dark),
+    inset -3px -3px 6px var(--shadow-light);
+  color: var(--accent-primary, #ff9500);
+}
+
+.kwami-toggle-part-btn .part-icon {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.kwami-toggle-part-btn .part-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Control panels */
+.kwami-toggle-control-panels {
+  position: relative;
+  min-height: 80px;
+}
+
+.kwami-toggle-panel {
+  display: none;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.5rem;
+}
+
+.kwami-toggle-panel.active {
+  display: flex;
+  animation: fadeInPanel 0.2s ease;
+}
+
+/* Editing highlight states */
+.kwami-toggle-btn.editing {
+  outline: 2px dashed var(--accent-primary, #ff9500);
+  outline-offset: 2px;
+}
+
+.kwami-toggle-highlight.editing {
+  background: linear-gradient(180deg, rgba(255, 149, 0, 0.5) 0%, transparent 100%) !important;
+}
+
+.kwami-toggle-icon.editing {
+  color: var(--accent-primary, #ff9500) !important;
+}
+
+.kwami-toggle-label.editing {
+  color: var(--accent-primary, #ff9500) !important;
+}
+
+.kwami-toggle-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 14px;
+  background: var(--surface-color);
+  box-shadow:
+    4px 4px 10px var(--shadow-dark),
+    -4px -4px 10px var(--shadow-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle inner highlight */
+.kwami-toggle-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border-radius: 14px 14px 50% 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="dark"] .kwami-toggle-highlight {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 100%
+  );
+}
+
+.kwami-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    6px 6px 14px var(--shadow-dark),
+    -6px -6px 14px var(--shadow-light);
+}
+
+.kwami-toggle-btn:hover .kwami-toggle-icon {
+  color: var(--accent-light, #ff9500);
+  transform: scale(1.1);
+}
+
+[data-theme="dark"] .kwami-toggle-btn:hover .kwami-toggle-icon {
+  color: var(--accent-dark, #ff9500);
+}
+
+.kwami-toggle-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 3px 3px 6px var(--shadow-dark),
+    inset -3px -3px 6px var(--shadow-light);
+}
+
+.kwami-toggle-btn:active .kwami-toggle-icon {
+  transform: scale(0.9);
+}
+
+/* Icon */
+.kwami-toggle-icon {
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+/* Icon switching animation */
+.kwami-toggle-icon.switching {
+  transform: scale(0) rotate(-180deg);
+  opacity: 0;
+}
+
+/* Label */
+.kwami-toggle-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-secondary, #888);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+}
+
+.kwami-toggle:hover .kwami-toggle-label {
+  color: var(--text-color);
+}
+
+/* Focus state */
+.kwami-toggle-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    4px 4px 10px var(--shadow-dark),
+    -4px -4px 10px var(--shadow-light),
+    0 0 0 3px var(--accent-light, #ff9500);
+}
+
+[data-theme="dark"] .kwami-toggle-btn:focus-visible {
+  box-shadow:
+    4px 4px 10px var(--shadow-dark),
+    -4px -4px 10px var(--shadow-light),
+    0 0 0 3px var(--accent-dark, #ff9500);
+}

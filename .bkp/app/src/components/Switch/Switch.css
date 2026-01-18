@@ -1,9 +1,131 @@
 /* Switch Component - Neumorphic Horizontal Slider */
+
+/* Wrapper for preview + controls */
+.kwami-switch-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+
+.kwami-switch-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+}
+
 .kwami-switch-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+/* Controls section */
+.kwami-switch-controls {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.kwami-expandable.expanded .kwami-switch-controls,
+.kwami-expandable.expanding .kwami-switch-controls {
+  display: flex;
+  animation: fadeInControls 0.3s ease 0.2s both;
+}
+
+/* Part selector tabs */
+.kwami-switch-parts {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kwami-switch-part-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--surface-color);
+  box-shadow:
+    3px 3px 6px var(--shadow-dark),
+    -3px -3px 6px var(--shadow-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+  min-width: 60px;
+}
+
+.kwami-switch-part-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    4px 4px 8px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light);
+  color: var(--text-primary);
+}
+
+.kwami-switch-part-btn.active {
+  box-shadow:
+    inset 3px 3px 6px var(--shadow-dark),
+    inset -3px -3px 6px var(--shadow-light);
+  color: var(--accent-primary, #ff9500);
+}
+
+.kwami-switch-part-btn .part-icon {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.kwami-switch-part-btn .part-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Control panels */
+.kwami-switch-control-panels {
+  position: relative;
+  min-height: 80px;
+}
+
+.kwami-switch-panel {
+  display: none;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.5rem;
+}
+
+.kwami-switch-panel.active {
+  display: flex;
+  animation: fadeInPanel 0.2s ease;
+}
+
+/* Editing highlight states */
+.kwami-switch-bezel.editing {
+  outline: 2px dashed var(--accent-primary, #ff9500);
+  outline-offset: 2px;
+}
+
+.kwami-switch-track.editing {
+  outline: 2px dashed var(--accent-primary, #ff9500);
+  outline-offset: -2px;
+}
+
+.kwami-switch-thumb.editing {
+  outline: 2px dashed var(--accent-primary, #ff9500);
+  outline-offset: 2px;
 }
 
 .kwami-switch {

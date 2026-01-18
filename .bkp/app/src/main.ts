@@ -172,13 +172,13 @@ function initApp(): void {
 
     <main class="components-grid">
       ${Expandable({ title: 'Button', content: Button(), id: 'button' })}
-      ${Box({ title: 'Toggle', content: Toggle(), id: 'toggle' })}
-      ${Box({ title: 'Activator', content: Activator(), id: 'activator' })}
-      ${Box({ title: 'Switch', content: Switch(), id: 'switch' })}
-      ${Box({ title: 'Input', content: Input(), id: 'input' })}
-      ${Box({ title: 'Selector', content: Selector(), id: 'selector' })}
-      ${Box({ title: 'Slider', content: Slider(), id: 'slider' })}
-      ${Box({ title: 'Knob', content: Knob(), id: 'knob' })}
+      ${Expandable({ title: 'Toggle', content: Toggle(), id: 'toggle' })}
+      ${Expandable({ title: 'Activator', content: Activator(), id: 'activator' })}
+      ${Expandable({ title: 'Switch', content: Switch(), id: 'switch' })}
+      ${Expandable({ title: 'Input', content: Input(), id: 'input' })}
+      ${Expandable({ title: 'Selector', content: Selector(), id: 'selector' })}
+      ${Expandable({ title: 'Slider', content: Slider(), id: 'slider' })}
+      ${Expandable({ title: 'Knob', content: Knob(), id: 'knob' })}
       ${Box({ title: 'Fader', content: Fader(), id: 'fader' })}
       ${Box({ title: 'Popover', content: Popover(), id: 'popover' })}
       ${Box({ title: 'Tooltip', content: Tooltip(), id: 'tooltip' })}
