@@ -1,151 +1,131 @@
 /* TextInput Component - Neumorphic Style */
 
 .kwami-textinput-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    width: 100%;
-    max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 240px;
 }
 
 .kwami-textinput-container.kwami-textinput-disabled {
-    opacity: 0.6;
-    pointer-events: none;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 /* Outer recessed bezel */
 .kwami-textinput-bezel {
-    width: 100%;
-    padding: 6px;
-    border-radius: 14px;
-    background: linear-gradient(
-        145deg,
-        #d8d8d8 0%,
-        #c8c8c8 50%,
-        #b8b8b8 100%
-    );
-    box-shadow:
-        inset 0 3px 8px rgba(0, 0, 0, 0.12),
-        inset 0 -2px 4px rgba(255, 255, 255, 0.6),
-        0 2px 4px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  padding: 6px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #d8d8d8 0%, #c8c8c8 50%, #b8b8b8 100%);
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.12),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme="dark"] .kwami-textinput-bezel {
-    background: linear-gradient(
-        145deg,
-        #222222 0%,
-        #181818 50%,
-        #101010 100%
-    );
-    box-shadow:
-        inset 0 4px 12px rgba(0, 0, 0, 0.6),
-        inset 0 -2px 3px rgba(255, 255, 255, 0.02),
-        0 2px 6px rgba(0, 0, 0, 0.4);
+[data-theme='dark'] .kwami-textinput-bezel {
+  background: linear-gradient(145deg, #222222 0%, #181818 50%, #101010 100%);
+  box-shadow:
+    inset 0 4px 12px rgba(0, 0, 0, 0.6),
+    inset 0 -2px 3px rgba(255, 255, 255, 0.02),
+    0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* Input wrapper */
 .kwami-textinput-wrapper {
-    position: relative;
-    width: 100%;
-    border-radius: 10px;
-    background: linear-gradient(
-        160deg,
-        #f8f8f8 0%,
-        #f0f0f0 50%,
-        #e8e8e8 100%
-    );
-    box-shadow:
-        inset 0 2px 6px rgba(0, 0, 0, 0.08),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.8);
-    transition: all 0.2s ease;
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  background: linear-gradient(160deg, #f8f8f8 0%, #f0f0f0 50%, #e8e8e8 100%);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
 }
 
-[data-theme="dark"] .kwami-textinput-wrapper {
-    background: linear-gradient(
-        160deg,
-        #1a1a1a 0%,
-        #202020 50%,
-        #252525 100%
-    );
-    box-shadow:
-        inset 0 3px 8px rgba(0, 0, 0, 0.5),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.02);
+[data-theme='dark'] .kwami-textinput-wrapper {
+  background: linear-gradient(160deg, #1a1a1a 0%, #202020 50%, #252525 100%);
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02);
 }
 
 /* Focus state */
 .kwami-textinput-wrapper.focused {
-    box-shadow:
-        inset 0 2px 6px rgba(0, 0, 0, 0.08),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.8),
-        0 0 0 2px var(--accent-light, #ff9500);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.8),
+    0 0 0 2px var(--accent-light, #ff9500);
 }
 
-[data-theme="dark"] .kwami-textinput-wrapper.focused {
-    box-shadow:
-        inset 0 3px 8px rgba(0, 0, 0, 0.5),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.02),
-        0 0 0 2px var(--accent-dark, #ff9500),
-        0 0 12px rgba(255, 149, 0, 0.2);
+[data-theme='dark'] .kwami-textinput-wrapper.focused {
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02),
+    0 0 0 2px var(--accent-dark, #ff9500),
+    0 0 12px rgba(255, 149, 0, 0.2);
 }
 
 /* The actual input */
 .kwami-textinput {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    border: none;
-    border-radius: 10px;
-    background: transparent;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    font-size: 0.9rem;
-    color: #333;
-    outline: none;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  outline: none;
 }
 
-[data-theme="dark"] .kwami-textinput {
-    color: #e0e0e0;
+[data-theme='dark'] .kwami-textinput {
+  color: #e0e0e0;
 }
 
 .kwami-textinput::placeholder {
-    color: #999;
-    font-weight: 400;
+  color: #999;
+  font-weight: 400;
 }
 
-[data-theme="dark"] .kwami-textinput::placeholder {
-    color: #666;
+[data-theme='dark'] .kwami-textinput::placeholder {
+  color: #666;
 }
 
 /* Bottom highlight line */
 .kwami-textinput-highlight {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-light, #ff9500), var(--accent-light, #ffcc00));
-    border-radius: 1px;
-    transition: width 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-light, #ff9500), var(--accent-light, #ffcc00));
+  border-radius: 1px;
+  transition: width 0.3s ease;
 }
 
-[data-theme="dark"] .kwami-textinput-highlight {
-    background: linear-gradient(90deg, var(--accent-dark, #ff9500), var(--accent-dark, #ffcc00));
+[data-theme='dark'] .kwami-textinput-highlight {
+  background: linear-gradient(90deg, var(--accent-dark, #ff9500), var(--accent-dark, #ffcc00));
 }
 
 .kwami-textinput-wrapper.focused .kwami-textinput-highlight {
-    width: 80%;
+  width: 80%;
 }
 
 /* Label */
 .kwami-textinput-label {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #666;
-    text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #666;
+  text-transform: uppercase;
 }
 
-[data-theme="dark"] .kwami-textinput-label {
-    color: rgba(160, 160, 160, 0.8);
+[data-theme='dark'] .kwami-textinput-label {
+  color: rgba(160, 160, 160, 0.8);
 }

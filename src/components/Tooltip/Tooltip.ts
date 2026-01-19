@@ -2,35 +2,31 @@ import { Component } from '../../core/Component';
 import './Tooltip.css';
 
 export interface TooltipProps {
-    /** Trigger button text */
-    triggerText?: string;
-    /** Tooltip text */
-    text?: string;
-    /** Callback when tooltip shows/hides */
-    onChange?: (isVisible: boolean) => void;
-    /** Additional CSS class */
-    className?: string;
+  /** Trigger button text */
+  triggerText?: string;
+  /** Tooltip text */
+  text?: string;
+  /** Callback when tooltip shows/hides */
+  onChange?: (isVisible: boolean) => void;
+  /** Additional CSS class */
+  className?: string;
 }
 
 export class Tooltip extends Component<TooltipProps> {
-    private isVisible: boolean = false;
+  private isVisible: boolean = false;
 
-    // DOM references
-    private trigger: HTMLButtonElement | null = null;
-    private tooltip: HTMLElement | null = null;
+  // DOM references
+  private trigger: HTMLButtonElement | null = null;
+  private tooltip: HTMLElement | null = null;
 
-    constructor(props: TooltipProps = {}) {
-        super(props);
-    }
+  constructor(props: TooltipProps = {}) {
+    super(props);
+  }
 
-    render(): string {
-        const {
-            className = '',
-            triggerText = 'HOVER',
-            text = 'Helpful tooltip info!'
-        } = this.props;
+  render(): string {
+    const { className = '', triggerText = 'HOVER', text = 'Helpful tooltip info!' } = this.props;
 
-        return `
+    return `
             <div class="kwami-tooltip-wrapper ${className}" data-kwami-id="${this.id}">
                 <div class="kwami-tooltip-trigger-bezel">
                     <button class="kwami-tooltip-trigger">
@@ -46,74 +42,78 @@ export class Tooltip extends Component<TooltipProps> {
                 </div>
             </div>
         `;
+  }
+
+  protected onHydrate(): void {
+    if (!this.element) return;
+
+    this.trigger = this.element.querySelector('.kwami-tooltip-trigger');
+    this.tooltip = this.element.querySelector('.kwami-tooltip');
+
+    if (!this.trigger || !this.tooltip) return;
+
+    this.addListener(this.trigger, 'mouseenter', () => {
+      this.show();
+    });
+
+    this.addListener(this.trigger, 'mouseleave', () => {
+      this.hide();
+    });
+
+    // Also handle focus for accessibility
+    this.addListener(this.trigger, 'focus', () => {
+      this.show();
+    });
+
+    this.addListener(this.trigger, 'blur', () => {
+      this.hide();
+    });
+  }
+
+  /** Show the tooltip */
+  show(): void {
+    if (!this.tooltip || this.isVisible) return;
+
+    this.isVisible = true;
+    this.tooltip.classList.remove('hidden');
+
+    // Dispatch event
+    this.element?.dispatchEvent(
+      new CustomEvent('tooltipchange', {
+        detail: { isVisible: true },
+        bubbles: true,
+      })
+    );
+
+    // Call onChange callback
+    if (this.props.onChange) {
+      this.props.onChange(true);
     }
+  }
 
-    protected onHydrate(): void {
-        if (!this.element) return;
+  /** Hide the tooltip */
+  hide(): void {
+    if (!this.tooltip || !this.isVisible) return;
 
-        this.trigger = this.element.querySelector('.kwami-tooltip-trigger');
-        this.tooltip = this.element.querySelector('.kwami-tooltip');
+    this.isVisible = false;
+    this.tooltip.classList.add('hidden');
 
-        if (!this.trigger || !this.tooltip) return;
+    // Dispatch event
+    this.element?.dispatchEvent(
+      new CustomEvent('tooltipchange', {
+        detail: { isVisible: false },
+        bubbles: true,
+      })
+    );
 
-        this.addListener(this.trigger, 'mouseenter', () => {
-            this.show();
-        });
-
-        this.addListener(this.trigger, 'mouseleave', () => {
-            this.hide();
-        });
-
-        // Also handle focus for accessibility
-        this.addListener(this.trigger, 'focus', () => {
-            this.show();
-        });
-
-        this.addListener(this.trigger, 'blur', () => {
-            this.hide();
-        });
+    // Call onChange callback
+    if (this.props.onChange) {
+      this.props.onChange(false);
     }
+  }
 
-    /** Show the tooltip */
-    show(): void {
-        if (!this.tooltip || this.isVisible) return;
-
-        this.isVisible = true;
-        this.tooltip.classList.remove('hidden');
-
-        // Dispatch event
-        this.element?.dispatchEvent(new CustomEvent('tooltipchange', {
-            detail: { isVisible: true },
-            bubbles: true
-        }));
-
-        // Call onChange callback
-        if (this.props.onChange) {
-            this.props.onChange(true);
-        }
-    }
-
-    /** Hide the tooltip */
-    hide(): void {
-        if (!this.tooltip || !this.isVisible) return;
-
-        this.isVisible = false;
-        this.tooltip.classList.add('hidden');
-
-        // Dispatch event
-        this.element?.dispatchEvent(new CustomEvent('tooltipchange', {
-            detail: { isVisible: false },
-            bubbles: true
-        }));
-
-        // Call onChange callback
-        if (this.props.onChange) {
-            this.props.onChange(false);
-        }
-    }
-
-    /** Check if tooltip is visible */
-    getIsVisible(): boolean {
-        return this.isVisible;
-    }
+  /** Check if tooltip is visible */
+  getIsVisible(): boolean {
+    return this.isVisible;
+  }
 }

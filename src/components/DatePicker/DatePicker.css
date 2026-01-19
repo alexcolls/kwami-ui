@@ -1,335 +1,337 @@
 /* DatePicker Container */
 .kwami-datepicker-container {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /* Label */
 .kwami-datepicker-label {
-    font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--kwami-text-secondary, #888);
-    padding-left: 0.25rem;
+  font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kwami-text-secondary, #888);
+  padding-left: 0.25rem;
 }
 
 /* DatePicker main wrapper */
 .kwami-datepicker {
-    position: relative;
-    display: inline-flex;
+  position: relative;
+  display: inline-flex;
 }
 
 /* Trigger button */
 .kwami-datepicker-trigger {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 12px;
-    background: var(--kwami-surface, #e0e5ec);
-    box-shadow:
-        4px 4px 8px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -4px -4px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: var(--kwami-text, #333);
-    min-width: 160px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    4px 4px 8px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -4px -4px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--kwami-text, #333);
+  min-width: 160px;
 }
 
 .kwami-datepicker-trigger:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        6px 6px 12px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -6px -6px 12px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  transform: translateY(-2px);
+  box-shadow:
+    6px 6px 12px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -6px -6px 12px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
 .kwami-datepicker-trigger:active {
-    transform: translateY(0);
-    box-shadow:
-        inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  transform: translateY(0);
+  box-shadow:
+    inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
 .kwami-datepicker.active .kwami-datepicker-trigger {
-    box-shadow:
-        inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  box-shadow:
+    inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
 /* Value display */
 .kwami-datepicker-value {
-    flex: 1;
-    font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-align: left;
-    color: var(--kwami-text, #333);
+  flex: 1;
+  font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: left;
+  color: var(--kwami-text, #333);
 }
 
 /* Icon */
 .kwami-datepicker-trigger iconify-icon {
-    color: var(--kwami-text-secondary, #888);
-    transition: color 0.2s ease, transform 0.2s ease;
-    flex-shrink: 0;
+  color: var(--kwami-text-secondary, #888);
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .kwami-datepicker-trigger:hover iconify-icon {
-    color: var(--kwami-accent, #ff9500);
+  color: var(--kwami-accent, #ff9500);
 }
 
 /* Popup container */
 .kwami-datepicker-popup {
-    position: absolute;
-    bottom: calc(100% + 12px);
-    left: 50%;
-    transform: translateX(-50%) scale(0.9);
-    opacity: 0;
-    visibility: hidden;
-    padding: 1rem;
-    border-radius: 20px;
-    background: var(--kwami-surface, #e0e5ec);
-    box-shadow:
-        8px 8px 20px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -8px -8px 20px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
-        0 10px 40px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    z-index: 100;
-    min-width: 280px;
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  opacity: 0;
+  visibility: hidden;
+  padding: 1rem;
+  border-radius: 20px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    8px 8px 20px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -8px -8px 20px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
+    0 10px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 100;
+  min-width: 280px;
 }
 
 .kwami-datepicker-popup.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scale(1);
 }
 
 /* Arrow pointing down (for upward popup) */
 .kwami-datepicker-popup::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    width: 16px;
-    height: 16px;
-    background: var(--kwami-surface, #e0e5ec);
-    box-shadow: 4px 4px 8px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6));
-    z-index: -1;
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 16px;
+  height: 16px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow: 4px 4px 8px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6));
+  z-index: -1;
 }
 
 /* Popup opens downward */
 .kwami-datepicker-popup-down {
-    bottom: auto;
-    top: calc(100% + 12px);
+  bottom: auto;
+  top: calc(100% + 12px);
 }
 
 .kwami-datepicker-popup-down::after {
-    bottom: auto;
-    top: -8px;
-    box-shadow: -4px -4px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  bottom: auto;
+  top: -8px;
+  box-shadow: -4px -4px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
 /* Header */
 .kwami-datepicker-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    padding: 0 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0 0.25rem;
 }
 
 .kwami-datepicker-month-label {
-    font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--kwami-text, #333);
-    text-transform: capitalize;
+  font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--kwami-text, #333);
+  text-transform: capitalize;
 }
 
 /* Navigation buttons */
 .kwami-datepicker-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 10px;
-    background: var(--kwami-surface, #e0e5ec);
-    box-shadow:
-        3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
-    color: var(--kwami-text-secondary, #888);
-    cursor: pointer;
-    transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  color: var(--kwami-text-secondary, #888);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .kwami-datepicker-nav:hover {
-    color: var(--kwami-accent, #ff9500);
-    transform: scale(1.05);
+  color: var(--kwami-accent, #ff9500);
+  transform: scale(1.05);
 }
 
 .kwami-datepicker-nav:active {
-    transform: scale(0.95);
-    box-shadow:
-        inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  transform: scale(0.95);
+  box-shadow:
+    inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
 /* Weekdays row */
 .kwami-datepicker-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-    margin-bottom: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 0.5rem;
 }
 
 .kwami-datepicker-weekday {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 28px;
-    font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--kwami-text-secondary, #888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--kwami-text-secondary, #888);
 }
 
 /* Days grid */
 .kwami-datepicker-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
 }
 
 /* Day buttons */
 .kwami-datepicker-day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 10px;
-    background: var(--kwami-surface, #e0e5ec);
-    font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--kwami-text, #333);
-    cursor: pointer;
-    transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: var(--kwami-surface, #e0e5ec);
+  font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--kwami-text, #333);
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 .kwami-datepicker-day:hover:not(.disabled):not(.outside) {
-    box-shadow:
-        3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
-    transform: scale(1.05);
+  box-shadow:
+    3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  transform: scale(1.05);
 }
 
 .kwami-datepicker-day:active:not(.disabled):not(.outside) {
-    transform: scale(0.95);
-    box-shadow:
-        inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  transform: scale(0.95);
+  box-shadow:
+    inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
 /* Today */
 .kwami-datepicker-day.today {
-    position: relative;
-    color: var(--kwami-accent, #ff9500);
-    font-weight: 700;
+  position: relative;
+  color: var(--kwami-accent, #ff9500);
+  font-weight: 700;
 }
 
 .kwami-datepicker-day.today::after {
-    content: '';
-    position: absolute;
-    bottom: 4px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--kwami-accent, #ff9500);
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--kwami-accent, #ff9500);
 }
 
 /* Selected */
 .kwami-datepicker-day.selected {
-    background: var(--kwami-accent, #ff9500);
-    color: white;
-    box-shadow:
-        inset 2px 2px 4px rgba(255, 255, 255, 0.2),
-        inset -2px -2px 4px rgba(0, 0, 0, 0.2),
-        3px 3px 8px rgba(255, 149, 0, 0.3);
+  background: var(--kwami-accent, #ff9500);
+  color: white;
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.2),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.2),
+    3px 3px 8px rgba(255, 149, 0, 0.3);
 }
 
 .kwami-datepicker-day.selected.today::after {
-    background: white;
+  background: white;
 }
 
 .kwami-datepicker-day.selected:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 /* Outside (prev/next month days) */
 .kwami-datepicker-day.outside {
-    color: var(--kwami-text-secondary, #888);
-    opacity: 0.4;
-    cursor: default;
+  color: var(--kwami-text-secondary, #888);
+  opacity: 0.4;
+  cursor: default;
 }
 
 /* Disabled */
 .kwami-datepicker-day.disabled {
-    color: var(--kwami-text-secondary, #888);
-    opacity: 0.3;
-    cursor: not-allowed;
+  color: var(--kwami-text-secondary, #888);
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* Dark theme adjustments */
-[data-theme="dark"] .kwami-datepicker-day.selected {
-    box-shadow:
-        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
-        inset -2px -2px 4px rgba(0, 0, 0, 0.3),
-        3px 3px 8px rgba(255, 149, 0, 0.4);
+[data-theme='dark'] .kwami-datepicker-day.selected {
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.3),
+    3px 3px 8px rgba(255, 149, 0, 0.4);
 }
 
 /* Responsive */
 @media (max-width: 480px) {
-    .kwami-datepicker-popup {
-        position: fixed;
-        bottom: auto;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
+  .kwami-datepicker-popup {
+    position: fixed;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
 
-    .kwami-datepicker-popup.active {
-        transform: translate(-50%, -50%) scale(1);
-    }
+  .kwami-datepicker-popup.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
 
-    .kwami-datepicker-popup::after {
-        display: none;
-    }
+  .kwami-datepicker-popup::after {
+    display: none;
+  }
 }
 
 @media (max-width: 320px) {
-    .kwami-datepicker-popup {
-        min-width: 250px;
-        padding: 0.75rem;
-    }
+  .kwami-datepicker-popup {
+    min-width: 250px;
+    padding: 0.75rem;
+  }
 
-    .kwami-datepicker-day {
-        width: 30px;
-        height: 30px;
-        font-size: 0.75rem;
-    }
+  .kwami-datepicker-day {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
 
-    .kwami-datepicker-nav {
-        width: 28px;
-        height: 28px;
-    }
+  .kwami-datepicker-nav {
+    width: 28px;
+    height: 28px;
+  }
 }

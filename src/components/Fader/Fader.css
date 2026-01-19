@@ -1,181 +1,169 @@
 /* Fader Container */
 .kwami-fader-container {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 /* Label */
 .kwami-fader-label {
-    font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--kwami-text-secondary, #888);
+  font-family: var(--kwami-font-family, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kwami-text-secondary, #888);
 }
 
 /* Fader Component - DJ Style Vertical Slider */
 .kwami-fader {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    height: 140px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 140px;
 }
 
 .kwami-fader-track {
-    position: relative;
-    width: 28px;
-    height: 100%;
-    border-radius: 14px;
-    background: var(--kwami-surface, #e0e5ec);
-    box-shadow:
-        inset 4px 4px 8px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        inset -4px -4px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
-    cursor: pointer;
+  position: relative;
+  width: 28px;
+  height: 100%;
+  border-radius: 14px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    inset 4px 4px 8px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset -4px -4px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  cursor: pointer;
 }
 
 /* Center groove */
 .kwami-fader-groove {
-    position: absolute;
-    left: 50%;
-    top: 8px;
-    bottom: 8px;
-    width: 4px;
-    transform: translateX(-50%);
-    background: var(--kwami-surface, #e0e5ec);
-    border-radius: 2px;
-    box-shadow:
-        inset 1px 1px 3px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        inset -1px -1px 2px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  transform: translateX(-50%);
+  background: var(--kwami-surface, #e0e5ec);
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px 3px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset -1px -1px 2px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
 /* Fill indicator */
 .kwami-fader-fill {
-    position: absolute;
-    left: 50%;
-    bottom: 8px;
-    width: 4px;
-    height: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(
-        to top,
-        var(--kwami-accent, #ff9500),
-        color-mix(in srgb, var(--kwami-accent, #ff9500) 60%, white)
-    );
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--kwami-accent, #ff9500);
-    transition: height 0.05s ease;
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 4px;
+  height: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to top,
+    var(--kwami-accent, #ff9500),
+    color-mix(in srgb, var(--kwami-accent, #ff9500) 60%, white)
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--kwami-accent, #ff9500);
+  transition: height 0.05s ease;
 }
 
 /* Fader knob - DJ style */
 .kwami-fader-knob {
-    position: absolute;
-    left: 50%;
-    bottom: calc(50% - 20px);
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    background: linear-gradient(
-        180deg,
-        #f5f5f5 0%,
-        #e8e8e8 20%,
-        #d0d0d0 80%,
-        #c0c0c0 100%
-    );
-    box-shadow:
-        4px 4px 10px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -2px -2px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
-        inset 0 2px 3px rgba(255, 255, 255, 0.8),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
-    cursor: grab;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    transition: box-shadow 0.15s ease;
+  position: absolute;
+  left: 50%;
+  bottom: calc(50% - 20px);
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 20%, #d0d0d0 80%, #c0c0c0 100%);
+  box-shadow:
+    4px 4px 10px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -2px -2px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
+    inset 0 2px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  transition: box-shadow 0.15s ease;
 }
 
-[data-theme="dark"] .kwami-fader-knob {
-    background: linear-gradient(
-        180deg,
-        #4a4a4a 0%,
-        #3a3a3a 20%,
-        #2a2a2a 80%,
-        #222222 100%
-    );
-    box-shadow:
-        4px 4px 12px rgba(0, 0, 0, 0.5),
-        -2px -2px 6px rgba(255, 255, 255, 0.03),
-        inset 0 2px 3px rgba(255, 255, 255, 0.1),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+[data-theme='dark'] .kwami-fader-knob {
+  background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 20%, #2a2a2a 80%, #222222 100%);
+  box-shadow:
+    4px 4px 12px rgba(0, 0, 0, 0.5),
+    -2px -2px 6px rgba(255, 255, 255, 0.03),
+    inset 0 2px 3px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .kwami-fader-knob:hover {
-    box-shadow:
-        6px 6px 14px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -3px -3px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
-        inset 0 2px 3px rgba(255, 255, 255, 0.8),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    6px 6px 14px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -3px -3px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
+    inset 0 2px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .kwami-fader-knob.dragging {
-    cursor: grabbing;
-    box-shadow:
-        2px 2px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -1px -1px 3px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
-        inset 0 2px 3px rgba(255, 255, 255, 0.6),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.15);
+  cursor: grabbing;
+  box-shadow:
+    2px 2px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -1px -1px 3px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8)),
+    inset 0 2px 3px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.15);
 }
 
 /* Grip lines */
 .kwami-fader-knob-grip {
-    width: 20px;
-    height: 2px;
-    border-radius: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(0, 0, 0, 0.2) 20%,
-        rgba(0, 0, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.2) 80%,
-        transparent 100%
-    );
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.2) 80%,
+    transparent 100%
+  );
 }
 
-[data-theme="dark"] .kwami-fader-knob-grip {
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.1) 20%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.1) 80%,
-        transparent 100%
-    );
+[data-theme='dark'] .kwami-fader-knob-grip {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent 100%
+  );
 }
 
 /* Tick marks */
 .kwami-fader-ticks {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 8px 0;
 }
 
 .kwami-fader-ticks span {
-    width: 6px;
-    height: 2px;
-    border-radius: 1px;
-    background: var(--kwami-text-secondary, #888);
-    opacity: 0.4;
+  width: 6px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--kwami-text-secondary, #888);
+  opacity: 0.4;
 }
 
 .kwami-fader-ticks span:first-child,
 .kwami-fader-ticks span:last-child {
-    width: 10px;
-    opacity: 0.6;
+  width: 10px;
+  opacity: 0.6;
 }

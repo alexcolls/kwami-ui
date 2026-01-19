@@ -3,194 +3,194 @@
  */
 
 .kwami-theme-control {
-    display: flex;
-    align-items: flex-end;
-    gap: 1.5rem;
-    padding: 1rem 1.5rem;
-    background: var(--kwami-surface);
-    border-radius: 16px;
-    box-shadow:
-        6px 6px 12px var(--kwami-shadow-dark),
-        -6px -6px 12px var(--kwami-shadow-light);
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--kwami-surface);
+  border-radius: 16px;
+  box-shadow:
+    6px 6px 12px var(--kwami-shadow-dark),
+    -6px -6px 12px var(--kwami-shadow-light);
 }
 
 /* Layout variations */
 .kwami-theme-control-horizontal {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .kwami-theme-control-vertical {
-    flex-direction: column;
-    align-items: stretch;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 /* Individual control item - stacked layout (label above control) */
 .kwami-theme-control-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    min-width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 60px;
 }
 
 .kwami-theme-control-vertical .kwami-theme-control-item {
-    flex-direction: row;
-    justify-content: space-between;
-    min-width: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: auto;
 }
 
 /* Mode control styling */
 .kwami-theme-control-mode {
-    padding-right: 1.5rem;
-    border-right: 1px solid var(--kwami-shadow-dark);
-    min-width: 50px;
+  padding-right: 1.5rem;
+  border-right: 1px solid var(--kwami-shadow-dark);
+  min-width: 50px;
 }
 
 .kwami-theme-control-vertical .kwami-theme-control-mode {
-    padding-right: 0;
-    padding-bottom: 1rem;
-    border-right: none;
-    border-bottom: 1px solid var(--kwami-shadow-dark);
+  padding-right: 0;
+  padding-bottom: 1rem;
+  border-right: none;
+  border-bottom: 1px solid var(--kwami-shadow-dark);
 }
 
 /* Labels - positioned above controls */
 .kwami-theme-control-label {
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--kwami-text-secondary);
-    white-space: nowrap;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--kwami-text-secondary);
+  white-space: nowrap;
 }
 
 /* Colors container - equal width columns */
 .kwami-theme-control-colors {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    align-items: end;
-    gap: 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: end;
+  gap: 1rem;
 }
 
 .kwami-theme-control-vertical .kwami-theme-control-colors {
-    grid-auto-flow: row;
-    grid-auto-columns: auto;
-    align-items: stretch;
-    width: 100%;
+  grid-auto-flow: row;
+  grid-auto-columns: auto;
+  align-items: stretch;
+  width: 100%;
 }
 
 /* Hide toggle's internal label - we use our own */
 .kwami-theme-control .kwami-toggle {
-    flex-direction: column;
-    gap: 0;
+  flex-direction: column;
+  gap: 0;
 }
 
 .kwami-theme-control .kwami-toggle-label {
-    display: none;
+  display: none;
 }
 
 .kwami-theme-control .kwami-toggle-btn {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 }
 
 .kwami-theme-control .kwami-toggle-btn iconify-icon {
-    width: 18px;
-    height: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 /* Color picker styling - show only color swatch */
 .kwami-theme-control .kwami-colorpicker-trigger {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  justify-content: center;
 }
 
 .kwami-theme-control .kwami-colorpicker-trigger iconify-icon {
-    display: none;
+  display: none;
 }
 
 .kwami-theme-control .kwami-colorpicker-preview {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 
 /* Compact variant */
 .kwami-theme-control.compact {
-    padding: 0.75rem 1rem;
-    gap: 1rem;
+  padding: 0.75rem 1rem;
+  gap: 1rem;
 }
 
 .kwami-theme-control.compact .kwami-theme-control-label {
-    display: none;
+  display: none;
 }
 
 .kwami-theme-control.compact .kwami-theme-control-item {
-    gap: 0;
+  gap: 0;
 }
 
 .kwami-theme-control.compact .kwami-theme-control-mode {
-    padding-right: 1rem;
+  padding-right: 1rem;
 }
 
 .kwami-theme-control.compact .kwami-colorpicker-trigger,
 .kwami-theme-control.compact .kwami-toggle-btn {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-    .kwami-theme-control-horizontal {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .kwami-theme-control-horizontal {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .kwami-theme-control-mode {
-        padding-right: 0;
-        padding-bottom: 1rem;
-        border-right: none;
-        border-bottom: 1px solid var(--kwami-shadow-dark);
-    }
+  .kwami-theme-control-mode {
+    padding-right: 0;
+    padding-bottom: 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--kwami-shadow-dark);
+  }
 
-    .kwami-theme-control-colors {
-        justify-content: center;
-    }
+  .kwami-theme-control-colors {
+    justify-content: center;
+  }
 }
 
 /* Dark theme adjustments */
-[data-theme="dark"] .kwami-theme-control {
-    box-shadow:
-        6px 6px 12px var(--kwami-shadow-dark),
-        -6px -6px 12px var(--kwami-shadow-light);
+[data-theme='dark'] .kwami-theme-control {
+  box-shadow:
+    6px 6px 12px var(--kwami-shadow-dark),
+    -6px -6px 12px var(--kwami-shadow-light);
 }
 
 /* Inset style variant */
 .kwami-theme-control.inset {
-    box-shadow:
-        inset 4px 4px 8px var(--kwami-shadow-dark),
-        inset -4px -4px 8px var(--kwami-shadow-light);
+  box-shadow:
+    inset 4px 4px 8px var(--kwami-shadow-dark),
+    inset -4px -4px 8px var(--kwami-shadow-light);
 }
 
 /* Flat style variant (no shadow) */
 .kwami-theme-control.flat {
-    box-shadow: none;
-    background: transparent;
-    padding: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
 }
 
 .kwami-theme-control.flat .kwami-theme-control-mode {
-    border-right: none;
-    padding-right: 0;
+  border-right: none;
+  padding-right: 0;
 }
 
 /* Animation for theme changes */
 .kwami-theme-control {
-    transition: 
-        background 0.3s ease,
-        box-shadow 0.3s ease;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }

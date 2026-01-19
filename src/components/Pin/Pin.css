@@ -1,192 +1,163 @@
 /* Pin Component - Neumorphic Style */
 
 .kwami-pin-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .kwami-pin-container.kwami-pin-disabled {
-    opacity: 0.6;
-    pointer-events: none;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 /* Outer recessed bezel */
 .kwami-pin-bezel {
-    padding: 8px 12px;
-    border-radius: 16px;
-    background: linear-gradient(
-        145deg,
-        #d8d8d8 0%,
-        #c8c8c8 50%,
-        #b8b8b8 100%
-    );
-    box-shadow:
-        inset 0 3px 8px rgba(0, 0, 0, 0.12),
-        inset 0 -2px 4px rgba(255, 255, 255, 0.6),
-        0 2px 4px rgba(0, 0, 0, 0.08);
+  padding: 8px 12px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #d8d8d8 0%, #c8c8c8 50%, #b8b8b8 100%);
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.12),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme="dark"] .kwami-pin-bezel {
-    background: linear-gradient(
-        145deg,
-        #222222 0%,
-        #181818 50%,
-        #101010 100%
-    );
-    box-shadow:
-        inset 0 4px 12px rgba(0, 0, 0, 0.6),
-        inset 0 -2px 3px rgba(255, 255, 255, 0.02),
-        0 2px 6px rgba(0, 0, 0, 0.4);
+[data-theme='dark'] .kwami-pin-bezel {
+  background: linear-gradient(145deg, #222222 0%, #181818 50%, #101010 100%);
+  box-shadow:
+    inset 0 4px 12px rgba(0, 0, 0, 0.6),
+    inset 0 -2px 3px rgba(255, 255, 255, 0.02),
+    0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* Pin inputs container */
 .kwami-pin-inputs {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 /* Individual digit wrapper */
 .kwami-pin-digit-wrapper {
-    position: relative;
-    width: 44px;
-    height: 52px;
-    border-radius: 10px;
-    background: linear-gradient(
-        160deg,
-        #f8f8f8 0%,
-        #f0f0f0 50%,
-        #e8e8e8 100%
-    );
-    box-shadow:
-        inset 0 2px 6px rgba(0, 0, 0, 0.08),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.8);
-    transition: all 0.2s ease;
+  position: relative;
+  width: 44px;
+  height: 52px;
+  border-radius: 10px;
+  background: linear-gradient(160deg, #f8f8f8 0%, #f0f0f0 50%, #e8e8e8 100%);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
 }
 
-[data-theme="dark"] .kwami-pin-digit-wrapper {
-    background: linear-gradient(
-        160deg,
-        #1a1a1a 0%,
-        #202020 50%,
-        #252525 100%
-    );
-    box-shadow:
-        inset 0 3px 8px rgba(0, 0, 0, 0.5),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.02);
+[data-theme='dark'] .kwami-pin-digit-wrapper {
+  background: linear-gradient(160deg, #1a1a1a 0%, #202020 50%, #252525 100%);
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02);
 }
 
 /* Focus state */
 .kwami-pin-digit-wrapper.focused {
-    box-shadow:
-        inset 0 2px 6px rgba(0, 0, 0, 0.08),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.8),
-        0 0 0 2px var(--accent-light, #ff9500);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.8),
+    0 0 0 2px var(--accent-light, #ff9500);
 }
 
-[data-theme="dark"] .kwami-pin-digit-wrapper.focused {
-    box-shadow:
-        inset 0 3px 8px rgba(0, 0, 0, 0.5),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.02),
-        0 0 0 2px var(--accent-dark, #ff9500),
-        0 0 12px rgba(255, 149, 0, 0.2);
+[data-theme='dark'] .kwami-pin-digit-wrapper.focused {
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02),
+    0 0 0 2px var(--accent-dark, #ff9500),
+    0 0 12px rgba(255, 149, 0, 0.2);
 }
 
 /* Filled state */
 .kwami-pin-digit-wrapper:has(.kwami-pin-digit:not(:placeholder-shown)) {
-    background: linear-gradient(
-        160deg,
-        #ffffff 0%,
-        #f8f8f8 50%,
-        #f0f0f0 100%
-    );
+  background: linear-gradient(160deg, #ffffff 0%, #f8f8f8 50%, #f0f0f0 100%);
 }
 
-[data-theme="dark"] .kwami-pin-digit-wrapper:has(.kwami-pin-digit:not(:placeholder-shown)) {
-    background: linear-gradient(
-        160deg,
-        #2a2a2a 0%,
-        #252525 50%,
-        #202020 100%
-    );
+[data-theme='dark'] .kwami-pin-digit-wrapper:has(.kwami-pin-digit:not(:placeholder-shown)) {
+  background: linear-gradient(160deg, #2a2a2a 0%, #252525 50%, #202020 100%);
 }
 
 /* The actual input */
 .kwami-pin-digit {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    border: none;
-    border-radius: 10px;
-    background: transparent;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    outline: none;
-    caret-color: var(--accent-light, #ff9500);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  outline: none;
+  caret-color: var(--accent-light, #ff9500);
 }
 
-[data-theme="dark"] .kwami-pin-digit {
-    color: #e0e0e0;
-    caret-color: var(--accent-dark, #ff9500);
+[data-theme='dark'] .kwami-pin-digit {
+  color: #e0e0e0;
+  caret-color: var(--accent-dark, #ff9500);
 }
 
 /* Remove spinner from number inputs */
 .kwami-pin-digit::-webkit-outer-spin-button,
 .kwami-pin-digit::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.kwami-pin-digit[type=number] {
-    -moz-appearance: textfield;
+.kwami-pin-digit[type='number'] {
+  -moz-appearance: textfield;
 }
 
 /* Bottom highlight line */
 .kwami-pin-digit-highlight {
-    position: absolute;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-light, #ff9500), var(--accent-light, #ffcc00));
-    border-radius: 1px;
-    transition: width 0.3s ease;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-light, #ff9500), var(--accent-light, #ffcc00));
+  border-radius: 1px;
+  transition: width 0.3s ease;
 }
 
-[data-theme="dark"] .kwami-pin-digit-highlight {
-    background: linear-gradient(90deg, var(--accent-dark, #ff9500), var(--accent-dark, #ffcc00));
+[data-theme='dark'] .kwami-pin-digit-highlight {
+  background: linear-gradient(90deg, var(--accent-dark, #ff9500), var(--accent-dark, #ffcc00));
 }
 
 .kwami-pin-digit-wrapper.focused .kwami-pin-digit-highlight {
-    width: 60%;
+  width: 60%;
 }
 
 /* Filled digit highlight */
 .kwami-pin-digit-wrapper:has(.kwami-pin-digit:not(:placeholder-shown)) .kwami-pin-digit-highlight {
-    width: 40%;
-    opacity: 0.5;
+  width: 40%;
+  opacity: 0.5;
 }
 
-.kwami-pin-digit-wrapper.focused:has(.kwami-pin-digit:not(:placeholder-shown)) .kwami-pin-digit-highlight {
-    width: 60%;
-    opacity: 1;
+.kwami-pin-digit-wrapper.focused:has(.kwami-pin-digit:not(:placeholder-shown))
+  .kwami-pin-digit-highlight {
+  width: 60%;
+  opacity: 1;
 }
 
 /* Label */
 .kwami-pin-label {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #666;
-    text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #666;
+  text-transform: uppercase;
 }
 
-[data-theme="dark"] .kwami-pin-label {
-    color: rgba(160, 160, 160, 0.8);
+[data-theme='dark'] .kwami-pin-label {
+  color: rgba(160, 160, 160, 0.8);
 }
