@@ -1,0 +1,162 @@
+/**
+ * Button Documentation Styles - Demo only
+ */
+
+.kwami-button-docs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1rem;
+    height: 100%;
+}
+
+.kwami-docs-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.kwami-docs-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--kwami-accent, #ff9500);
+    margin: 0;
+}
+
+.kwami-docs-desc {
+    font-size: 0.75rem;
+    color: var(--kwami-text-secondary, #888);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.kwami-docs-subtitle {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--kwami-text, #555);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.kwami-docs-prop {
+    font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--kwami-accent, #ff9500);
+    background: var(--kwami-surface, rgba(255, 149, 0, 0.1));
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+.kwami-docs-type {
+    font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: var(--kwami-text-secondary, #888);
+    background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.05));
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+}
+
+[data-theme="dark"] .kwami-docs-type {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.kwami-docs-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.kwami-docs-examples--row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.kwami-docs-examples--align-end {
+    align-items: flex-end;
+}
+
+.kwami-docs-example {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Props Table */
+.kwami-docs-section--table {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--kwami-border, rgba(0, 0, 0, 0.1));
+}
+
+[data-theme="dark"] .kwami-docs-section--table {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.kwami-docs-table-wrap {
+    overflow-x: auto;
+    border-radius: 8px;
+    background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.03));
+}
+
+[data-theme="dark"] .kwami-docs-table-wrap {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.kwami-docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+}
+
+.kwami-docs-table th,
+.kwami-docs-table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--kwami-border, rgba(0, 0, 0, 0.08));
+}
+
+[data-theme="dark"] .kwami-docs-table th,
+[data-theme="dark"] .kwami-docs-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.kwami-docs-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--kwami-text-secondary, #888);
+    font-size: 0.6rem;
+    background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.02));
+}
+
+[data-theme="dark"] .kwami-docs-table th {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.kwami-docs-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.kwami-docs-table code {
+    font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    background: var(--kwami-surface, rgba(0, 0, 0, 0.05));
+    color: var(--kwami-text, #555);
+}
+
+[data-theme="dark"] .kwami-docs-table code {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Scrollbar handled by parent .kwami-expandable-screen */

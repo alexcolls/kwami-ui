@@ -1,0 +1,19 @@
+{
+  "name": "kwami-ui-docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@kwami/ui": "^0.0.1",
+    "iconify-icon": "^2.1.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^5.4.1"
+  }
+}
