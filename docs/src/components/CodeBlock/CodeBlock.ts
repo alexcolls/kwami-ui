@@ -48,16 +48,16 @@ export class CodeBlock {
       : '';
 
     return `
-            <div class="kwami-code-block ${showLineNumbers ? 'kwami-code-block--numbered' : ''}">
-                ${titleHtml}
-                <div class="kwami-code-content">
-                    ${lineNumbersHtml}
-                    <pre class="kwami-code-pre language-${language}"><code class="kwami-code language-${language}">${highlightedCode}</code></pre>
-                    <button class="kwami-code-copy" title="Copy to clipboard">
-                        <iconify-icon icon="solar:copy-linear" width="16" height="16"></iconify-icon>
-                    </button>
-                </div>
-            </div>
+      <div class="kwami-code-block ${showLineNumbers ? 'kwami-code-block--numbered' : ''}">
+        ${titleHtml}
+        <div class="kwami-code-content">
+          ${lineNumbersHtml}
+          <pre class="kwami-code-pre language-${language}"><code class="kwami-code language-${language}">${highlightedCode}</code></pre>
+          <button class="kwami-code-copy" title="Copy to clipboard">
+            <iconify-icon icon="solar:copy-linear" width="16" height="16"></iconify-icon>
+          </button>
+        </div>
+      </div>
         `;
   }
 

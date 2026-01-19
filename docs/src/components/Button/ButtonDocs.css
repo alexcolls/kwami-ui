@@ -23,6 +23,13 @@
   letter-spacing: 1.5px;
   color: var(--kwami-accent, #ff9500);
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kwami-docs-title iconify-icon {
+  flex-shrink: 0;
 }
 
 .kwami-docs-desc {
@@ -103,6 +110,11 @@
 
 .kwami-docs-examples--align-end {
   align-items: flex-end;
+}
+
+.kwami-docs-examples--mini {
+  gap: 0.5rem;
+  padding: 0.4rem 0;
 }
 
 .kwami-docs-example {

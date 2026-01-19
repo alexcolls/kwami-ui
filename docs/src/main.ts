@@ -259,9 +259,9 @@ function initApp(): void {
   const expandableDemo = new Expandable({
     title: 'Expandable',
     content: `<div class="simple-component-wrapper">
-            <p style="text-align: center; color: var(--kwami-text-secondary, #666); font-size: 0.85rem; line-height: 1.6;">
-                Click the <strong style="color: var(--kwami-accent, #ff9500);">expand icon</strong> in the top-right corner to see the full expanded view with smooth FLIP animations.
-            </p>
+      <p style="text-align: center; color: var(--kwami-text-secondary, #666); font-size: 0.85rem; line-height: 1.6;">
+        Click the <strong style="color: var(--kwami-accent, #ff9500);">expand icon</strong> in the top-right corner to see the full expanded view with smooth FLIP animations.
+      </p>
         </div>`,
     expandableId: 'expandable-demo',
     expandedWidth: 'min(90vw, 400px)',
@@ -288,71 +288,71 @@ function initApp(): void {
 
   // Render the app
   app.innerHTML = `
-        <div class="kwami-logo">
-            ${headerTitle.render()}
+    <div class="kwami-logo">
+      ${headerTitle.render()}
+    </div>
+  
+
+    <main class="demo-main">
+
+      <!-- Section: Theme -->
+      <section class="demo-section demo-section-theme">
+        <h2 class="demo-section-title">Theme</h2>
+        <div class="theme-control-wrapper">
+          ${themeControl.render()}
         </div>
-    
+      </section>
 
-        <main class="demo-main">
+      <!-- Section 1: Input -->
+      <section class="demo-section">
+        <h2 class="demo-section-title">Input</h2>
+        <div class="components-grid">
+          ${createButtonExpandable()}
+          ${createSimpleExpandable('Toggle', toggle, 'toggle')}
+          ${createSimpleExpandable('Activator', activator, 'activator')}
+          ${createSimpleExpandable('Switch', switchComponent, 'switch')}
+          ${createSimpleExpandable('TextInput', textInputComponent, 'textinput')}
+          ${createSimpleExpandable('TextArea', textAreaComponent, 'textarea')}
+          ${createSimpleExpandable('Pin', pinComponent, 'pin')}
+          ${createSimpleExpandable('Selector', selectorComponent, 'selector')}
+          ${createSimpleExpandable('Checkbox', checkboxComponent, 'checkbox')}
+          ${createSimpleExpandable('Radio', radioComponent, 'radio')}
+          ${createSimpleExpandable('ColorPicker', colorPickerComponent, 'colorpicker')}
+          ${createSimpleExpandable('DatePicker', datePickerComponent, 'datepicker')}
+          ${createSimpleExpandable('Stepper', stepperComponent, 'stepper')}
+          ${createSimpleExpandable('Slider', sliderComponent, 'slider')}
+          ${createSimpleExpandable('Fader', faderComponent, 'fader')}
+          ${createSimpleExpandable('Knob', knobComponent, 'knob')}
+        </div>
+      </section>
 
-            <!-- Section: Theme -->
-            <section class="demo-section demo-section-theme">
-                <h2 class="demo-section-title">Theme</h2>
-                <div class="theme-control-wrapper">
-                    ${themeControl.render()}
-                </div>
-            </section>
+      <!-- Section 2: Layout -->
+      <section class="demo-section">
+        <h2 class="demo-section-title">Layout</h2>
+        <div class="components-grid">
+          ${expandableDemo.render()}
+          ${createSimpleExpandable('Tabs', tabsComponent, 'tabs')}
+          ${createSimpleExpandable('Accordion', accordionComponent, 'accordion')}
+          ${createSimpleExpandable('Popover', popoverComponent, 'popover')}
+          ${createSimpleExpandable('Tooltip', tooltipComponent, 'tooltip')}
+          ${createSimpleExpandable('Modal', modalComponent, 'modal')}
+          ${createSimpleExpandable('Toast', toastComponent, 'toast')}
+          ${createSimpleExpandable('Depth', depthComponent, 'depth')}
+          ${createSimpleExpandable('Shallow', shallowComponent, 'shallow')}
+        </div>
+      </section>
 
-            <!-- Section 1: Input -->
-            <section class="demo-section">
-                <h2 class="demo-section-title">Input</h2>
-                <div class="components-grid">
-                    ${createButtonExpandable()}
-                    ${createSimpleExpandable('Toggle', toggle, 'toggle')}
-                    ${createSimpleExpandable('Activator', activator, 'activator')}
-                    ${createSimpleExpandable('Switch', switchComponent, 'switch')}
-                    ${createSimpleExpandable('TextInput', textInputComponent, 'textinput')}
-                    ${createSimpleExpandable('TextArea', textAreaComponent, 'textarea')}
-                    ${createSimpleExpandable('Pin', pinComponent, 'pin')}
-                    ${createSimpleExpandable('Selector', selectorComponent, 'selector')}
-                    ${createSimpleExpandable('Checkbox', checkboxComponent, 'checkbox')}
-                    ${createSimpleExpandable('Radio', radioComponent, 'radio')}
-                    ${createSimpleExpandable('ColorPicker', colorPickerComponent, 'colorpicker')}
-                    ${createSimpleExpandable('DatePicker', datePickerComponent, 'datepicker')}
-                    ${createSimpleExpandable('Stepper', stepperComponent, 'stepper')}
-                    ${createSimpleExpandable('Slider', sliderComponent, 'slider')}
-                    ${createSimpleExpandable('Fader', faderComponent, 'fader')}
-                    ${createSimpleExpandable('Knob', knobComponent, 'knob')}
-                </div>
-            </section>
-
-            <!-- Section 2: Layout -->
-            <section class="demo-section">
-                <h2 class="demo-section-title">Layout</h2>
-                <div class="components-grid">
-                    ${expandableDemo.render()}
-                    ${createSimpleExpandable('Tabs', tabsComponent, 'tabs')}
-                    ${createSimpleExpandable('Accordion', accordionComponent, 'accordion')}
-                    ${createSimpleExpandable('Popover', popoverComponent, 'popover')}
-                    ${createSimpleExpandable('Tooltip', tooltipComponent, 'tooltip')}
-                    ${createSimpleExpandable('Modal', modalComponent, 'modal')}
-                    ${createSimpleExpandable('Toast', toastComponent, 'toast')}
-                    ${createSimpleExpandable('Depth', depthComponent, 'depth')}
-                    ${createSimpleExpandable('Shallow', shallowComponent, 'shallow')}
-                </div>
-            </section>
-
-            <!-- Section 3: Typo -->
-            <section class="demo-section">
-                <h2 class="demo-section-title">Typo</h2>
-                <div class="components-grid">
-                    ${createExpandable('Title', titleConfigurator, 'title')}
-                    ${createExpandable('Text', textConfigurator, 'text')}
-                    ${createExpandable('Label', labelConfigurator, 'label')}
-                    ${createExpandable('Icon', iconConfigurator, 'icon')}
-                </div>
-            </section>
-        </main>
+      <!-- Section 3: Typo -->
+      <section class="demo-section">
+        <h2 class="demo-section-title">Typo</h2>
+        <div class="components-grid">
+          ${createExpandable('Title', titleConfigurator, 'title')}
+          ${createExpandable('Text', textConfigurator, 'text')}
+          ${createExpandable('Label', labelConfigurator, 'label')}
+          ${createExpandable('Icon', iconConfigurator, 'icon')}
+        </div>
+      </section>
+    </main>
     `;
 
   // Hydrate header title
