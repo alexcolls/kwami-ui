@@ -8,6 +8,7 @@ interface EventListenerEntry {
  * Base abstract class for all UI components.
  * @template P The type of the properties object.
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export abstract class Component<P = {}> {
   private static counter = 0;
 
@@ -18,8 +19,8 @@ export abstract class Component<P = {}> {
   private listeners: EventListenerEntry[] = [];
 
   constructor(props: P) {
-      this.props = props;
-      this.id = `kwami-${++Component.counter}`;
+    this.props = props;
+    this.id = `kwami-${++Component.counter}`;
   }
 
   /**
@@ -35,10 +36,10 @@ export abstract class Component<P = {}> {
    * @returns The root element of the component.
    */
   mount(container: HTMLElement): HTMLElement {
-      container.innerHTML = this.render();
-      const el = container.firstElementChild as HTMLElement;
-      this.hydrate(el);
-      return el;
+    container.innerHTML = this.render();
+    const el = container.firstElementChild as HTMLElement;
+    this.hydrate(el);
+    return el;
   }
 
   /**
@@ -47,16 +48,16 @@ export abstract class Component<P = {}> {
    * @param element The root element of the component.
    */
   hydrate(element: HTMLElement): void {
-      this.element = element;
-      this.element.setAttribute('data-kwami-id', this.id);
-      this.onHydrate();
+    this.element = element;
+    this.element.setAttribute('data-kwami-id', this.id);
+    this.onHydrate();
   }
 
   /**
    * Lifecycle method called during hydration.
    * Override this to attach event listeners.
    */
-  protected onHydrate(): void { }
+  protected onHydrate(): void {}
 
   /**
    * Helper method to add event listeners with automatic cleanup tracking.
@@ -66,8 +67,8 @@ export abstract class Component<P = {}> {
    * @param handler The event handler function.
    */
   protected addListener(el: Element, type: string, handler: EventListener): void {
-      el.addEventListener(type, handler);
-      this.listeners.push({ el, type, handler });
+    el.addEventListener(type, handler);
+    this.listeners.push({ el, type, handler });
   }
 
   /**
@@ -75,11 +76,11 @@ export abstract class Component<P = {}> {
    * Call this before removing the component from the DOM to prevent memory leaks.
    */
   destroy(): void {
-      this.listeners.forEach(({ el, type, handler }) => {
+    this.listeners.forEach(({ el, type, handler }) => {
       el.removeEventListener(type, handler);
-      });
-      this.listeners = [];
-      this.element = null;
+    });
+    this.listeners = [];
+    this.element = null;
   }
 
   /**
@@ -88,8 +89,8 @@ export abstract class Component<P = {}> {
    * @param newProps Partial properties to update.
    */
   update(newProps: Partial<P>): void {
-      this.props = { ...this.props, ...newProps };
-      // In a full framework, this would trigger a re-render. 
-      // For this lightweight library, it updates state for future renders.
+    this.props = { ...this.props, ...newProps };
+    // In a full framework, this would trigger a re-render.
+    // For this lightweight library, it updates state for future renders.
   }
 }
