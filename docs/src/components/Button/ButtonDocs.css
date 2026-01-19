@@ -1,162 +1,345 @@
 /**
- * Button Documentation Styles - Demo only
+ * Button Documentation Styles - Demo with code blocks
  */
 
 .kwami-button-docs {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    padding: 1rem;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  height: 100%;
 }
 
 .kwami-docs-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .kwami-docs-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--kwami-accent, #ff9500);
-    margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--kwami-accent, #ff9500);
+  margin: 0;
 }
 
 .kwami-docs-desc {
-    font-size: 0.75rem;
-    color: var(--kwami-text-secondary, #888);
-    margin: 0;
-    line-height: 1.4;
+  font-size: 0.8rem;
+  color: var(--kwami-text-secondary, #888);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.kwami-docs-hint {
+  font-size: 0.7rem;
+  color: var(--kwami-accent, #ff9500);
+  background: var(--kwami-surface-alt, rgba(255, 149, 0, 0.08));
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+[data-theme='dark'] .kwami-docs-hint {
+  background: rgba(255, 149, 0, 0.12);
 }
 
 .kwami-docs-subtitle {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--kwami-text, #555);
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kwami-text, #555);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.kwami-docs-subtitle iconify-icon {
+  color: var(--kwami-accent, #ff9500);
 }
 
 .kwami-docs-prop {
-    font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--kwami-accent, #ff9500);
-    background: var(--kwami-surface, rgba(255, 149, 0, 0.1));
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--kwami-accent, #ff9500);
+  background: var(--kwami-surface, rgba(255, 149, 0, 0.1));
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
 }
 
 .kwami-docs-type {
-    font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
-    font-size: 0.6rem;
-    font-weight: 400;
-    color: var(--kwami-text-secondary, #888);
-    background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.05));
-    padding: 0.1rem 0.35rem;
-    border-radius: 3px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--kwami-text-secondary, #888);
+  background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.05));
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
 }
 
-[data-theme="dark"] .kwami-docs-type {
-    background: rgba(255, 255, 255, 0.08);
+[data-theme='dark'] .kwami-docs-type {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .kwami-docs-examples {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
 }
 
 .kwami-docs-examples--row {
-    flex-direction: row;
-    align-items: center;
+  flex-direction: row;
+  align-items: center;
 }
 
 .kwami-docs-examples--align-end {
-    align-items: flex-end;
+  align-items: flex-end;
 }
 
 .kwami-docs-example {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Code block section */
+.kwami-docs-code {
+  margin-top: 0.5rem;
+}
+
+/* Section Divider */
+.kwami-docs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.kwami-docs-divider::before,
+.kwami-docs-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--kwami-border, rgba(0, 0, 0, 0.1)) 50%,
+    transparent 100%
+  );
+}
+
+[data-theme='dark'] .kwami-docs-divider::before,
+[data-theme='dark'] .kwami-docs-divider::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+}
+
+.kwami-docs-divider-text {
+  padding: 0.4rem 1rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--kwami-text-secondary, #888);
+  background: var(--kwami-surface, #e0e5ec);
+  border-radius: 20px;
+  box-shadow:
+    2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.4)),
+    -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.6));
+}
+
+[data-theme='dark'] .kwami-docs-divider-text {
+  background: var(--kwami-surface, #1e1e1e);
+  box-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.3),
+    -2px -2px 4px rgba(255, 255, 255, 0.02);
+}
+
+/* New Component Section Header */
+.kwami-docs-section--new-component {
+  position: relative;
+}
+
+.kwami-docs-section--new-component .kwami-docs-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kwami-docs-section--new-component .kwami-docs-title iconify-icon {
+  color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-docs-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kwami-accent, #ff9500);
+  background: rgba(255, 149, 0, 0.1);
+  border: 1px solid rgba(255, 149, 0, 0.3);
+  border-radius: 4px;
+}
+
+[data-theme='dark'] .kwami-docs-badge {
+  background: rgba(255, 149, 0, 0.15);
+  border-color: rgba(255, 149, 0, 0.4);
+}
+
+.kwami-docs-configurator-preview {
+  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    inset 3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.5)),
+    inset -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.7));
+  min-height: 300px;
+}
+
+[data-theme='dark'] .kwami-docs-configurator-preview {
+  background: var(--kwami-surface, #1e1e1e);
+  box-shadow:
+    inset 3px 3px 6px rgba(0, 0, 0, 0.4),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.02);
+}
+
+.kwami-docs-configurator-preview .kwami-button-configurator {
+  height: auto;
+}
+
+.kwami-docs-configurator-preview .kwami-button-configurator-controls {
+  display: flex !important;
 }
 
 /* Props Table */
 .kwami-docs-section--table {
-    margin-top: 0.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--kwami-border, rgba(0, 0, 0, 0.1));
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--kwami-border, rgba(0, 0, 0, 0.08));
 }
 
-[data-theme="dark"] .kwami-docs-section--table {
-    border-top-color: rgba(255, 255, 255, 0.1);
+[data-theme='dark'] .kwami-docs-section--table {
+  border-top-color: rgba(255, 255, 255, 0.08);
 }
 
 .kwami-docs-table-wrap {
-    overflow-x: auto;
-    border-radius: 8px;
-    background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.03));
+  overflow-x: auto;
+  border-radius: 10px;
+  background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.03));
+  box-shadow:
+    inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.4)),
+    inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.6));
 }
 
-[data-theme="dark"] .kwami-docs-table-wrap {
-    background: rgba(255, 255, 255, 0.03);
+[data-theme='dark'] .kwami-docs-table-wrap {
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.02);
 }
 
 .kwami-docs-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.7rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
 }
 
 .kwami-docs-table th,
 .kwami-docs-table td {
-    padding: 0.5rem 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--kwami-border, rgba(0, 0, 0, 0.08));
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--kwami-border, rgba(0, 0, 0, 0.06));
 }
 
-[data-theme="dark"] .kwami-docs-table th,
-[data-theme="dark"] .kwami-docs-table td {
-    border-bottom-color: rgba(255, 255, 255, 0.08);
+[data-theme='dark'] .kwami-docs-table th,
+[data-theme='dark'] .kwami-docs-table td {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
 .kwami-docs-table th {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--kwami-text-secondary, #888);
-    font-size: 0.6rem;
-    background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.02));
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--kwami-text-secondary, #888);
+  font-size: 0.6rem;
+  background: var(--kwami-surface-alt, rgba(0, 0, 0, 0.02));
 }
 
-[data-theme="dark"] .kwami-docs-table th {
-    background: rgba(255, 255, 255, 0.02);
+[data-theme='dark'] .kwami-docs-table th {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .kwami-docs-table tbody tr:last-child td {
-    border-bottom: none;
+  border-bottom: none;
+}
+
+.kwami-docs-table tbody tr:hover {
+  background: var(--kwami-surface-hover, rgba(0, 0, 0, 0.02));
+}
+
+[data-theme='dark'] .kwami-docs-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .kwami-docs-table code {
-    font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
-    font-size: 0.65rem;
-    padding: 0.1rem 0.3rem;
-    border-radius: 3px;
-    background: var(--kwami-surface, rgba(0, 0, 0, 0.05));
-    color: var(--kwami-text, #555);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  background: var(--kwami-surface, rgba(0, 0, 0, 0.05));
+  color: var(--kwami-text, #555);
 }
 
-[data-theme="dark"] .kwami-docs-table code {
-    background: rgba(255, 255, 255, 0.08);
+[data-theme='dark'] .kwami-docs-table code {
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* Scrollbar handled by parent .kwami-expandable-screen */
+/* Description column */
+.kwami-docs-table td:last-child {
+  color: var(--kwami-text-secondary, #888);
+  font-size: 0.68rem;
+}
+
+/* Scrollbar styling for table */
+.kwami-docs-table-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+
+.kwami-docs-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kwami-docs-table-wrap::-webkit-scrollbar-thumb {
+  background: var(--kwami-border, rgba(0, 0, 0, 0.1));
+  border-radius: 3px;
+}
+
+.kwami-docs-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--kwami-border-hover, rgba(0, 0, 0, 0.2));
+}
+
+[data-theme='dark'] .kwami-docs-table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .kwami-docs-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,246 @@
+/**
+ * CodeBlock Component Styles
+ * Syntax highlighted code with neumorphic design
+ * Colors aligned with kwami-ui theme
+ */
+
+.kwami-code-block {
+  /* Code-specific color palette (derived from --kwami-accent: #ff9500) */
+  --kwami-code-bg: var(--kwami-surface-dark, #151515);
+  --kwami-code-comment: var(--kwami-text-secondary);
+  --kwami-code-punctuation: rgba(255, 255, 255, 0.5);
+  --kwami-code-string: #34d399; /* Emerald - complements orange */
+  --kwami-code-number: var(--kwami-accent, #ff9500); /* Theme accent */
+  --kwami-code-keyword: #c084fc; /* Purple - classic code keyword */
+  --kwami-code-function: #60a5fa; /* Blue - for functions */
+  --kwami-code-variable: #fbbf24; /* Amber - warm like accent */
+  --kwami-code-operator: #67e8f9; /* Cyan - contrast with orange */
+
+  position: relative;
+  border-radius: 12px;
+  background: var(--kwami-code-bg);
+  box-shadow:
+    inset 3px 3px 8px var(--kwami-shadow-dark, rgba(0, 0, 0, 0.5)),
+    inset -3px -3px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.02));
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Light theme overrides */
+[data-theme='light'] .kwami-code-block,
+:root:not([data-theme]) .kwami-code-block {
+  --kwami-code-bg: var(--kwami-surface-dark, #d0d0d0);
+  --kwami-code-punctuation: rgba(0, 0, 0, 0.5);
+  --kwami-code-string: #059669; /* Darker emerald for light bg */
+  --kwami-code-keyword: #7c3aed; /* Darker purple */
+  --kwami-code-function: #2563eb; /* Darker blue */
+  --kwami-code-variable: #d97706; /* Darker amber */
+  --kwami-code-operator: #0891b2; /* Darker cyan */
+}
+
+.kwami-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--kwami-shadow-dark, rgba(0, 0, 0, 0.2));
+  background: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='light'] .kwami-code-header,
+:root:not([data-theme]) .kwami-code-header {
+  border-bottom-color: var(--kwami-shadow-dark, rgba(163, 177, 198, 0.3));
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.kwami-code-title {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-code-content {
+  position: relative;
+  display: flex;
+}
+
+.kwami-code-line-numbers {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0.75rem 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--kwami-shadow-dark, rgba(0, 0, 0, 0.3));
+  user-select: none;
+  text-align: right;
+  color: var(--kwami-text-secondary);
+}
+
+[data-theme='light'] .kwami-code-line-numbers,
+:root:not([data-theme]) .kwami-code-line-numbers {
+  background: rgba(0, 0, 0, 0.05);
+  border-right-color: var(--kwami-shadow-dark, rgba(163, 177, 198, 0.3));
+}
+
+.kwami-code-line-numbers span {
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+.kwami-code-pre {
+  flex: 1;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  background: transparent !important;
+}
+
+.kwami-code {
+  display: block;
+  background: transparent !important;
+  color: var(--kwami-text);
+  tab-size: 2;
+}
+
+/* Copy button - Neumorphic style */
+.kwami-code-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    2px 2px 4px var(--kwami-shadow-dark),
+    -2px -2px 4px var(--kwami-shadow-light);
+  color: var(--kwami-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  opacity: 0;
+}
+
+.kwami-code-block:hover .kwami-code-copy {
+  opacity: 1;
+}
+
+.kwami-code-copy:hover {
+  color: var(--kwami-accent, #ff9500);
+  transform: translateY(-1px);
+}
+
+.kwami-code-copy:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 2px 2px 4px var(--kwami-shadow-dark),
+    inset -2px -2px 4px var(--kwami-shadow-light);
+}
+
+.kwami-code-copy.copied {
+  background: var(--kwami-accent, #ff9500);
+  color: #fff;
+  box-shadow:
+    2px 2px 4px var(--kwami-shadow-dark),
+    -2px -2px 4px var(--kwami-shadow-light),
+    0 0 12px rgba(255, 149, 0, 0.4);
+}
+
+/* ============================================
+   SYNTAX HIGHLIGHTING - Using Theme Variables
+   Colors derived from --kwami-accent (#ff9500)
+   ============================================ */
+
+.kwami-code-block .token.comment,
+.kwami-code-block .token.prolog,
+.kwami-code-block .token.doctype,
+.kwami-code-block .token.cdata {
+  color: var(--kwami-code-comment);
+  font-style: italic;
+}
+
+.kwami-code-block .token.punctuation {
+  color: var(--kwami-code-punctuation);
+}
+
+/* Numbers, constants, booleans - use theme accent */
+.kwami-code-block .token.property,
+.kwami-code-block .token.tag,
+.kwami-code-block .token.boolean,
+.kwami-code-block .token.number,
+.kwami-code-block .token.constant,
+.kwami-code-block .token.symbol,
+.kwami-code-block .token.deleted {
+  color: var(--kwami-code-number);
+}
+
+/* Strings - complementary green */
+.kwami-code-block .token.selector,
+.kwami-code-block .token.attr-name,
+.kwami-code-block .token.string,
+.kwami-code-block .token.char,
+.kwami-code-block .token.builtin,
+.kwami-code-block .token.inserted {
+  color: var(--kwami-code-string);
+}
+
+/* Operators - cyan for contrast */
+.kwami-code-block .token.operator,
+.kwami-code-block .token.entity,
+.kwami-code-block .token.url,
+.kwami-code-block .language-css .token.string,
+.kwami-code-block .style .token.string {
+  color: var(--kwami-code-operator);
+}
+
+/* Keywords - purple */
+.kwami-code-block .token.atrule,
+.kwami-code-block .token.attr-value,
+.kwami-code-block .token.keyword {
+  color: var(--kwami-code-keyword);
+}
+
+/* Functions and classes - blue */
+.kwami-code-block .token.function,
+.kwami-code-block .token.class-name {
+  color: var(--kwami-code-function);
+}
+
+/* Variables, regex - warm amber */
+.kwami-code-block .token.regex,
+.kwami-code-block .token.important,
+.kwami-code-block .token.variable {
+  color: var(--kwami-code-variable);
+}
+
+/* ============================================
+   SCROLLBAR - Neumorphic style
+   ============================================ */
+
+.kwami-code-pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.kwami-code-pre::-webkit-scrollbar-track {
+  background: var(--kwami-code-bg);
+  border-radius: 4px;
+}
+
+.kwami-code-pre::-webkit-scrollbar-thumb {
+  background: var(--kwami-surface);
+  border-radius: 4px;
+  box-shadow:
+    inset 1px 1px 2px var(--kwami-shadow-dark),
+    inset -1px -1px 2px var(--kwami-shadow-light);
+}
+
+.kwami-code-pre::-webkit-scrollbar-thumb:hover {
+  background: var(--kwami-accent, #ff9500);
+  box-shadow: none;
+}

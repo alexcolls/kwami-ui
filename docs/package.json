@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@kwami/ui": "^0.0.1",
-    "iconify-icon": "^2.1.0"
+    "@kwami/ui": "file:..",
+    "iconify-icon": "^2.1.0",
+    "prismjs": "^1.29.0"
   },
   "devDependencies": {
+    "@types/prismjs": "^1.26.0",
     "typescript": "~5.6.2",
     "vite": "^5.4.1"
   }
