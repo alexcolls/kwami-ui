@@ -27,7 +27,7 @@
   display: inline-block;
 }
 
-[data-theme="dark"] .kwami-button-bezel {
+[data-theme='dark'] .kwami-button-bezel {
   --kwami-btn-bezel-start: #252525;
   --kwami-btn-bezel-mid: #1a1a1a;
   --kwami-btn-bezel-end: #0f0f0f;
@@ -98,7 +98,7 @@
   color: var(--kwami-btn-text-color, #555);
 }
 
-[data-theme="dark"] .kwami-button-face {
+[data-theme='dark'] .kwami-button-face {
   --kwami-btn-face-start: #4a4a4a;
   --kwami-btn-face-light: #3a3a3a;
   --kwami-btn-face-mid: #2d2d2d;
@@ -132,7 +132,7 @@
   pointer-events: none;
 }
 
-[data-theme="dark"] .kwami-button-highlight {
+[data-theme='dark'] .kwami-button-highlight {
   --kwami-btn-highlight-opacity-start: 0.08;
   --kwami-btn-highlight-opacity-mid: 0.02;
 }
@@ -164,7 +164,7 @@
   display: none;
 }
 
-[data-theme="dark"] .kwami-button-text {
+[data-theme='dark'] .kwami-button-text {
   --kwami-btn-text-color: #aaa;
   --kwami-btn-text-shadow: rgba(0, 0, 0, 0.5);
 }
@@ -182,7 +182,7 @@
   --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.06);
 }
 
-[data-theme="dark"] .kwami-button:hover .kwami-button-face {
+[data-theme='dark'] .kwami-button:hover .kwami-button-face {
   --kwami-btn-face-start: #525252;
   --kwami-btn-face-light: #424242;
   --kwami-btn-face-mid: #353535;
@@ -209,8 +209,8 @@
   transform: translateY(2px);
 }
 
-[data-theme="dark"] .kwami-button:active .kwami-button-face,
-[data-theme="dark"] .kwami-button.pressed .kwami-button-face {
+[data-theme='dark'] .kwami-button:active .kwami-button-face,
+[data-theme='dark'] .kwami-button.pressed .kwami-button-face {
   --kwami-btn-face-start: #2a2a2a;
   --kwami-btn-face-light: #282828;
   --kwami-btn-face-mid: #252525;
@@ -324,13 +324,13 @@
   --kwami-btn-highlight-opacity-mid: 0.15;
 }
 
-[data-theme="dark"] .kwami-button-bezel--primary {
+[data-theme='dark'] .kwami-button-bezel--primary {
   --kwami-btn-bezel-start: #996300;
   --kwami-btn-bezel-mid: #804f00;
   --kwami-btn-bezel-end: #663f00;
 }
 
-[data-theme="dark"] .kwami-button-bezel--primary .kwami-button-face {
+[data-theme='dark'] .kwami-button-bezel--primary .kwami-button-face {
   --kwami-btn-face-start: #cc8000;
   --kwami-btn-face-light: #b37000;
   --kwami-btn-face-mid: #996300;
@@ -338,7 +338,7 @@
   --kwami-btn-face-end: #663f00;
 }
 
-[data-theme="dark"] .kwami-button-bezel--primary .kwami-button-text {
+[data-theme='dark'] .kwami-button-bezel--primary .kwami-button-text {
   --kwami-btn-text-color: #ffe0b3;
   --kwami-btn-text-shadow: rgba(0, 0, 0, 0.4);
 }
@@ -363,13 +363,13 @@
   --kwami-btn-text-shadow: rgba(255, 255, 255, 0.3);
 }
 
-[data-theme="dark"] .kwami-button-bezel--danger {
+[data-theme='dark'] .kwami-button-bezel--danger {
   --kwami-btn-bezel-start: #8b2a2a;
   --kwami-btn-bezel-mid: #702222;
   --kwami-btn-bezel-end: #5c1c1c;
 }
 
-[data-theme="dark"] .kwami-button-bezel--danger .kwami-button-face {
+[data-theme='dark'] .kwami-button-bezel--danger .kwami-button-face {
   --kwami-btn-face-start: #a63333;
   --kwami-btn-face-light: #8b2a2a;
   --kwami-btn-face-mid: #702222;
@@ -377,7 +377,7 @@
   --kwami-btn-face-end: #4a1616;
 }
 
-[data-theme="dark"] .kwami-button-bezel--danger .kwami-button-text {
+[data-theme='dark'] .kwami-button-bezel--danger .kwami-button-text {
   --kwami-btn-text-color: #ffcccc;
   --kwami-btn-text-shadow: rgba(0, 0, 0, 0.4);
 }
@@ -420,20 +420,75 @@
   box-shadow: none;
 }
 
-[data-theme="dark"] .kwami-button-bezel--ghost .kwami-button-face {
+[data-theme='dark'] .kwami-button-bezel--ghost .kwami-button-face {
   border-color: var(--kwami-border, #3a3a3a);
 }
 
-[data-theme="dark"] .kwami-button-bezel--ghost .kwami-button-text {
+[data-theme='dark'] .kwami-button-bezel--ghost .kwami-button-text {
   --kwami-btn-text-color: var(--kwami-text, #aaa);
 }
 
-[data-theme="dark"] .kwami-button-bezel--ghost:hover .kwami-button-face {
+[data-theme='dark'] .kwami-button-bezel--ghost:hover .kwami-button-face {
   background: var(--kwami-surface-hover, rgba(255, 255, 255, 0.05));
 }
 
-[data-theme="dark"] .kwami-button-bezel--ghost .kwami-button:active .kwami-button-face {
+[data-theme='dark'] .kwami-button-bezel--ghost .kwami-button:active .kwami-button-face {
   background: var(--kwami-surface-active, rgba(255, 255, 255, 0.08));
+}
+
+/* Outline Variant */
+.kwami-button-bezel--outline {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.kwami-button-bezel--outline .kwami-button-face {
+  background: transparent;
+  box-shadow: none;
+  border: 2px solid var(--kwami-accent, #ff9500);
+}
+
+.kwami-button-bezel--outline .kwami-button-highlight {
+  display: none;
+}
+
+.kwami-button-bezel--outline .kwami-button-text {
+  --kwami-btn-text-color: var(--kwami-accent, #ff9500);
+  --kwami-btn-text-shadow: none;
+}
+
+.kwami-button-bezel--outline .kwami-button-icon {
+  color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-button-bezel--outline:hover .kwami-button-face {
+  background: var(--kwami-accent, #ff9500);
+  border-color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-button-bezel--outline:hover .kwami-button-text {
+  --kwami-btn-text-color: #fff;
+}
+
+.kwami-button-bezel--outline:hover .kwami-button-icon {
+  color: #fff;
+}
+
+.kwami-button-bezel--outline .kwami-button:active .kwami-button-face,
+.kwami-button-bezel--outline .kwami-button.pressed .kwami-button-face {
+  background: var(--kwami-accent-dark, #cc7700);
+  border-color: var(--kwami-accent-dark, #cc7700);
+  transform: none;
+  box-shadow: none;
+}
+
+[data-theme='dark'] .kwami-button-bezel--outline .kwami-button-face {
+  border-color: var(--kwami-accent, #ff9500);
+}
+
+[data-theme='dark'] .kwami-button-bezel--outline:hover .kwami-button-face {
+  background: var(--kwami-accent, #ff9500);
 }
 
 /* ============================================

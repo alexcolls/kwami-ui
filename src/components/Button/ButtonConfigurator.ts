@@ -6,28 +6,30 @@ import './ButtonConfigurator.css';
 
 export interface ButtonConfiguration {
   label: string;
+  variant: 'default' | 'primary' | 'danger' | 'ghost' | 'outline';
+  size: 'sm' | 'md' | 'lg';
   bezel: {
-      color: string;
-      radius: number;
-      padding: number;
-      shadowDepth: number;
+    color: string;
+    radius: number;
+    padding: number;
+    shadowDepth: number;
   };
   face: {
-      color: string;
-      radius: number;
-      depth: number;
-      brightness: number;
+    color: string;
+    radius: number;
+    depth: number;
+    brightness: number;
   };
   highlight: {
-      color: string;
-      opacity: number;
-      height: number;
+    color: string;
+    opacity: number;
+    height: number;
   };
   text: {
-      color: string;
-      size: number;
-      spacing: number;
-      weight: number;
+    color: string;
+    size: number;
+    spacing: number;
+    weight: number;
   };
 }
 
@@ -42,13 +44,15 @@ export interface ButtonConfiguratorProps {
 
 const DEFAULT_CONFIG: ButtonConfiguration = {
   label: 'CLICK',
+  variant: 'default',
+  size: 'md',
   bezel: { color: '#d0d0d0', radius: 14, padding: 6, shadowDepth: 50 },
   face: { color: '#e8e8e8', radius: 10, depth: 50, brightness: 50 },
   highlight: { color: '#ffffff', opacity: 40, height: 50 },
-  text: { color: '#555555', size: 12, spacing: 2, weight: 600 }
+  text: { color: '#555555', size: 12, spacing: 2, weight: 600 },
 };
 
-type ConfigPart = 'bezel' | 'face' | 'highlight' | 'text';
+type ConfigPart = 'style' | 'bezel' | 'face' | 'highlight' | 'text';
 
 export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   private config: ButtonConfiguration;
@@ -64,17 +68,21 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   private colorPickers: Map<string, ColorPicker> = new Map();
 
   constructor(props: ButtonConfiguratorProps = {}) {
-      super(props);
-      this.config = { ...DEFAULT_CONFIG, ...props.initialConfig };
+    super(props);
+    this.config = { ...DEFAULT_CONFIG, ...props.initialConfig };
   }
 
   render(): string {
-      const { showControls = true } = this.props;
-      this.button = new Button({ label: this.config.label });
+    const { showControls = true } = this.props;
+    this.button = new Button({
+      label: this.config.label,
+      variant: this.config.variant,
+      size: this.config.size,
+    });
 
-      const controlsHtml = showControls ? this.renderControls() : '';
+    const controlsHtml = showControls ? this.renderControls() : '';
 
-      return `
+    return `
       <div class="kwami-button-configurator" data-kwami-id="${this.id}">
           <div class="kwami-button-configurator-preview">
         <div class="kwami-button-configurator-container">
@@ -87,11 +95,15 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   }
 
   private renderControls(): string {
-      return `
+    return `
       <div class="kwami-button-configurator-controls">
           <!-- Part Selector Tabs -->
           <div class="kwami-button-configurator-parts">
-        <button class="kwami-button-configurator-part-btn active" data-part="bezel" title="Bezel (outer frame)">
+        <button class="kwami-button-configurator-part-btn active" data-part="style" title="Style (variant & size)">
+            <span class="part-icon">✦</span>
+            <span class="part-label">Style</span>
+        </button>
+        <button class="kwami-button-configurator-part-btn" data-part="bezel" title="Bezel (outer frame)">
             <span class="part-icon">◰</span>
             <span class="part-label">Bezel</span>
         </button>
@@ -111,6 +123,7 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
 
           <!-- Control Panels -->
           <div class="kwami-button-configurator-panels">
+        ${this.renderStylePanel()}
         ${this.renderBezelPanel()}
         ${this.renderFacePanel()}
         ${this.renderHighlightPanel()}
@@ -120,10 +133,40 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
       `;
   }
 
+  private renderStylePanel(): string {
+    const { variant, size } = this.config;
+    return `
+      <div class="kwami-button-configurator-panel active" data-panel="style">
+          <div class="kwami-cfg-row">
+        <label class="kwami-cfg-label">Variant</label>
+        <div class="kwami-cfg-select-wrap">
+            <select class="kwami-cfg-select" data-prop="variant">
+          <option value="default" ${variant === 'default' ? 'selected' : ''}>Default</option>
+          <option value="primary" ${variant === 'primary' ? 'selected' : ''}>Primary</option>
+          <option value="danger" ${variant === 'danger' ? 'selected' : ''}>Danger</option>
+          <option value="ghost" ${variant === 'ghost' ? 'selected' : ''}>Ghost</option>
+          <option value="outline" ${variant === 'outline' ? 'selected' : ''}>Outline</option>
+            </select>
+        </div>
+          </div>
+          <div class="kwami-cfg-row">
+        <label class="kwami-cfg-label">Size</label>
+        <div class="kwami-cfg-select-wrap">
+            <select class="kwami-cfg-select" data-prop="size">
+          <option value="sm" ${size === 'sm' ? 'selected' : ''}>Small</option>
+          <option value="md" ${size === 'md' ? 'selected' : ''}>Medium</option>
+          <option value="lg" ${size === 'lg' ? 'selected' : ''}>Large</option>
+            </select>
+        </div>
+          </div>
+      </div>
+      `;
+  }
+
   private renderBezelPanel(): string {
-      const { bezel } = this.config;
-      return `
-      <div class="kwami-button-configurator-panel active" data-panel="bezel">
+    const { bezel } = this.config;
+    return `
+      <div class="kwami-button-configurator-panel" data-panel="bezel">
           <div class="kwami-cfg-row">
         <label class="kwami-cfg-label">Color</label>
         <div class="kwami-cfg-color" data-color-target="bezel"></div>
@@ -154,8 +197,8 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   }
 
   private renderFacePanel(): string {
-      const { face } = this.config;
-      return `
+    const { face } = this.config;
+    return `
       <div class="kwami-button-configurator-panel" data-panel="face">
           <div class="kwami-cfg-row">
         <label class="kwami-cfg-label">Color</label>
@@ -187,8 +230,8 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   }
 
   private renderHighlightPanel(): string {
-      const { highlight } = this.config;
-      return `
+    const { highlight } = this.config;
+    return `
       <div class="kwami-button-configurator-panel" data-panel="highlight">
           <div class="kwami-cfg-row">
         <label class="kwami-cfg-label">Color</label>
@@ -213,8 +256,8 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   }
 
   private renderTextPanel(): string {
-      const { text, label } = this.config;
-      return `
+    const { text, label } = this.config;
+    return `
       <div class="kwami-button-configurator-panel" data-panel="text">
           <div class="kwami-cfg-row">
         <label class="kwami-cfg-label">Color</label>
@@ -250,259 +293,337 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   }
 
   protected onHydrate(): void {
-      if (!this.element) return;
+    if (!this.element) return;
 
-      // Get button elements
-      this.bezelEl = this.element.querySelector('.kwami-button-bezel');
-      this.faceEl = this.element.querySelector('.kwami-button-face');
-      this.highlightEl = this.element.querySelector('.kwami-button-highlight');
-      this.textEl = this.element.querySelector('.kwami-button-text');
+    // Get button elements
+    this.bezelEl = this.element.querySelector('.kwami-button-bezel');
+    this.faceEl = this.element.querySelector('.kwami-button-face');
+    this.highlightEl = this.element.querySelector('.kwami-button-highlight');
+    this.textEl = this.element.querySelector('.kwami-button-text');
 
-      // Hydrate the button
-      if (this.button && this.bezelEl) {
+    // Hydrate the button
+    if (this.button && this.bezelEl) {
       this.button.hydrate(this.bezelEl);
-      }
+    }
 
-      // Setup color pickers
-      this.setupColorPickers();
+    // Setup color pickers
+    this.setupColorPickers();
 
-      // Setup part selector tabs
-      this.setupPartSelector();
+    // Setup part selector tabs
+    this.setupPartSelector();
 
-      // Setup sliders
-      this.setupSliders();
+    // Setup sliders
+    this.setupSliders();
 
-      // Setup text input
-      this.setupTextInput();
+    // Setup text input
+    this.setupTextInput();
 
-      // Initial highlight
-      this.highlightPart('bezel');
+    // Setup style controls (variant, size, rounded, ripple)
+    this.setupStyleControls();
+
+    // Initial highlight
+    this.highlightPart('style');
   }
 
   private setupColorPickers(): void {
-      if (!this.element) return;
+    if (!this.element) return;
 
-      const colorTargets = ['bezel', 'face', 'highlight', 'text'] as const;
+    const colorTargets = ['bezel', 'face', 'highlight', 'text'] as const;
 
-      colorTargets.forEach(target => {
+    colorTargets.forEach((target) => {
       const container = this.element?.querySelector(`[data-color-target="${target}"]`);
       if (!container) return;
 
       const colorValue = this.getColorForTarget(target);
       const picker = new ColorPicker({
-          defaultColor: colorValue,
-          popupDirection: 'up',
-          onChange: (color) => this.handleColorChange(target, color)
+        defaultColor: colorValue,
+        popupDirection: 'up',
+        onChange: (color) => this.handleColorChange(target, color),
       });
 
       container.innerHTML = picker.render();
       const pickerEl = container.querySelector('.kwami-colorpicker');
       if (pickerEl) {
-          picker.hydrate(pickerEl as HTMLElement);
-          this.colorPickers.set(target, picker);
+        picker.hydrate(pickerEl as HTMLElement);
+        this.colorPickers.set(target, picker);
       }
-      });
+    });
   }
 
   private getColorForTarget(target: string): string {
-      switch (target) {
-      case 'bezel': return this.config.bezel.color;
-      case 'face': return this.config.face.color;
-      case 'highlight': return this.config.highlight.color;
-      case 'text': return this.config.text.color;
-      default: return '#ffffff';
-      }
+    switch (target) {
+      case 'bezel':
+        return this.config.bezel.color;
+      case 'face':
+        return this.config.face.color;
+      case 'highlight':
+        return this.config.highlight.color;
+      case 'text':
+        return this.config.text.color;
+      default:
+        return '#ffffff';
+    }
   }
 
   private handleColorChange(target: string, color: string): void {
-      switch (target) {
+    switch (target) {
       case 'bezel':
-          this.config.bezel.color = color;
-          if (this.bezelEl) {
-        const lighter = adjustBrightness(color, 20);
-        const darker = adjustBrightness(color, -20);
-        this.bezelEl.style.background = `linear-gradient(145deg, ${lighter} 0%, ${color} 50%, ${darker} 100%)`;
-          }
-          break;
+        this.config.bezel.color = color;
+        if (this.bezelEl) {
+          const lighter = adjustBrightness(color, 20);
+          const darker = adjustBrightness(color, -20);
+          this.bezelEl.style.background = `linear-gradient(145deg, ${lighter} 0%, ${color} 50%, ${darker} 100%)`;
+        }
+        break;
       case 'face':
-          this.config.face.color = color;
-          if (this.faceEl) {
-        const highlight = adjustBrightness(color, 30);
-        const midLight = adjustBrightness(color, 15);
-        const midDark = adjustBrightness(color, -10);
-        const shadow = adjustBrightness(color, -25);
-        this.faceEl.style.background = `linear-gradient(160deg, ${highlight} 0%, ${midLight} 20%, ${color} 50%, ${midDark} 80%, ${shadow} 100%)`;
-          }
-          break;
+        this.config.face.color = color;
+        if (this.faceEl) {
+          const highlight = adjustBrightness(color, 30);
+          const midLight = adjustBrightness(color, 15);
+          const midDark = adjustBrightness(color, -10);
+          const shadow = adjustBrightness(color, -25);
+          this.faceEl.style.background = `linear-gradient(160deg, ${highlight} 0%, ${midLight} 20%, ${color} 50%, ${midDark} 80%, ${shadow} 100%)`;
+        }
+        break;
       case 'highlight':
-          this.config.highlight.color = color;
-          if (this.highlightEl) {
-        this.highlightEl.style.background = `linear-gradient(180deg, ${color}66 0%, ${color}1a 50%, transparent 100%)`;
-          }
-          break;
+        this.config.highlight.color = color;
+        if (this.highlightEl) {
+          this.highlightEl.style.background = `linear-gradient(180deg, ${color}66 0%, ${color}1a 50%, transparent 100%)`;
+        }
+        break;
       case 'text':
-          this.config.text.color = color;
-          if (this.textEl) {
-        this.textEl.style.color = color;
-        this.textEl.style.textShadow = 'none';
-          }
-          break;
-      }
-      this.emitChange();
+        this.config.text.color = color;
+        if (this.textEl) {
+          this.textEl.style.color = color;
+          this.textEl.style.textShadow = 'none';
+        }
+        break;
+    }
+    this.emitChange();
   }
 
   private setupPartSelector(): void {
-      if (!this.element) return;
+    if (!this.element) return;
 
-      const partBtns = this.element.querySelectorAll('.kwami-button-configurator-part-btn');
-      const panels = this.element.querySelectorAll('.kwami-button-configurator-panel');
+    const partBtns = this.element.querySelectorAll('.kwami-button-configurator-part-btn');
+    const panels = this.element.querySelectorAll('.kwami-button-configurator-panel');
 
-      partBtns.forEach(btn => {
+    partBtns.forEach((btn) => {
       this.addListener(btn, 'click', () => {
-          const part = btn.getAttribute('data-part') as ConfigPart;
+        const part = btn.getAttribute('data-part') as ConfigPart;
 
-          partBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+        partBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
 
-          panels.forEach(p => {
-        p.classList.toggle('active', p.getAttribute('data-panel') === part);
-          });
+        panels.forEach((p) => {
+          p.classList.toggle('active', p.getAttribute('data-panel') === part);
+        });
 
-          this.highlightPart(part);
+        this.highlightPart(part);
       });
-      });
+    });
   }
 
   private highlightPart(part: string): void {
-      this.bezelEl?.classList.remove('kwami-cfg-editing');
-      this.faceEl?.classList.remove('kwami-cfg-editing');
-      this.highlightEl?.classList.remove('kwami-cfg-editing');
-      this.textEl?.classList.remove('kwami-cfg-editing');
+    this.bezelEl?.classList.remove('kwami-cfg-editing');
+    this.faceEl?.classList.remove('kwami-cfg-editing');
+    this.highlightEl?.classList.remove('kwami-cfg-editing');
+    this.textEl?.classList.remove('kwami-cfg-editing');
 
-      switch (part) {
-      case 'bezel': this.bezelEl?.classList.add('kwami-cfg-editing'); break;
-      case 'face': this.faceEl?.classList.add('kwami-cfg-editing'); break;
-      case 'highlight': this.highlightEl?.classList.add('kwami-cfg-editing'); break;
-      case 'text': this.textEl?.classList.add('kwami-cfg-editing'); break;
-      }
+    switch (part) {
+      case 'style':
+        /* No specific highlight for style panel */ break;
+      case 'bezel':
+        this.bezelEl?.classList.add('kwami-cfg-editing');
+        break;
+      case 'face':
+        this.faceEl?.classList.add('kwami-cfg-editing');
+        break;
+      case 'highlight':
+        this.highlightEl?.classList.add('kwami-cfg-editing');
+        break;
+      case 'text':
+        this.textEl?.classList.add('kwami-cfg-editing');
+        break;
+    }
   }
 
   private setupSliders(): void {
-      if (!this.element) return;
+    if (!this.element) return;
 
-      const sliders = this.element.querySelectorAll('.kwami-cfg-slider');
+    const sliders = this.element.querySelectorAll('.kwami-cfg-slider');
 
-      sliders.forEach(slider => {
+    sliders.forEach((slider) => {
       const input = slider as HTMLInputElement;
       const prop = input.getAttribute('data-prop');
       const valueSpan = input.parentElement?.querySelector('.kwami-cfg-value');
 
       this.addListener(input, 'input', () => {
-          const val = parseFloat(input.value);
-          this.handleSliderChange(prop, val, valueSpan as HTMLElement | null);
+        const val = parseFloat(input.value);
+        this.handleSliderChange(prop, val, valueSpan as HTMLElement | null);
       });
-      });
+    });
   }
 
-  private handleSliderChange(prop: string | null, val: number, valueSpan: HTMLElement | null): void {
-      switch (prop) {
+  private handleSliderChange(
+    prop: string | null,
+    val: number,
+    valueSpan: HTMLElement | null
+  ): void {
+    switch (prop) {
       // Bezel
       case 'bezel-radius':
-          this.config.bezel.radius = val;
-          if (this.bezelEl) this.bezelEl.style.borderRadius = `${val}px`;
-          if (valueSpan) valueSpan.textContent = `${val}px`;
-          break;
+        this.config.bezel.radius = val;
+        if (this.bezelEl) this.bezelEl.style.borderRadius = `${val}px`;
+        if (valueSpan) valueSpan.textContent = `${val}px`;
+        break;
       case 'bezel-padding':
-          this.config.bezel.padding = val;
-          if (this.bezelEl) this.bezelEl.style.padding = `${val}px`;
-          if (valueSpan) valueSpan.textContent = `${val}px`;
-          break;
+        this.config.bezel.padding = val;
+        if (this.bezelEl) this.bezelEl.style.padding = `${val}px`;
+        if (valueSpan) valueSpan.textContent = `${val}px`;
+        break;
       case 'bezel-shadow':
-          this.config.bezel.shadowDepth = val;
-          if (this.bezelEl) this.bezelEl.style.setProperty('--shadow-intensity', String(val / 100));
-          if (valueSpan) valueSpan.textContent = `${val}%`;
-          break;
+        this.config.bezel.shadowDepth = val;
+        if (this.bezelEl) this.bezelEl.style.setProperty('--shadow-intensity', String(val / 100));
+        if (valueSpan) valueSpan.textContent = `${val}%`;
+        break;
 
       // Face
       case 'face-radius':
-          this.config.face.radius = val;
-          if (this.faceEl) this.faceEl.style.borderRadius = `${val}px`;
-          if (valueSpan) valueSpan.textContent = `${val}px`;
-          break;
+        this.config.face.radius = val;
+        if (this.faceEl) this.faceEl.style.borderRadius = `${val}px`;
+        if (valueSpan) valueSpan.textContent = `${val}px`;
+        break;
       case 'face-depth':
-          this.config.face.depth = val;
-          if (this.faceEl) this.faceEl.style.setProperty('--face-depth', String(val / 100));
-          if (valueSpan) valueSpan.textContent = `${val}%`;
-          break;
+        this.config.face.depth = val;
+        if (this.faceEl) this.faceEl.style.setProperty('--face-depth', String(val / 100));
+        if (valueSpan) valueSpan.textContent = `${val}%`;
+        break;
       case 'face-brightness':
-          this.config.face.brightness = val;
-          if (this.faceEl) this.faceEl.style.setProperty('--face-brightness', String(val / 100));
-          if (valueSpan) valueSpan.textContent = `${val}%`;
-          break;
+        this.config.face.brightness = val;
+        if (this.faceEl) this.faceEl.style.setProperty('--face-brightness', String(val / 100));
+        if (valueSpan) valueSpan.textContent = `${val}%`;
+        break;
 
       // Highlight
       case 'highlight-opacity':
-          this.config.highlight.opacity = val;
-          if (this.highlightEl) this.highlightEl.style.opacity = String(val / 100);
-          if (valueSpan) valueSpan.textContent = `${val}%`;
-          break;
+        this.config.highlight.opacity = val;
+        if (this.highlightEl) this.highlightEl.style.opacity = String(val / 100);
+        if (valueSpan) valueSpan.textContent = `${val}%`;
+        break;
       case 'highlight-height':
-          this.config.highlight.height = val;
-          if (this.highlightEl) this.highlightEl.style.height = `${val}%`;
-          if (valueSpan) valueSpan.textContent = `${val}%`;
-          break;
+        this.config.highlight.height = val;
+        if (this.highlightEl) this.highlightEl.style.height = `${val}%`;
+        if (valueSpan) valueSpan.textContent = `${val}%`;
+        break;
 
       // Text
       case 'text-size':
-          this.config.text.size = val;
-          if (this.textEl) this.textEl.style.fontSize = `${val / 16}rem`;
-          if (valueSpan) valueSpan.textContent = `${val}px`;
-          break;
+        this.config.text.size = val;
+        if (this.textEl) this.textEl.style.fontSize = `${val / 16}rem`;
+        if (valueSpan) valueSpan.textContent = `${val}px`;
+        break;
       case 'text-spacing':
-          this.config.text.spacing = val;
-          if (this.textEl) this.textEl.style.letterSpacing = `${val}px`;
-          if (valueSpan) valueSpan.textContent = `${val}px`;
-          break;
+        this.config.text.spacing = val;
+        if (this.textEl) this.textEl.style.letterSpacing = `${val}px`;
+        if (valueSpan) valueSpan.textContent = `${val}px`;
+        break;
       case 'text-weight':
-          this.config.text.weight = val;
-          if (this.textEl) this.textEl.style.fontWeight = String(val);
-          if (valueSpan) valueSpan.textContent = String(val);
-          break;
-      }
-      this.emitChange();
+        this.config.text.weight = val;
+        if (this.textEl) this.textEl.style.fontWeight = String(val);
+        if (valueSpan) valueSpan.textContent = String(val);
+        break;
+    }
+    this.emitChange();
   }
 
   private setupTextInput(): void {
-      if (!this.element) return;
+    if (!this.element) return;
 
-      const textInput = this.element.querySelector('.kwami-cfg-input[data-prop="text-content"]') as HTMLInputElement;
-      if (!textInput) return;
+    const textInput = this.element.querySelector(
+      '.kwami-cfg-input[data-prop="text-content"]'
+    ) as HTMLInputElement;
+    if (!textInput) return;
 
-      this.addListener(textInput, 'input', () => {
+    this.addListener(textInput, 'input', () => {
       this.config.label = textInput.value || 'CLICK';
       if (this.textEl) {
-          this.textEl.textContent = this.config.label;
+        this.textEl.textContent = this.config.label;
       }
       this.emitChange();
+    });
+  }
+
+  private setupStyleControls(): void {
+    if (!this.element) return;
+
+    // Variant selector
+    const variantSelect = this.element.querySelector(
+      '.kwami-cfg-select[data-prop="variant"]'
+    ) as HTMLSelectElement;
+    if (variantSelect) {
+      this.addListener(variantSelect, 'change', () => {
+        const variant = variantSelect.value as ButtonConfiguration['variant'];
+        this.config.variant = variant;
+        this.updateButtonVariant(variant);
+        this.emitChange();
       });
+    }
+
+    // Size selector
+    const sizeSelect = this.element.querySelector(
+      '.kwami-cfg-select[data-prop="size"]'
+    ) as HTMLSelectElement;
+    if (sizeSelect) {
+      this.addListener(sizeSelect, 'change', () => {
+        const size = sizeSelect.value as ButtonConfiguration['size'];
+        this.config.size = size;
+        this.updateButtonSize(size);
+        this.emitChange();
+      });
+    }
+  }
+
+  private updateButtonVariant(variant: ButtonConfiguration['variant']): void {
+    if (!this.bezelEl) return;
+    // Remove all variant classes
+    this.bezelEl.classList.remove(
+      'kwami-button-bezel--default',
+      'kwami-button-bezel--primary',
+      'kwami-button-bezel--danger',
+      'kwami-button-bezel--ghost',
+      'kwami-button-bezel--outline'
+    );
+    this.bezelEl.classList.add(`kwami-button-bezel--${variant}`);
+  }
+
+  private updateButtonSize(size: ButtonConfiguration['size']): void {
+    if (!this.bezelEl) return;
+    // Remove all size classes
+    this.bezelEl.classList.remove(
+      'kwami-button-bezel--sm',
+      'kwami-button-bezel--md',
+      'kwami-button-bezel--lg'
+    );
+    this.bezelEl.classList.add(`kwami-button-bezel--${size}`);
   }
 
   private emitChange(): void {
-      if (this.props.onChange) {
+    if (this.props.onChange) {
       this.props.onChange({ ...this.config });
-      }
+    }
   }
 
   /** Get the current configuration */
   getConfiguration(): ButtonConfiguration {
-      return { ...this.config };
+    return { ...this.config };
   }
 
   /** Set configuration programmatically */
   setConfiguration(config: Partial<ButtonConfiguration>): void {
-      this.config = { ...this.config, ...config };
-      // Apply all config changes to the DOM
-      // This would require re-rendering or updating all elements
+    this.config = { ...this.config, ...config };
+    // Apply all config changes to the DOM
+    // This would require re-rendering or updating all elements
   }
 }
 

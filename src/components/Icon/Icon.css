@@ -1,27 +1,33 @@
 /* Icon Component */
 .kwami-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--kwami-text, #333);
-    transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kwami-text, #333);
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .kwami-icon iconify-icon {
-    display: block;
+  display: block;
 }
 
 /* Hover effects (optional, activated via class) */
 .kwami-icon-hover:hover {
-    color: var(--kwami-accent, #ff9500);
-    transform: scale(1.1);
+  color: var(--kwami-accent, #ff9500);
+  transform: scale(1.1);
 }
 
 .kwami-icon-spin iconify-icon {
-    animation: kwami-icon-spin 1s linear infinite;
+  animation: kwami-icon-spin 1s linear infinite;
 }
 
 @keyframes kwami-icon-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

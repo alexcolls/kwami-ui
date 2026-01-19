@@ -1,73 +1,74 @@
 /* TextConfigurator Component */
 .kwami-text-configurator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
 }
 
 .kwami-text-configurator-preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    width: 100%;
-    padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
 }
 
 .kwami-text-configurator-controls {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    gap: 0.6rem;
-    padding: 0.5rem 0;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
 }
 
 .kwami-expandable.expanded .kwami-text-configurator-controls,
 .kwami-expandable.expanding .kwami-text-configurator-controls {
-    display: flex;
-    animation: kwami-cfg-fadeIn 0.3s ease 0.2s both;
+  display: flex;
+  animation: kwami-cfg-fadeIn 0.3s ease 0.2s both;
 }
 
-.kwami-text-configurator:not(.kwami-expandable .kwami-text-configurator) .kwami-text-configurator-controls {
-    display: flex;
+.kwami-text-configurator:not(.kwami-expandable .kwami-text-configurator)
+  .kwami-text-configurator-controls {
+  display: flex;
 }
 
 /* Select button group */
 .kwami-cfg-select-group {
-    display: flex;
-    gap: 0.25rem;
-    flex: 1;
+  display: flex;
+  gap: 0.25rem;
+  flex: 1;
 }
 
 .kwami-cfg-select-btn {
-    flex: 1;
-    padding: 0.4rem 0.5rem;
-    border: none;
-    border-radius: 6px;
-    background: var(--kwami-surface, #e0e5ec);
-    box-shadow:
-        2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: var(--kwami-text-secondary, #888);
-    cursor: pointer;
-    transition: all 0.15s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--kwami-surface, #e0e5ec);
+  box-shadow:
+    2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--kwami-text-secondary, #888);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .kwami-cfg-select-btn:hover {
-    color: var(--kwami-text, #333);
+  color: var(--kwami-text, #333);
 }
 
 .kwami-cfg-select-btn.active {
-    box-shadow:
-        inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
-    color: var(--kwami-accent, #ff9500);
+  box-shadow:
+    inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+  color: var(--kwami-accent, #ff9500);
 }

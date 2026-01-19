@@ -1,82 +1,83 @@
 /* Title Component - Illuminated Text Effect */
 .kwami-title {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: default;
-    user-select: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: default;
+  user-select: none;
 }
 
 /* Main text container */
 .kwami-title-text {
-    position: relative;
-    display: inline-flex;
-    z-index: 2;
+  position: relative;
+  display: inline-flex;
+  z-index: 2;
 }
 
 /* Individual characters */
 .kwami-title-char {
-    display: inline-block;
-    color: var(--kwami-text-secondary, #666);
-    text-shadow: 0 1px 0 var(--kwami-shadow-light, rgba(255, 255, 255, 0.4));
-    transition:
-        color 0.2s ease,
-        text-shadow 0.3s ease,
-        transform 0.2s ease;
-    transition-delay: calc(var(--char-index) * 0.02s);
+  display: inline-block;
+  color: var(--kwami-text-secondary, #666);
+  text-shadow: 0 1px 0 var(--kwami-shadow-light, rgba(255, 255, 255, 0.4));
+  transition:
+    color 0.2s ease,
+    text-shadow 0.3s ease,
+    transform 0.2s ease;
+  transition-delay: calc(var(--char-index) * 0.02s);
 }
 
 /* Hover effect - illuminate each character */
 .kwami-title:hover .kwami-title-char {
-    color: var(--kwami-accent, #ff9500);
-    text-shadow:
-        0 0 8px var(--kwami-accent, #ff9500),
-        0 0 16px var(--kwami-accent, #ff9500),
-        0 0 24px color-mix(in srgb, var(--kwami-accent, #ff9500) 50%, transparent),
-        0 0 32px color-mix(in srgb, var(--kwami-accent, #ff9500) 30%, transparent);
-    transform: translateY(-1px);
+  color: var(--kwami-accent, #ff9500);
+  text-shadow:
+    0 0 8px var(--kwami-accent, #ff9500),
+    0 0 16px var(--kwami-accent, #ff9500),
+    0 0 24px color-mix(in srgb, var(--kwami-accent, #ff9500) 50%, transparent),
+    0 0 32px color-mix(in srgb, var(--kwami-accent, #ff9500) 30%, transparent);
+  transform: translateY(-1px);
 }
 
 /* Background glow text (blurred duplicate) */
 .kwami-title-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    color: transparent;
-    opacity: 0;
-    filter: blur(8px);
-    transition: opacity 0.3s ease;
-    z-index: 1;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: transparent;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .kwami-title:hover .kwami-title-glow {
-    opacity: 0.6;
-    color: var(--kwami-accent, #ff9500);
+  opacity: 0.6;
+  color: var(--kwami-accent, #ff9500);
 }
 
 /* Space characters don't need effects */
 .kwami-title-space {
-    width: 0.3em;
+  width: 0.3em;
 }
 
 /* Subtle pulse animation on hover */
 @keyframes kwami-title-pulse {
-    0%, 100% {
-        filter: blur(8px) brightness(1);
-    }
-    50% {
-        filter: blur(10px) brightness(1.2);
-    }
+  0%,
+  100% {
+    filter: blur(8px) brightness(1);
+  }
+  50% {
+    filter: blur(10px) brightness(1.2);
+  }
 }
 
 .kwami-title:hover .kwami-title-glow {
-    animation: kwami-title-pulse 2s ease-in-out infinite;
+  animation: kwami-title-pulse 2s ease-in-out infinite;
 }

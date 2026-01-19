@@ -1,46 +1,47 @@
 /* TitleConfigurator Component */
 .kwami-title-configurator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
 }
 
 .kwami-title-configurator-preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
 }
 
 .kwami-title-configurator-controls {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    gap: 0.6rem;
-    padding: 0.5rem 0;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
 }
 
 .kwami-expandable.expanded .kwami-title-configurator-controls,
 .kwami-expandable.expanding .kwami-title-configurator-controls {
-    display: flex;
-    animation: kwami-cfg-fadeIn 0.3s ease 0.2s both;
+  display: flex;
+  animation: kwami-cfg-fadeIn 0.3s ease 0.2s both;
 }
 
-.kwami-title-configurator:not(.kwami-expandable .kwami-title-configurator) .kwami-title-configurator-controls {
-    display: flex;
+.kwami-title-configurator:not(.kwami-expandable .kwami-title-configurator)
+  .kwami-title-configurator-controls {
+  display: flex;
 }
 
 /* Hint text */
 .kwami-cfg-hint {
-    justify-content: center;
+  justify-content: center;
 }
 
 .kwami-cfg-hint span {
-    font-size: 0.65rem;
-    color: var(--kwami-text-secondary, #888);
-    font-style: italic;
+  font-size: 0.65rem;
+  color: var(--kwami-text-secondary, #888);
+  font-style: italic;
 }
