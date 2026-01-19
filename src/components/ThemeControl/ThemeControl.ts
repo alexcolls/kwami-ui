@@ -157,13 +157,22 @@ export class ThemeControl extends Component<ThemeControlProps> {
             { key: 'secondary', label: 'Secondary', icon: 'solar:palette-2-linear' }
         ];
 
+        // Get default colors for reset feature
+        const defaultColorsForMode = effectiveMode === 'light' ? defaultLightColors : defaultColors;
+
         let colorPickersHtml = '';
         for (const { key, label } of colorControls) {
             if (controls.includes(key)) {
                 const picker = new ColorPicker({
                     defaultColor: colors[key],
-                    popupDirection: 'down'
+                    popupDirection: 'down',
+                    showRandomize: true,
+                    showReset: true,
+                    showCopyToOpposite: true,
+                    showOpacity: true
                 });
+                // Set the default color for reset
+                picker.setDefaultColor(defaultColorsForMode[key]);
                 this.colorPickers.set(key, picker);
 
                 colorPickersHtml += `
@@ -231,6 +240,7 @@ export class ThemeControl extends Component<ThemeControlProps> {
                 this.config.mode = modes[detail.state];
                 this.onConfigChange();
                 this.updateColorPickerValues();
+                this.updateColorPickerDefaults();
             });
         }
 
@@ -241,14 +251,35 @@ export class ThemeControl extends Component<ThemeControlProps> {
             if (picker) {
                 const pickerEl = this.element?.querySelector(`[data-control="${key}"] .kwami-colorpicker`);
                 if (pickerEl) {
+                    // Color change listener
                     this.addListener(pickerEl, 'colorchange', (e) => {
                         const color = (e as CustomEvent).detail.color;
                         const effectiveMode = this.getEffectiveMode();
                         this.config.colors[effectiveMode][key] = color;
                         this.onConfigChange();
                     });
+
+                    // Copy to opposite theme listener
+                    this.addListener(pickerEl, 'copytoopposite', (e) => {
+                        const color = (e as CustomEvent).detail.color;
+                        const effectiveMode = this.getEffectiveMode();
+                        const oppositeMode = effectiveMode === 'light' ? 'dark' : 'light';
+                        this.config.colors[oppositeMode][key] = color;
+                        this.saveConfig();
+                    });
                 }
             }
+        });
+    }
+
+    /** Update color picker default colors when theme mode changes */
+    private updateColorPickerDefaults(): void {
+        const effectiveMode = this.getEffectiveMode();
+        const defaultColorsForMode = effectiveMode === 'light' ? defaultLightColors : defaultColors;
+
+        this.colorPickers.forEach((picker, key) => {
+            const colorKey = key as keyof ThemeControlColors;
+            picker.setDefaultColor(defaultColorsForMode[colorKey]);
         });
     }
 

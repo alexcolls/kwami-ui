@@ -76,8 +76,10 @@
   inset: 0;
   border-radius: var(--kwami-btn-face-radius);
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 0;
   background: linear-gradient(
     160deg,
     var(--kwami-btn-face-start) 0%,
@@ -93,6 +95,7 @@
     inset 0 -3px 6px var(--kwami-btn-face-shadow-inner-dark);
   transition: all 0.1s ease;
   overflow: hidden;
+  color: var(--kwami-btn-text-color, #555);
 }
 
 [data-theme="dark"] .kwami-button-face {
@@ -152,6 +155,13 @@
   color: var(--kwami-btn-text-color);
   text-shadow: 0 1px 0 var(--kwami-btn-text-shadow);
   transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+/* Icon-only button (no text) */
+.kwami-button-icon:only-child + .kwami-button-text:empty,
+.kwami-button-text:empty {
+  display: none;
 }
 
 [data-theme="dark"] .kwami-button-text {
@@ -220,11 +230,277 @@
 
 /* Focus State */
 .kwami-button:focus-visible .kwami-button-face {
-  outline: 2px solid var(--accent-primary, rgba(255, 170, 0, 0.6));
+  outline: 2px solid var(--kwami-accent, rgba(255, 170, 0, 0.6));
   outline-offset: 2px;
 }
 
-/* Disabled State */
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+/* Small */
+.kwami-button-bezel--sm {
+  --kwami-btn-bezel-radius: 10px;
+  --kwami-btn-bezel-padding: 4px;
+}
+
+.kwami-button-bezel--sm .kwami-button {
+  --kwami-btn-min-width: 72px;
+  --kwami-btn-height: 32px;
+  --kwami-btn-padding-x: 16px;
+  --kwami-btn-face-radius: 7px;
+}
+
+.kwami-button-bezel--sm .kwami-button-text {
+  --kwami-btn-text-size: 0.65rem;
+  --kwami-btn-text-spacing: 1.5px;
+}
+
+.kwami-button-bezel--sm .kwami-button-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Medium (default) */
+.kwami-button-bezel--md {
+  --kwami-btn-bezel-radius: 14px;
+  --kwami-btn-bezel-padding: 6px;
+}
+
+/* Large */
+.kwami-button-bezel--lg {
+  --kwami-btn-bezel-radius: 18px;
+  --kwami-btn-bezel-padding: 8px;
+}
+
+.kwami-button-bezel--lg .kwami-button {
+  --kwami-btn-min-width: 140px;
+  --kwami-btn-height: 56px;
+  --kwami-btn-padding-x: 36px;
+  --kwami-btn-face-radius: 12px;
+}
+
+.kwami-button-bezel--lg .kwami-button-text {
+  --kwami-btn-text-size: 0.875rem;
+  --kwami-btn-text-spacing: 2.5px;
+}
+
+.kwami-button-bezel--lg .kwami-button-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Full Width */
+.kwami-button-bezel--full {
+  width: 100%;
+}
+
+/* ============================================
+   COLOR VARIANTS
+   ============================================ */
+
+/* Primary Variant */
+.kwami-button-bezel--primary {
+  --kwami-btn-bezel-start: #ffb84d;
+  --kwami-btn-bezel-mid: #ff9500;
+  --kwami-btn-bezel-end: #e68600;
+}
+
+.kwami-button-bezel--primary .kwami-button-face {
+  --kwami-btn-face-start: #ffcc66;
+  --kwami-btn-face-light: #ffb84d;
+  --kwami-btn-face-mid: #ff9500;
+  --kwami-btn-face-dark: #e68600;
+  --kwami-btn-face-end: #cc7700;
+}
+
+.kwami-button-bezel--primary .kwami-button-text {
+  --kwami-btn-text-color: #4a2800;
+  --kwami-btn-text-shadow: rgba(255, 255, 255, 0.3);
+}
+
+.kwami-button-bezel--primary .kwami-button-highlight {
+  --kwami-btn-highlight-opacity-start: 0.5;
+  --kwami-btn-highlight-opacity-mid: 0.15;
+}
+
+[data-theme="dark"] .kwami-button-bezel--primary {
+  --kwami-btn-bezel-start: #996300;
+  --kwami-btn-bezel-mid: #804f00;
+  --kwami-btn-bezel-end: #663f00;
+}
+
+[data-theme="dark"] .kwami-button-bezel--primary .kwami-button-face {
+  --kwami-btn-face-start: #cc8000;
+  --kwami-btn-face-light: #b37000;
+  --kwami-btn-face-mid: #996300;
+  --kwami-btn-face-dark: #804f00;
+  --kwami-btn-face-end: #663f00;
+}
+
+[data-theme="dark"] .kwami-button-bezel--primary .kwami-button-text {
+  --kwami-btn-text-color: #ffe0b3;
+  --kwami-btn-text-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Danger Variant */
+.kwami-button-bezel--danger {
+  --kwami-btn-bezel-start: #ff6b6b;
+  --kwami-btn-bezel-mid: #ee5a5a;
+  --kwami-btn-bezel-end: #d94848;
+}
+
+.kwami-button-bezel--danger .kwami-button-face {
+  --kwami-btn-face-start: #ff8080;
+  --kwami-btn-face-light: #ff6b6b;
+  --kwami-btn-face-mid: #ee5a5a;
+  --kwami-btn-face-dark: #d94848;
+  --kwami-btn-face-end: #c43c3c;
+}
+
+.kwami-button-bezel--danger .kwami-button-text {
+  --kwami-btn-text-color: #4a0f0f;
+  --kwami-btn-text-shadow: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .kwami-button-bezel--danger {
+  --kwami-btn-bezel-start: #8b2a2a;
+  --kwami-btn-bezel-mid: #702222;
+  --kwami-btn-bezel-end: #5c1c1c;
+}
+
+[data-theme="dark"] .kwami-button-bezel--danger .kwami-button-face {
+  --kwami-btn-face-start: #a63333;
+  --kwami-btn-face-light: #8b2a2a;
+  --kwami-btn-face-mid: #702222;
+  --kwami-btn-face-dark: #5c1c1c;
+  --kwami-btn-face-end: #4a1616;
+}
+
+[data-theme="dark"] .kwami-button-bezel--danger .kwami-button-text {
+  --kwami-btn-text-color: #ffcccc;
+  --kwami-btn-text-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Ghost Variant */
+.kwami-button-bezel--ghost {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.kwami-button-bezel--ghost .kwami-button-face {
+  background: transparent;
+  box-shadow: none;
+  border: 2px solid var(--kwami-border, #d0d0d0);
+}
+
+.kwami-button-bezel--ghost .kwami-button-highlight {
+  display: none;
+}
+
+.kwami-button-bezel--ghost .kwami-button-text {
+  --kwami-btn-text-color: var(--kwami-text, #555);
+  --kwami-btn-text-shadow: none;
+}
+
+.kwami-button-bezel--ghost:hover .kwami-button-face {
+  background: var(--kwami-surface-hover, rgba(0, 0, 0, 0.05));
+  border-color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-button-bezel--ghost:hover .kwami-button-text {
+  --kwami-btn-text-color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-button-bezel--ghost .kwami-button:active .kwami-button-face,
+.kwami-button-bezel--ghost .kwami-button.pressed .kwami-button-face {
+  background: var(--kwami-surface-active, rgba(0, 0, 0, 0.08));
+  transform: none;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .kwami-button-bezel--ghost .kwami-button-face {
+  border-color: var(--kwami-border, #3a3a3a);
+}
+
+[data-theme="dark"] .kwami-button-bezel--ghost .kwami-button-text {
+  --kwami-btn-text-color: var(--kwami-text, #aaa);
+}
+
+[data-theme="dark"] .kwami-button-bezel--ghost:hover .kwami-button-face {
+  background: var(--kwami-surface-hover, rgba(255, 255, 255, 0.05));
+}
+
+[data-theme="dark"] .kwami-button-bezel--ghost .kwami-button:active .kwami-button-face {
+  background: var(--kwami-surface-active, rgba(255, 255, 255, 0.08));
+}
+
+/* ============================================
+   ICON STYLES
+   ============================================ */
+
+.kwami-button-icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  color: inherit;
+}
+
+.kwami-button-icon:last-child {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+.kwami-button-icon:only-child {
+  margin: 0;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.kwami-button-spinner {
+  position: relative;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: kwami-button-spin 0.8s linear infinite;
+}
+
+.kwami-button-bezel--sm .kwami-button-spinner {
+  width: 14px;
+  height: 14px;
+}
+
+.kwami-button-bezel--lg .kwami-button-spinner {
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes kwami-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.kwami-button-loading .kwami-button-text,
+.kwami-button-loading .kwami-button-icon {
+  visibility: hidden;
+}
+
+/* ============================================
+   DISABLED STATE
+   ============================================ */
+
 .kwami-button-bezel.kwami-button-disabled {
   opacity: 0.5;
   pointer-events: none;

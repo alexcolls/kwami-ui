@@ -77,13 +77,17 @@ export function rgbToHsl(r: number, g: number, b: number): HSL {
 }
 
 /**
- * Parse any color format (HEX, RGB, HSL) to HSL object
+ * Parse any color format (HEX, RGB, RGBA, HSL, HSLA) to HSL object
  */
 export function parseColor(input: string): HSL | null {
   input = input.trim();
 
-  // HEX format
+  // HEX format (with optional alpha)
   if (input.startsWith('#')) {
+      // Handle 8-digit hex (with alpha)
+      if (input.length === 9) {
+          input = input.substring(0, 7); // Strip alpha
+      }
       const rgb = hexToRgb(input);
       if (rgb) return rgbToHsl(rgb.r, rgb.g, rgb.b);
   }
@@ -94,10 +98,22 @@ export function parseColor(input: string): HSL | null {
       return rgbToHsl(parseInt(rgbMatch[1]), parseInt(rgbMatch[2]), parseInt(rgbMatch[3]));
   }
 
+  // RGBA format
+  const rgbaMatch = input.match(/^rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*[\d.]+\s*\)$/i);
+  if (rgbaMatch) {
+      return rgbToHsl(parseInt(rgbaMatch[1]), parseInt(rgbaMatch[2]), parseInt(rgbaMatch[3]));
+  }
+
   // HSL format
   const hslMatch = input.match(/^hsl\s*\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*\)$/i);
   if (hslMatch) {
       return { h: parseInt(hslMatch[1]), s: parseInt(hslMatch[2]), l: parseInt(hslMatch[3]) };
+  }
+
+  // HSLA format
+  const hslaMatch = input.match(/^hsla\s*\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*,\s*[\d.]+\s*\)$/i);
+  if (hslaMatch) {
+      return { h: parseInt(hslaMatch[1]), s: parseInt(hslaMatch[2]), l: parseInt(hslaMatch[3]) };
   }
 
   return null;

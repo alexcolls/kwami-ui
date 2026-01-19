@@ -107,36 +107,75 @@
     box-shadow: -4px -4px 8px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
-/* Pipette button */
-.kwami-colorpicker-pipette {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 28px;
-    height: 28px;
+/* Actions row at bottom */
+.kwami-colorpicker-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--kwami-shadow-dark, rgba(163, 177, 198, 0.3));
+    gap: 0.5rem;
+}
+
+/* Action item - button with label */
+.kwami-colorpicker-action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+/* Action label */
+.kwami-colorpicker-action-label {
+    font-size: 0.55rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--kwami-text-secondary, #888);
+    white-space: nowrap;
+}
+
+/* Common action button style */
+.kwami-colorpicker-pipette,
+.kwami-colorpicker-randomize,
+.kwami-colorpicker-reset,
+.kwami-colorpicker-copy-opposite {
+    width: 32px;
+    height: 32px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background: var(--kwami-surface, #e0e5ec);
     box-shadow:
-        2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
-        -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
+        3px 3px 6px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
+        -3px -3px 6px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--kwami-text-secondary, #888);
     transition: all 0.2s ease;
-    z-index: 10;
 }
 
-.kwami-colorpicker-pipette:hover {
+.kwami-colorpicker-pipette:hover,
+.kwami-colorpicker-randomize:hover,
+.kwami-colorpicker-reset:hover,
+.kwami-colorpicker-copy-opposite:hover {
     color: var(--kwami-accent, #ff9500);
-    transform: scale(1.1);
+    transform: translateY(-2px);
 }
 
+/* Button click state - simple press effect */
 .kwami-colorpicker-pipette:active,
-.kwami-colorpicker-pipette.active {
-    transform: scale(0.95);
+.kwami-colorpicker-pipette.clicked,
+.kwami-colorpicker-randomize:active,
+.kwami-colorpicker-randomize.clicked,
+.kwami-colorpicker-reset:active,
+.kwami-colorpicker-reset.clicked,
+.kwami-colorpicker-copy-opposite:active,
+.kwami-colorpicker-copy-opposite.clicked {
+    transform: translateY(0);
     box-shadow:
         inset 2px 2px 4px var(--kwami-shadow-dark, rgba(163, 177, 198, 0.6)),
         inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
@@ -163,28 +202,36 @@
     cursor: crosshair;
 }
 
-/* Selection cursor */
+/* Selection cursor - always visible with current color */
 .kwami-colorpicker-cursor {
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border: 3px solid white;
     border-radius: 50%;
     box-shadow:
         0 0 0 1px rgba(0, 0, 0, 0.3),
-        0 2px 8px rgba(0, 0, 0, 0.4);
+        0 2px 8px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.1);
     transform: translate(-50%, -50%);
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.15s ease;
+    opacity: 1;
+    transition: opacity 0.15s ease, background-color 0.1s ease;
 }
 
-/* Brightness slider */
-.kwami-colorpicker-brightness {
+/* Sliders container */
+.kwami-colorpicker-sliders {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Slider row */
+.kwami-colorpicker-slider-row {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 0.75rem;
     padding: 0.5rem 0.75rem;
     border-radius: 10px;
     background: var(--kwami-surface, #e0e5ec);
@@ -193,11 +240,12 @@
         inset -2px -2px 4px var(--kwami-shadow-light, rgba(255, 255, 255, 0.8));
 }
 
-.kwami-colorpicker-brightness iconify-icon {
+.kwami-colorpicker-slider-row iconify-icon {
     color: var(--kwami-text-secondary, #888);
     flex-shrink: 0;
 }
 
+/* Brightness slider */
 .kwami-colorpicker-brightness-slider {
     flex: 1;
     -webkit-appearance: none;
@@ -209,7 +257,24 @@
     cursor: pointer;
 }
 
-.kwami-colorpicker-brightness-slider::-webkit-slider-thumb {
+/* Opacity slider */
+.kwami-colorpicker-opacity-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, 
+        transparent 0%, 
+        var(--kwami-text, #333) 100%),
+        repeating-conic-gradient(#ccc 0% 25%, white 0% 50%) 50% / 8px 8px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Common slider thumb styles */
+.kwami-colorpicker-brightness-slider::-webkit-slider-thumb,
+.kwami-colorpicker-opacity-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 18px;
@@ -224,12 +289,14 @@
     transition: all 0.15s ease;
 }
 
-.kwami-colorpicker-brightness-slider::-webkit-slider-thumb:hover {
+.kwami-colorpicker-brightness-slider::-webkit-slider-thumb:hover,
+.kwami-colorpicker-opacity-slider::-webkit-slider-thumb:hover {
     transform: scale(1.1);
     border-color: var(--kwami-accent, #ff9500);
 }
 
-.kwami-colorpicker-brightness-slider::-moz-range-thumb {
+.kwami-colorpicker-brightness-slider::-moz-range-thumb,
+.kwami-colorpicker-opacity-slider::-moz-range-thumb {
     width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -242,7 +309,8 @@
     transition: all 0.15s ease;
 }
 
-.kwami-colorpicker-brightness-slider::-moz-range-thumb:hover {
+.kwami-colorpicker-brightness-slider::-moz-range-thumb:hover,
+.kwami-colorpicker-opacity-slider::-moz-range-thumb:hover {
     transform: scale(1.1);
     border-color: var(--kwami-accent, #ff9500);
 }

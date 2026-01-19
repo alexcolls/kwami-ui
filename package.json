@@ -23,8 +23,8 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc && vite build",
-    "dev:demo": "npm run dev -w demo -- --port 3000",
-    "build:demo": "npm run build -w demo"
+    "dev:docs": "npm run dev -w docs -- --port 3000",
+    "build:docs": "npm run build -w docs"
   },
   "peerDependencies": {
     "iconify-icon": "^2.1.0"
@@ -35,6 +35,6 @@
     "vite-plugin-dts": "^3.6.4"
   },
   "workspaces": [
-    "demo"
+    "docs"
   ]
 }

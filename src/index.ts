@@ -18,7 +18,14 @@ import './theme/variables.css';
 export * from './utils/color';
 
 // Components - Button
-export { Button, type ButtonProps } from './components/Button/Button';
+export { 
+    Button, 
+    type ButtonProps,
+    type ButtonSize,
+    type ButtonVariant,
+    type ButtonType,
+    type IconPosition
+} from './components/Button/Button';
 export { 
     ButtonConfigurator, 
     defaultButtonConfig,
@@ -69,7 +76,7 @@ export { ColorPicker, type ColorPickerProps } from './components/ColorPicker/Col
 export { Slider, type SliderProps } from './components/Slider/Slider';
 
 // Components - Expandable
-export { Expandable, type ExpandableProps } from './components/Expandable/Expandable';
+export { Expandable, type ExpandableProps, type ExpandableScreen } from './components/Expandable/Expandable';
 
 // Components - Toggle
 export { Toggle, type ToggleProps } from './components/Toggle/Toggle';

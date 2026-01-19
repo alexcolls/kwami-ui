@@ -1,14 +1,14 @@
-var P = Object.defineProperty;
-var A = (h, n, t) => n in h ? P(h, n, { enumerable: !0, configurable: !0, writable: !0, value: t }) : h[n] = t;
-var r = (h, n, t) => A(h, typeof n != "symbol" ? n + "" : n, t);
-const x = class x {
-  constructor(n) {
+var V = Object.defineProperty;
+var B = (h, o, t) => o in h ? V(h, o, { enumerable: !0, configurable: !0, writable: !0, value: t }) : h[o] = t;
+var n = (h, o, t) => B(h, typeof o != "symbol" ? o + "" : o, t);
+const C = class C {
+  constructor(o) {
     /** Unique identifier for this component instance */
-    r(this, "id");
-    r(this, "props");
-    r(this, "element", null);
-    r(this, "listeners", []);
-    this.props = n, this.id = `kwami-${++x.counter}`;
+    n(this, "id");
+    n(this, "props");
+    n(this, "element", null);
+    n(this, "listeners", []);
+    this.props = o, this.id = `kwami-${++C.counter}`;
   }
   /**
    * Convenience method to render HTML and hydrate in one step.
@@ -16,9 +16,9 @@ const x = class x {
    * @param container The container element to mount into.
    * @returns The root element of the component.
    */
-  mount(n) {
-    n.innerHTML = this.render();
-    const t = n.firstElementChild;
+  mount(o) {
+    o.innerHTML = this.render();
+    const t = o.firstElementChild;
     return this.hydrate(t), t;
   }
   /**
@@ -26,8 +26,8 @@ const x = class x {
    * This method should be called after the component's HTML has been inserted into the DOM.
    * @param element The root element of the component.
    */
-  hydrate(n) {
-    this.element = n, this.element.setAttribute("data-kwami-id", this.id), this.onHydrate();
+  hydrate(o) {
+    this.element = o, this.element.setAttribute("data-kwami-id", this.id), this.onHydrate();
   }
   /**
    * Lifecycle method called during hydration.
@@ -42,16 +42,16 @@ const x = class x {
    * @param type The event type (e.g., 'click', 'input').
    * @param handler The event handler function.
    */
-  addListener(n, t, e) {
-    n.addEventListener(t, e), this.listeners.push({ el: n, type: t, handler: e });
+  addListener(o, t, e) {
+    o.addEventListener(t, e), this.listeners.push({ el: o, type: t, handler: e });
   }
   /**
    * Cleans up the component by removing all event listeners and references.
    * Call this before removing the component from the DOM to prevent memory leaks.
    */
   destroy() {
-    this.listeners.forEach(({ el: n, type: t, handler: e }) => {
-      n.removeEventListener(t, e);
+    this.listeners.forEach(({ el: o, type: t, handler: e }) => {
+      o.removeEventListener(t, e);
     }), this.listeners = [], this.element = null;
   }
   /**
@@ -59,19 +59,19 @@ const x = class x {
    * Note: This is a simple implementation and might require full re-hydration depending on usage.
    * @param newProps Partial properties to update.
    */
-  update(n) {
-    this.props = { ...this.props, ...n };
+  update(o) {
+    this.props = { ...this.props, ...o };
   }
 };
-r(x, "counter", 0);
-let u = x;
-const z = {
+n(C, "counter", 0);
+let p = C;
+const I = {
   primary: "#ff9500",
   secondary: "#007aff",
   background: "#e0e5ec",
   shadow: "rgba(163, 177, 198, 0.6)",
   light: "rgba(255, 255, 255, 0.8)"
-}, H = {
+}, O = {
   primary: "#ff9500",
   secondary: "#5856d6",
   background: "#1e1e1e",
@@ -80,17 +80,17 @@ const z = {
 }, st = {
   mode: "dark",
   colors: {
-    light: z,
-    dark: H
+    light: I,
+    dark: O
   }
 };
-function I(h) {
+function F(h) {
   return h.mode === "system" ? window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light" : h.mode;
 }
 function at(h) {
-  const n = document.documentElement, t = document.body, e = () => {
-    const i = I(h), s = h.colors[i];
-    n.setAttribute("data-theme", i), t.setAttribute("data-theme", i), n.style.setProperty("--accent-primary", s.primary), n.style.setProperty("--accent-secondary", s.secondary), n.style.setProperty("--kwami-accent", s.primary), s.background && (n.style.setProperty("--kwami-bg", s.background), n.style.setProperty("--kwami-surface", s.background)), s.shadow && n.style.setProperty("--kwami-shadow-dark", s.shadow), s.light && n.style.setProperty("--kwami-shadow-light", s.light);
+  const o = document.documentElement, t = document.body, e = () => {
+    const i = F(h), s = h.colors[i];
+    o.setAttribute("data-theme", i), t.setAttribute("data-theme", i), o.style.setProperty("--accent-primary", s.primary), o.style.setProperty("--accent-secondary", s.secondary), o.style.setProperty("--kwami-accent", s.primary), s.background && (o.style.setProperty("--kwami-bg", s.background), o.style.setProperty("--kwami-surface", s.background)), s.shadow && o.style.setProperty("--kwami-shadow-dark", s.shadow), s.light && o.style.setProperty("--kwami-shadow-light", s.light);
   };
   if (e(), h.mode === "system") {
     const i = window.matchMedia("(prefers-color-scheme: dark)");
@@ -101,160 +101,288 @@ function at(h) {
   return () => {
   };
 }
-function S(h, n, t) {
-  n /= 100, t /= 100;
-  const e = n * Math.min(t, 1 - t), i = (s) => {
-    const a = (s + h / 30) % 12, l = t - e * Math.max(Math.min(a - 3, 9 - a, 1), -1);
-    return Math.round(255 * l).toString(16).padStart(2, "0");
+function b(h, o, t) {
+  o /= 100, t /= 100;
+  const e = o * Math.min(t, 1 - t), i = (s) => {
+    const a = (s + h / 30) % 12, r = t - e * Math.max(Math.min(a - 3, 9 - a, 1), -1);
+    return Math.round(255 * r).toString(16).padStart(2, "0");
   };
   return `#${i(0)}${i(8)}${i(4)}`;
 }
-function B(h, n, t) {
-  n /= 100, t /= 100;
-  const e = n * Math.min(t, 1 - t), i = (s) => {
+function z(h, o, t) {
+  o /= 100, t /= 100;
+  const e = o * Math.min(t, 1 - t), i = (s) => {
     const a = (s + h / 30) % 12;
     return Math.round(255 * (t - e * Math.max(Math.min(a - 3, 9 - a, 1), -1)));
   };
   return { r: i(0), g: i(8), b: i(4) };
 }
-function O(h) {
-  const n = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(h);
-  return n ? {
-    r: parseInt(n[1], 16),
-    g: parseInt(n[2], 16),
-    b: parseInt(n[3], 16)
+function N(h) {
+  const o = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(h);
+  return o ? {
+    r: parseInt(o[1], 16),
+    g: parseInt(o[2], 16),
+    b: parseInt(o[3], 16)
   } : null;
 }
-function D(h, n, t) {
-  h /= 255, n /= 255, t /= 255;
-  const e = Math.max(h, n, t), i = Math.min(h, n, t);
+function E(h, o, t) {
+  h /= 255, o /= 255, t /= 255;
+  const e = Math.max(h, o, t), i = Math.min(h, o, t);
   let s = 0, a = 0;
-  const l = (e + i) / 2;
+  const r = (e + i) / 2;
   if (e !== i) {
-    const o = e - i;
-    switch (a = l > 0.5 ? o / (2 - e - i) : o / (e + i), e) {
+    const l = e - i;
+    switch (a = r > 0.5 ? l / (2 - e - i) : l / (e + i), e) {
       case h:
-        s = ((n - t) / o + (n < t ? 6 : 0)) / 6;
+        s = ((o - t) / l + (o < t ? 6 : 0)) / 6;
         break;
-      case n:
-        s = ((t - h) / o + 2) / 6;
+      case o:
+        s = ((t - h) / l + 2) / 6;
         break;
       case t:
-        s = ((h - n) / o + 4) / 6;
+        s = ((h - o) / l + 4) / 6;
         break;
     }
   }
-  return { h: Math.round(s * 360), s: Math.round(a * 100), l: Math.round(l * 100) };
+  return { h: Math.round(s * 360), s: Math.round(a * 100), l: Math.round(r * 100) };
 }
-function C(h) {
+function x(h) {
   if (h = h.trim(), h.startsWith("#")) {
-    const e = O(h);
-    if (e) return D(e.r, e.g, e.b);
+    h.length === 9 && (h = h.substring(0, 7));
+    const s = N(h);
+    if (s) return E(s.r, s.g, s.b);
   }
-  const n = h.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
-  if (n)
-    return D(parseInt(n[1]), parseInt(n[2]), parseInt(n[3]));
-  const t = h.match(/^hsl\s*\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*\)$/i);
-  return t ? { h: parseInt(t[1]), s: parseInt(t[2]), l: parseInt(t[3]) } : null;
+  const o = h.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+  if (o)
+    return E(parseInt(o[1]), parseInt(o[2]), parseInt(o[3]));
+  const t = h.match(/^rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*[\d.]+\s*\)$/i);
+  if (t)
+    return E(parseInt(t[1]), parseInt(t[2]), parseInt(t[3]));
+  const e = h.match(/^hsl\s*\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*\)$/i);
+  if (e)
+    return { h: parseInt(e[1]), s: parseInt(e[2]), l: parseInt(e[3]) };
+  const i = h.match(/^hsla\s*\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*,\s*[\d.]+\s*\)$/i);
+  return i ? { h: parseInt(i[1]), s: parseInt(i[2]), l: parseInt(i[3]) } : null;
 }
-function f(h, n) {
+function k(h, o) {
   h = h.replace(/^#/, "");
   let t = parseInt(h.substring(0, 2), 16), e = parseInt(h.substring(2, 4), 16), i = parseInt(h.substring(4, 6), 16);
-  return t = Math.min(255, Math.max(0, t + Math.round(t * n / 100))), e = Math.min(255, Math.max(0, e + Math.round(e * n / 100))), i = Math.min(255, Math.max(0, i + Math.round(i * n / 100))), `#${t.toString(16).padStart(2, "0")}${e.toString(16).padStart(2, "0")}${i.toString(16).padStart(2, "0")}`;
+  return t = Math.min(255, Math.max(0, t + Math.round(t * o / 100))), e = Math.min(255, Math.max(0, e + Math.round(e * o / 100))), i = Math.min(255, Math.max(0, i + Math.round(i * o / 100))), `#${t.toString(16).padStart(2, "0")}${e.toString(16).padStart(2, "0")}${i.toString(16).padStart(2, "0")}`;
 }
 function nt(h) {
   return {
-    start: f(h, 30),
-    light: f(h, 15),
+    start: k(h, 30),
+    light: k(h, 15),
     mid: h,
-    dark: f(h, -10),
-    end: f(h, -25)
+    dark: k(h, -10),
+    end: k(h, -25)
   };
 }
-class F extends u {
-  constructor(n = {}) {
-    super(n);
+class R extends p {
+  constructor(t = {}) {
+    super(t);
+    n(this, "btn", null);
+    n(this, "isDisabled");
+    n(this, "isLoading");
+    this.isDisabled = t.disabled ?? !1, this.isLoading = t.loading ?? !1;
   }
   render() {
-    const { label: n = "CLICK", className: t = "", disabled: e = !1 } = this.props, i = e ? "disabled" : "";
+    const {
+      label: t = "CLICK",
+      className: e = "",
+      size: i = "md",
+      variant: s = "default",
+      disabled: a = !1,
+      loading: r = !1,
+      icon: l,
+      iconPosition: c = "left",
+      type: d = "button",
+      fullWidth: u = !1
+    } = this.props, m = [
+      "kwami-button-bezel",
+      `kwami-button-bezel--${i}`,
+      `kwami-button-bezel--${s}`,
+      a || r ? "kwami-button-disabled" : "",
+      u ? "kwami-button-bezel--full" : "",
+      e
+    ].filter(Boolean).join(" "), g = l ? `<iconify-icon class="kwami-button-icon" icon="${l}" width="18" height="18"></iconify-icon>` : "", v = r ? '<span class="kwami-button-spinner"></span>' : "", S = l && c === "right" ? `<span class="kwami-button-text">${t}</span>${g}` : `${g}<span class="kwami-button-text">${t}</span>`;
     return `
-            <div class="kwami-button-bezel ${t} ${e ? "kwami-button-disabled" : ""}" data-kwami-id="${this.id}">
-                <button class="kwami-button" ${i}>
+            <div class="${m}" data-kwami-id="${this.id}">
+                <button 
+                    class="kwami-button" 
+                    type="${d}"
+                    ${a || r ? 'disabled aria-disabled="true"' : ""}
+                    ${r ? 'aria-busy="true"' : ""}
+                >
                     <span class="kwami-button-face">
                         <span class="kwami-button-highlight"></span>
-                        <span class="kwami-button-text">${n}</span>
+                        ${r ? v : S}
                     </span>
                 </button>
             </div>
         `;
   }
   onHydrate() {
-    if (!this.element) return;
-    const n = this.element.querySelector(".kwami-button");
-    n && this.addListener(n, "click", (t) => {
-      if (this.props.disabled) return;
-      const e = n;
-      e.classList.add("pressed"), setTimeout(() => e.classList.remove("pressed"), 150), this.props.onClick && this.props.onClick(t);
-    });
+    this.element && (this.btn = this.element.querySelector(".kwami-button"), this.btn && this.addListener(this.btn, "click", (t) => {
+      var e;
+      this.isDisabled || this.isLoading || (this.btn.classList.add("pressed"), setTimeout(() => this.btn.classList.remove("pressed"), 150), (e = this.element) == null || e.dispatchEvent(new CustomEvent("buttonclick", {
+        detail: { originalEvent: t },
+        bubbles: !0
+      })), this.props.onClick && this.props.onClick(t));
+    }));
+  }
+  /** Enable or disable the button */
+  setDisabled(t) {
+    var e;
+    this.isDisabled = t, this.btn && (this.btn.disabled = t, this.btn.setAttribute("aria-disabled", String(t))), (e = this.element) == null || e.classList.toggle("kwami-button-disabled", t);
+  }
+  /** Set loading state */
+  setLoading(t) {
+    var i, s;
+    this.isLoading = t, this.setDisabled(t), this.btn && this.btn.setAttribute("aria-busy", String(t)), (i = this.element) == null || i.classList.toggle("kwami-button-loading", t);
+    const e = (s = this.element) == null ? void 0 : s.querySelector(".kwami-button-face");
+    if (e) {
+      const a = e.querySelector(".kwami-button-highlight");
+      if (t) {
+        e.innerHTML = "", a && e.appendChild(a);
+        const r = document.createElement("span");
+        r.className = "kwami-button-spinner", e.appendChild(r);
+      } else {
+        const { label: r = "CLICK", icon: l, iconPosition: c = "left" } = this.props, d = l ? `<iconify-icon class="kwami-button-icon" icon="${l}" width="18" height="18"></iconify-icon>` : "", u = l && c === "right" ? `<span class="kwami-button-text">${r}</span>${d}` : `${d}<span class="kwami-button-text">${r}</span>`;
+        e.innerHTML = `<span class="kwami-button-highlight"></span>${u}`;
+      }
+    }
+  }
+  /** Update button label */
+  setLabel(t) {
+    var i;
+    const e = (i = this.element) == null ? void 0 : i.querySelector(".kwami-button-text");
+    e && (e.textContent = t);
+  }
+  /** Get current disabled state */
+  isButtonDisabled() {
+    return this.isDisabled;
+  }
+  /** Get current loading state */
+  isButtonLoading() {
+    return this.isLoading;
   }
 }
-class v extends u {
+class y extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "ctx", null);
-    r(this, "isOpen", !1);
-    r(this, "isDragging", !1);
-    r(this, "currentHue", 30);
-    r(this, "currentSaturation", 100);
-    r(this, "currentLightness", 50);
-    r(this, "currentFormat", "hex");
+    n(this, "ctx", null);
+    n(this, "isOpen", !1);
+    n(this, "isDragging", !1);
+    n(this, "currentHue", 30);
+    n(this, "currentSaturation", 100);
+    n(this, "currentLightness", 50);
+    n(this, "currentOpacity", 100);
+    n(this, "currentFormat", "hex");
+    // Store default color for reset feature
+    n(this, "defaultHue", 30);
+    n(this, "defaultSaturation", 100);
+    n(this, "defaultLightness", 50);
+    n(this, "defaultOpacity", 100);
     // DOM references
-    r(this, "trigger", null);
-    r(this, "popup", null);
-    r(this, "canvas", null);
-    r(this, "cursor", null);
-    r(this, "preview", null);
-    r(this, "brightnessSlider", null);
-    r(this, "formatToggle", null);
-    r(this, "valueInput", null);
-    r(this, "pipetteBtn", null);
-    const e = C(t.defaultColor || "#ff9500");
-    e && (this.currentHue = e.h, this.currentSaturation = e.s, this.currentLightness = e.l);
+    n(this, "trigger", null);
+    n(this, "popup", null);
+    n(this, "canvas", null);
+    n(this, "cursor", null);
+    n(this, "preview", null);
+    n(this, "brightnessSlider", null);
+    n(this, "opacitySlider", null);
+    n(this, "formatToggle", null);
+    n(this, "valueInput", null);
+    n(this, "pipetteBtn", null);
+    n(this, "randomizeBtn", null);
+    n(this, "resetBtn", null);
+    n(this, "copyOppositeBtn", null);
+    const e = x(t.defaultColor || "#ff9500");
+    e && (this.currentHue = e.h, this.currentSaturation = e.s, this.currentLightness = e.l, this.defaultHue = e.h, this.defaultSaturation = e.s, this.defaultLightness = e.l);
   }
   render() {
-    const { defaultColor: t = "#ff9500", popupDirection: e = "up" } = this.props, i = e === "down" ? "kwami-colorpicker-popup-down" : "";
+    const {
+      defaultColor: t = "#ff9500",
+      popupDirection: e = "up",
+      showRandomize: i = !1,
+      showReset: s = !1,
+      showCopyToOpposite: a = !1,
+      showOpacity: r = !1
+    } = this.props, l = e === "down" ? "kwami-colorpicker-popup-down" : "", c = i || s || a || this.props.showPipette !== !1;
     return `
-      <div class="kwami-colorpicker" data-kwami-id="${this.id}" data-color="${t}">
-          <button class="kwami-colorpicker-trigger" aria-label="Pick a color" title="Pick a color">
-        <span class="kwami-colorpicker-preview" style="background-color: ${t}"></span>
-        <iconify-icon icon="solar:palette-linear" width="16" height="16"></iconify-icon>
-          </button>
-          <div class="kwami-colorpicker-popup ${i}">
-        <button class="kwami-colorpicker-pipette" aria-label="Pick from screen" title="Pick color from screen">
-            <iconify-icon icon="solar:pipette-linear" width="16" height="16"></iconify-icon>
-        </button>
-        <div class="kwami-colorpicker-wheel">
-            <canvas class="kwami-colorpicker-canvas" width="200" height="200"></canvas>
-            <div class="kwami-colorpicker-cursor"></div>
-        </div>
-        <div class="kwami-colorpicker-brightness">
-            <iconify-icon icon="solar:sun-linear" width="14" height="14"></iconify-icon>
-            <input type="range" class="kwami-colorpicker-brightness-slider" min="0" max="100" value="${this.currentLightness}" />
-            <iconify-icon icon="solar:moon-linear" width="14" height="14"></iconify-icon>
-        </div>
-        <div class="kwami-colorpicker-value-row">
-            <button class="kwami-colorpicker-format-toggle" data-format="hex" title="Toggle format">HEX</button>
-            <input type="text" class="kwami-colorpicker-value-input" value="${t}" spellcheck="false" />
-        </div>
-          </div>
-      </div>
-      `;
+            <div class="kwami-colorpicker" data-kwami-id="${this.id}" data-color="${t}">
+                <button class="kwami-colorpicker-trigger" aria-label="Pick a color" title="Pick a color">
+                    <span class="kwami-colorpicker-preview" style="background-color: ${t}"></span>
+                    <iconify-icon icon="solar:palette-linear" width="16" height="16"></iconify-icon>
+                </button>
+                <div class="kwami-colorpicker-popup ${l}">
+                    <div class="kwami-colorpicker-wheel">
+                        <canvas class="kwami-colorpicker-canvas" width="200" height="200"></canvas>
+                        <div class="kwami-colorpicker-cursor"></div>
+                    </div>
+                    <div class="kwami-colorpicker-sliders">
+                        <div class="kwami-colorpicker-slider-row">
+                            <iconify-icon icon="solar:sun-linear" width="14" height="14"></iconify-icon>
+                            <input type="range" class="kwami-colorpicker-brightness-slider" min="0" max="100" value="${this.currentLightness}" />
+                            <iconify-icon icon="solar:moon-linear" width="14" height="14"></iconify-icon>
+                        </div>
+                        ${r ? `
+                            <div class="kwami-colorpicker-slider-row">
+                                <iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>
+                                <input type="range" class="kwami-colorpicker-opacity-slider" min="0" max="100" value="${this.currentOpacity}" />
+                                <iconify-icon icon="solar:eye-closed-linear" width="14" height="14"></iconify-icon>
+                            </div>
+                        ` : ""}
+                    </div>
+                    <div class="kwami-colorpicker-value-row">
+                        <button class="kwami-colorpicker-format-toggle" data-format="hex" title="Toggle format">HEX</button>
+                        <input type="text" class="kwami-colorpicker-value-input" value="${t}" spellcheck="false" />
+                    </div>
+                    ${c ? `
+                        <div class="kwami-colorpicker-actions">
+                            ${i ? `
+                                <div class="kwami-colorpicker-action-item">
+                                    <button class="kwami-colorpicker-randomize" aria-label="Randomize color" title="Randomize color">
+                                        <iconify-icon icon="solar:shuffle-linear" width="14" height="14"></iconify-icon>
+                                    </button>
+                                    <span class="kwami-colorpicker-action-label">Random</span>
+                                </div>
+                            ` : ""}
+                            <div class="kwami-colorpicker-action-item">
+                                <button class="kwami-colorpicker-pipette" aria-label="Pick from screen" title="Pick color from screen">
+                                    <iconify-icon icon="solar:pipette-linear" width="14" height="14"></iconify-icon>
+                                </button>
+                                <span class="kwami-colorpicker-action-label">Pick</span>
+                            </div>
+                            ${s ? `
+                                <div class="kwami-colorpicker-action-item">
+                                    <button class="kwami-colorpicker-reset" aria-label="Reset to default" title="Reset to default color">
+                                        <iconify-icon icon="solar:restart-linear" width="14" height="14"></iconify-icon>
+                                    </button>
+                                    <span class="kwami-colorpicker-action-label">Reset</span>
+                                </div>
+                            ` : ""}
+                            ${a ? `
+                                <div class="kwami-colorpicker-action-item">
+                                    <button class="kwami-colorpicker-copy-opposite" aria-label="Use for both themes" title="Use this color for both light and dark themes">
+                                        <iconify-icon icon="solar:link-linear" width="14" height="14"></iconify-icon>
+                                    </button>
+                                    <span class="kwami-colorpicker-action-label">Both</span>
+                                </div>
+                            ` : ""}
+                        </div>
+                    ` : ""}
+                </div>
+            </div>
+        `;
   }
   onHydrate() {
-    this.element && (this.trigger = this.element.querySelector(".kwami-colorpicker-trigger"), this.popup = this.element.querySelector(".kwami-colorpicker-popup"), this.canvas = this.element.querySelector(".kwami-colorpicker-canvas"), this.cursor = this.element.querySelector(".kwami-colorpicker-cursor"), this.preview = this.element.querySelector(".kwami-colorpicker-preview"), this.brightnessSlider = this.element.querySelector(".kwami-colorpicker-brightness-slider"), this.formatToggle = this.element.querySelector(".kwami-colorpicker-format-toggle"), this.valueInput = this.element.querySelector(".kwami-colorpicker-value-input"), this.pipetteBtn = this.element.querySelector(".kwami-colorpicker-pipette"), !(!this.trigger || !this.popup || !this.canvas || !this.cursor || !this.preview || !this.brightnessSlider || !this.formatToggle || !this.valueInput || !this.pipetteBtn) && (this.ctx = this.canvas.getContext("2d"), this.ctx && ((!window.EyeDropper || this.props.showPipette === !1) && (this.pipetteBtn.style.display = "none"), this.drawWheel(), this.setupEventListeners())));
+    var t;
+    this.element && (this.trigger = this.element.querySelector(".kwami-colorpicker-trigger"), this.popup = this.element.querySelector(".kwami-colorpicker-popup"), this.canvas = this.element.querySelector(".kwami-colorpicker-canvas"), this.cursor = this.element.querySelector(".kwami-colorpicker-cursor"), this.preview = this.element.querySelector(".kwami-colorpicker-preview"), this.brightnessSlider = this.element.querySelector(".kwami-colorpicker-brightness-slider"), this.opacitySlider = this.element.querySelector(".kwami-colorpicker-opacity-slider"), this.formatToggle = this.element.querySelector(".kwami-colorpicker-format-toggle"), this.valueInput = this.element.querySelector(".kwami-colorpicker-value-input"), this.pipetteBtn = this.element.querySelector(".kwami-colorpicker-pipette"), this.randomizeBtn = this.element.querySelector(".kwami-colorpicker-randomize"), this.resetBtn = this.element.querySelector(".kwami-colorpicker-reset"), this.copyOppositeBtn = this.element.querySelector(".kwami-colorpicker-copy-opposite"), !(!this.trigger || !this.popup || !this.canvas || !this.cursor || !this.preview || !this.brightnessSlider || !this.formatToggle || !this.valueInput) && (this.ctx = this.canvas.getContext("2d"), this.ctx && (this.pipetteBtn && (!window.EyeDropper || this.props.showPipette === !1) && ((t = this.pipetteBtn.parentElement) == null || t.remove()), this.drawWheel(), this.updateCursorPosition(), this.setupEventListeners())));
   }
   setupEventListeners() {
-    if (!this.trigger || !this.canvas || !this.brightnessSlider || !this.formatToggle || !this.valueInput || !this.pipetteBtn || !this.popup) return;
+    if (!this.trigger || !this.canvas || !this.brightnessSlider || !this.formatToggle || !this.valueInput || !this.popup) return;
     this.addListener(this.trigger, "click", (s) => {
       s.stopPropagation(), this.togglePopup();
     }), this.addListener(this.canvas, "mousedown", (s) => {
@@ -273,10 +401,18 @@ class v extends u {
       this.isDragging = !1;
     }), this.addListener(this.brightnessSlider, "input", () => {
       this.currentLightness = parseInt(this.brightnessSlider.value), this.drawWheel(), this.updateFinalColor();
+    }), this.opacitySlider && this.addListener(this.opacitySlider, "input", () => {
+      this.currentOpacity = parseInt(this.opacitySlider.value), this.updateFinalColor();
     }), this.addListener(this.formatToggle, "click", (s) => {
       s.stopPropagation(), this.cycleFormat();
-    }), this.addListener(this.pipetteBtn, "click", (s) => {
+    }), this.pipetteBtn && this.addListener(this.pipetteBtn, "click", (s) => {
       s.stopPropagation(), this.pickFromScreen();
+    }), this.randomizeBtn && this.addListener(this.randomizeBtn, "click", (s) => {
+      s.stopPropagation(), this.randomizeColor();
+    }), this.resetBtn && this.addListener(this.resetBtn, "click", (s) => {
+      s.stopPropagation(), this.resetToDefault();
+    }), this.copyOppositeBtn && this.addListener(this.copyOppositeBtn, "click", (s) => {
+      s.stopPropagation(), this.copyToOppositeTheme();
     }), this.addListener(this.valueInput, "input", () => {
       this.handleInputChange();
     }), this.addListener(this.valueInput, "blur", () => {
@@ -296,7 +432,7 @@ class v extends u {
   }
   togglePopup() {
     var t, e;
-    this.isOpen = !this.isOpen, (t = this.popup) == null || t.classList.toggle("active", this.isOpen), (e = this.element) == null || e.classList.toggle("active", this.isOpen);
+    this.isOpen = !this.isOpen, (t = this.popup) == null || t.classList.toggle("active", this.isOpen), (e = this.element) == null || e.classList.toggle("active", this.isOpen), this.isOpen && this.updateCursorPosition();
   }
   closePopup() {
     var t, e;
@@ -307,48 +443,60 @@ class v extends u {
     const t = this.canvas.width / 2, e = this.canvas.height / 2, i = Math.min(t, e) - 5;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     for (let s = 0; s < 360; s++) {
-      const a = (s - 1) * Math.PI / 180, l = (s + 1) * Math.PI / 180;
-      this.ctx.beginPath(), this.ctx.moveTo(t, e), this.ctx.arc(t, e, i, a, l), this.ctx.closePath();
-      const o = this.ctx.createRadialGradient(t, e, 0, t, e, i);
-      o.addColorStop(0, `hsl(${s}, 0%, ${this.currentLightness}%)`), o.addColorStop(1, `hsl(${s}, 100%, ${this.currentLightness}%)`), this.ctx.fillStyle = o, this.ctx.fill();
+      const a = (s - 1) * Math.PI / 180, r = (s + 1) * Math.PI / 180;
+      this.ctx.beginPath(), this.ctx.moveTo(t, e), this.ctx.arc(t, e, i, a, r), this.ctx.closePath();
+      const l = this.ctx.createRadialGradient(t, e, 0, t, e, i);
+      l.addColorStop(0, `hsl(${s}, 0%, ${this.currentLightness}%)`), l.addColorStop(1, `hsl(${s}, 100%, ${this.currentLightness}%)`), this.ctx.fillStyle = l, this.ctx.fill();
     }
   }
   updateFromWheel(t) {
     if (!this.canvas || !this.cursor) return;
-    const e = this.canvas.getBoundingClientRect(), i = this.canvas.width / e.width, s = this.canvas.height / e.height, a = (t.clientX - e.left) * i, l = (t.clientY - e.top) * s, o = this.canvas.width / 2, c = this.canvas.height / 2, d = Math.min(o, c) - 5, p = a - o, g = l - c, w = Math.sqrt(p * p + g * g);
-    if (w <= d) {
-      this.cursor.style.left = `${a / i}px`, this.cursor.style.top = `${l / s}px`, this.cursor.style.opacity = "1";
-      let y = Math.atan2(g, p) * (180 / Math.PI);
-      y < 0 && (y += 360), this.currentHue = y, this.currentSaturation = Math.min(w / d * 100, 100), this.updateFinalColor();
+    const e = this.canvas.getBoundingClientRect(), i = this.canvas.width / e.width, s = this.canvas.height / e.height, a = (t.clientX - e.left) * i, r = (t.clientY - e.top) * s, l = this.canvas.width / 2, c = this.canvas.height / 2, d = Math.min(l, c) - 5, u = a - l, m = r - c, g = Math.sqrt(u * u + m * m);
+    if (g <= d) {
+      this.cursor.style.left = `${a / i}px`, this.cursor.style.top = `${r / s}px`, this.cursor.style.opacity = "1";
+      let v = Math.atan2(m, u) * (180 / Math.PI);
+      v < 0 && (v += 360), this.currentHue = v, this.currentSaturation = Math.min(g / d * 100, 100), this.updateFinalColor();
     }
   }
   updateCursorPosition() {
     if (!this.canvas || !this.cursor) return;
-    const t = this.canvas.width / 2, e = this.canvas.height / 2, i = Math.min(t, e) - 5, s = this.currentHue * (Math.PI / 180), a = this.currentSaturation / 100 * i, l = t + Math.cos(s) * a, o = e + Math.sin(s) * a;
-    this.cursor.style.left = `${l}px`, this.cursor.style.top = `${o}px`, this.cursor.style.opacity = "1";
+    const t = this.canvas.getBoundingClientRect(), e = this.canvas.width / t.width, i = this.canvas.height / t.height, s = this.canvas.width / 2, a = this.canvas.height / 2, r = Math.min(s, a) - 5, l = this.currentHue * (Math.PI / 180), c = this.currentSaturation / 100 * r, d = s + Math.cos(l) * c, u = a + Math.sin(l) * c;
+    this.cursor.style.left = `${d / e}px`, this.cursor.style.top = `${u / i}px`, this.cursor.style.opacity = "1";
+    const m = b(this.currentHue, this.currentSaturation, this.currentLightness);
+    this.cursor.style.backgroundColor = m;
   }
   getColorString() {
-    const t = B(this.currentHue, this.currentSaturation, this.currentLightness);
+    const t = z(this.currentHue, this.currentSaturation, this.currentLightness), e = this.currentOpacity / 100;
     switch (this.currentFormat) {
       case "hex":
-        return S(this.currentHue, this.currentSaturation, this.currentLightness).toUpperCase();
+        if (this.currentOpacity < 100) {
+          const i = Math.round(e * 255).toString(16).padStart(2, "0");
+          return (b(this.currentHue, this.currentSaturation, this.currentLightness) + i).toUpperCase();
+        }
+        return b(this.currentHue, this.currentSaturation, this.currentLightness).toUpperCase();
       case "rgb":
-        return `rgb(${t.r}, ${t.g}, ${t.b})`;
+        return this.currentOpacity < 100 ? `rgba(${t.r}, ${t.g}, ${t.b}, ${e.toFixed(2)})` : `rgb(${t.r}, ${t.g}, ${t.b})`;
       case "hsl":
-        return `hsl(${Math.round(this.currentHue)}, ${Math.round(this.currentSaturation)}%, ${Math.round(this.currentLightness)}%)`;
+        return this.currentOpacity < 100 ? `hsla(${Math.round(this.currentHue)}, ${Math.round(this.currentSaturation)}%, ${Math.round(this.currentLightness)}%, ${e.toFixed(2)})` : `hsl(${Math.round(this.currentHue)}, ${Math.round(this.currentSaturation)}%, ${Math.round(this.currentLightness)}%)`;
     }
   }
   updateFinalColor(t = !0) {
-    var i, s;
-    const e = S(this.currentHue, this.currentSaturation, this.currentLightness);
-    this.preview && (this.preview.style.backgroundColor = e), (i = this.element) == null || i.setAttribute("data-color", e), t && this.valueInput && (this.valueInput.value = this.getColorString()), (s = this.element) == null || s.dispatchEvent(new CustomEvent("colorchange", {
-      detail: { color: e },
+    var s, a;
+    const e = b(this.currentHue, this.currentSaturation, this.currentLightness), i = this.currentOpacity / 100;
+    if (this.preview)
+      if (this.currentOpacity < 100) {
+        const r = z(this.currentHue, this.currentSaturation, this.currentLightness);
+        this.preview.style.backgroundColor = `rgba(${r.r}, ${r.g}, ${r.b}, ${i})`;
+      } else
+        this.preview.style.backgroundColor = e;
+    (s = this.element) == null || s.setAttribute("data-color", e), t && this.valueInput && (this.valueInput.value = this.getColorString()), this.updateCursorPosition(), (a = this.element) == null || a.dispatchEvent(new CustomEvent("colorchange", {
+      detail: { color: e, opacity: this.currentOpacity },
       bubbles: !0
     })), this.props.onChange && this.props.onChange(e);
   }
   handleInputChange() {
     if (!this.valueInput) return;
-    const t = C(this.valueInput.value);
+    const t = x(this.valueInput.value);
     t && (this.currentHue = t.h, this.currentSaturation = t.s, this.currentLightness = t.l, this.brightnessSlider && (this.brightnessSlider.value = String(this.currentLightness)), this.drawWheel(), this.updateCursorPosition(), this.updateFinalColor(!1));
   }
   cycleFormat() {
@@ -356,55 +504,89 @@ class v extends u {
     this.currentFormat = t[(e + 1) % t.length], this.formatToggle && (this.formatToggle.textContent = this.currentFormat.toUpperCase(), this.formatToggle.setAttribute("data-format", this.currentFormat)), this.valueInput && (this.valueInput.value = this.getColorString());
   }
   async pickFromScreen() {
-    var t, e, i, s;
+    var t, e, i;
     if (!(!window.EyeDropper || !this.pipetteBtn || !this.popup))
       try {
-        const a = new window.EyeDropper();
-        this.pipetteBtn.classList.add("active"), this.popup.classList.remove("active"), (t = this.element) == null || t.classList.remove("active");
-        const o = (await a.open()).sRGBHex;
+        const s = new window.EyeDropper();
+        this.pipetteBtn.classList.add("clicked"), setTimeout(() => {
+          var c;
+          return (c = this.pipetteBtn) == null ? void 0 : c.classList.remove("clicked");
+        }, 200), this.popup.classList.remove("active"), (t = this.element) == null || t.classList.remove("active");
+        const r = (await s.open()).sRGBHex;
         this.popup.classList.add("active"), (e = this.element) == null || e.classList.add("active");
-        const c = C(o);
-        c && (this.currentHue = c.h, this.currentSaturation = c.s, this.currentLightness = c.l, this.brightnessSlider && (this.brightnessSlider.value = String(this.currentLightness)), this.drawWheel(), this.updateCursorPosition(), this.updateFinalColor());
+        const l = x(r);
+        l && (this.currentHue = l.h, this.currentSaturation = l.s, this.currentLightness = l.l, this.brightnessSlider && (this.brightnessSlider.value = String(this.currentLightness)), this.drawWheel(), this.updateCursorPosition(), this.updateFinalColor());
       } catch {
         this.popup.classList.add("active"), (i = this.element) == null || i.classList.add("active");
-      } finally {
-        (s = this.pipetteBtn) == null || s.classList.remove("active");
       }
+  }
+  /** Randomize the color */
+  randomizeColor() {
+    var t;
+    this.currentHue = Math.random() * 360, this.currentSaturation = 50 + Math.random() * 50, this.currentLightness = 30 + Math.random() * 40, this.brightnessSlider && (this.brightnessSlider.value = String(this.currentLightness)), this.drawWheel(), this.updateCursorPosition(), this.updateFinalColor(), (t = this.randomizeBtn) == null || t.classList.add("clicked"), setTimeout(() => {
+      var e;
+      return (e = this.randomizeBtn) == null ? void 0 : e.classList.remove("clicked");
+    }, 200);
+  }
+  /** Reset to default color (simple button, not toggle) */
+  resetToDefault() {
+    var t;
+    this.currentHue = this.defaultHue, this.currentSaturation = this.defaultSaturation, this.currentLightness = this.defaultLightness, this.currentOpacity = this.defaultOpacity, this.brightnessSlider && (this.brightnessSlider.value = String(this.currentLightness)), this.opacitySlider && (this.opacitySlider.value = String(this.currentOpacity)), this.drawWheel(), this.updateCursorPosition(), this.updateFinalColor(), (t = this.resetBtn) == null || t.classList.add("clicked"), setTimeout(() => {
+      var e;
+      return (e = this.resetBtn) == null ? void 0 : e.classList.remove("clicked");
+    }, 200);
+  }
+  /** Copy current color to opposite theme */
+  copyToOppositeTheme() {
+    var e, i;
+    const t = b(this.currentHue, this.currentSaturation, this.currentLightness);
+    (e = this.copyOppositeBtn) == null || e.classList.add("clicked"), setTimeout(() => {
+      var s;
+      return (s = this.copyOppositeBtn) == null ? void 0 : s.classList.remove("clicked");
+    }, 200), (i = this.element) == null || i.dispatchEvent(new CustomEvent("copytoopposite", {
+      detail: { color: t },
+      bubbles: !0
+    })), this.props.onCopyToOpposite && this.props.onCopyToOpposite(t);
   }
   /** Get the current color value */
   getColor() {
-    return S(this.currentHue, this.currentSaturation, this.currentLightness);
+    return b(this.currentHue, this.currentSaturation, this.currentLightness);
   }
   /** Set the color programmatically */
   setColor(t) {
-    const e = C(t);
+    const e = x(t);
     e && (this.currentHue = e.h, this.currentSaturation = e.s, this.currentLightness = e.l, this.brightnessSlider && (this.brightnessSlider.value = String(this.currentLightness)), this.drawWheel(), this.updateCursorPosition(), this.updateFinalColor());
   }
+  /** Set the default color for reset feature */
+  setDefaultColor(t) {
+    const e = x(t);
+    e && (this.defaultHue = e.h, this.defaultSaturation = e.s, this.defaultLightness = e.l);
+  }
 }
-const N = {
+const j = {
   label: "CLICK",
   bezel: { color: "#d0d0d0", radius: 14, padding: 6, shadowDepth: 50 },
   face: { color: "#e8e8e8", radius: 10, depth: 50, brightness: 50 },
   highlight: { color: "#ffffff", opacity: 40, height: 50 },
   text: { color: "#555555", size: 12, spacing: 2, weight: 600 }
 };
-class rt extends u {
+class rt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "config");
-    r(this, "button", null);
+    n(this, "config");
+    n(this, "button", null);
     // DOM references
-    r(this, "bezelEl", null);
-    r(this, "faceEl", null);
-    r(this, "highlightEl", null);
-    r(this, "textEl", null);
+    n(this, "bezelEl", null);
+    n(this, "faceEl", null);
+    n(this, "highlightEl", null);
+    n(this, "textEl", null);
     // Color pickers
-    r(this, "colorPickers", /* @__PURE__ */ new Map());
-    this.config = { ...N, ...t.initialConfig };
+    n(this, "colorPickers", /* @__PURE__ */ new Map());
+    this.config = { ...j, ...t.initialConfig };
   }
   render() {
     const { showControls: t = !0 } = this.props;
-    this.button = new F({ label: this.config.label });
+    this.button = new R({ label: this.config.label });
     const e = t ? this.renderControls() : "";
     return `
       <div class="kwami-button-configurator" data-kwami-id="${this.id}">
@@ -581,17 +763,17 @@ class rt extends u {
   setupColorPickers() {
     if (!this.element) return;
     ["bezel", "face", "highlight", "text"].forEach((e) => {
-      var o;
-      const i = (o = this.element) == null ? void 0 : o.querySelector(`[data-color-target="${e}"]`);
+      var l;
+      const i = (l = this.element) == null ? void 0 : l.querySelector(`[data-color-target="${e}"]`);
       if (!i) return;
-      const s = this.getColorForTarget(e), a = new v({
+      const s = this.getColorForTarget(e), a = new y({
         defaultColor: s,
         popupDirection: "up",
         onChange: (c) => this.handleColorChange(e, c)
       });
       i.innerHTML = a.render();
-      const l = i.querySelector(".kwami-colorpicker");
-      l && (a.hydrate(l), this.colorPickers.set(e, a));
+      const r = i.querySelector(".kwami-colorpicker");
+      r && (a.hydrate(r), this.colorPickers.set(e, a));
     });
   }
   getColorForTarget(t) {
@@ -612,14 +794,14 @@ class rt extends u {
     switch (t) {
       case "bezel":
         if (this.config.bezel.color = e, this.bezelEl) {
-          const i = f(e, 20), s = f(e, -20);
+          const i = k(e, 20), s = k(e, -20);
           this.bezelEl.style.background = `linear-gradient(145deg, ${i} 0%, ${e} 50%, ${s} 100%)`;
         }
         break;
       case "face":
         if (this.config.face.color = e, this.faceEl) {
-          const i = f(e, 30), s = f(e, 15), a = f(e, -10), l = f(e, -25);
-          this.faceEl.style.background = `linear-gradient(160deg, ${i} 0%, ${s} 20%, ${e} 50%, ${a} 80%, ${l} 100%)`;
+          const i = k(e, 30), s = k(e, 15), a = k(e, -10), r = k(e, -25);
+          this.faceEl.style.background = `linear-gradient(160deg, ${i} 0%, ${s} 20%, ${e} 50%, ${a} 80%, ${r} 100%)`;
         }
         break;
       case "highlight":
@@ -644,13 +826,13 @@ class rt extends u {
     });
   }
   highlightPart(t) {
-    var e, i, s, a, l, o, c, d;
+    var e, i, s, a, r, l, c, d;
     switch ((e = this.bezelEl) == null || e.classList.remove("kwami-cfg-editing"), (i = this.faceEl) == null || i.classList.remove("kwami-cfg-editing"), (s = this.highlightEl) == null || s.classList.remove("kwami-cfg-editing"), (a = this.textEl) == null || a.classList.remove("kwami-cfg-editing"), t) {
       case "bezel":
-        (l = this.bezelEl) == null || l.classList.add("kwami-cfg-editing");
+        (r = this.bezelEl) == null || r.classList.add("kwami-cfg-editing");
         break;
       case "face":
-        (o = this.faceEl) == null || o.classList.add("kwami-cfg-editing");
+        (l = this.faceEl) == null || l.classList.add("kwami-cfg-editing");
         break;
       case "highlight":
         (c = this.highlightEl) == null || c.classList.add("kwami-cfg-editing");
@@ -663,11 +845,11 @@ class rt extends u {
   setupSliders() {
     if (!this.element) return;
     this.element.querySelectorAll(".kwami-cfg-slider").forEach((e) => {
-      var l;
-      const i = e, s = i.getAttribute("data-prop"), a = (l = i.parentElement) == null ? void 0 : l.querySelector(".kwami-cfg-value");
+      var r;
+      const i = e, s = i.getAttribute("data-prop"), a = (r = i.parentElement) == null ? void 0 : r.querySelector(".kwami-cfg-value");
       this.addListener(i, "input", () => {
-        const o = parseFloat(i.value);
-        this.handleSliderChange(s, o, a);
+        const l = parseFloat(i.value);
+        this.handleSliderChange(s, l, a);
       });
     });
   }
@@ -728,40 +910,40 @@ class rt extends u {
     this.config = { ...this.config, ...t };
   }
 }
-class E extends u {
-  constructor(n) {
-    super(n);
+class T extends p {
+  constructor(o) {
+    super(o);
   }
   render() {
-    const { text: n, as: t = "h3" } = this.props, e = n.split("").map((i, s) => i === " " ? `<span class="kwami-title-char kwami-title-space" style="--char-index: ${s}">&nbsp;</span>` : `<span class="kwami-title-char" style="--char-index: ${s}">${i}</span>`).join("");
+    const { text: o, as: t = "h3" } = this.props, e = o.split("").map((i, s) => i === " " ? `<span class="kwami-title-char kwami-title-space" style="--char-index: ${s}">&nbsp;</span>` : `<span class="kwami-title-char" style="--char-index: ${s}">${i}</span>`).join("");
     return `
       <${t} class="kwami-title" data-kwami-id="${this.id}">
           <span class="kwami-title-text">${e}</span>
-          <span class="kwami-title-glow" aria-hidden="true">${n}</span>
+          <span class="kwami-title-glow" aria-hidden="true">${o}</span>
       </${t}>
       `;
   }
   onHydrate() {
   }
 }
-function lt(h, n) {
-  return new E({ text: h, as: n }).render();
+function ot(h, o) {
+  return new T({ text: h, as: o }).render();
 }
-const j = {
+const W = {
   text: "TITLE",
   glowColor: "#ff9500"
 };
-class ot extends u {
+class lt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "config");
-    r(this, "title", null);
-    r(this, "colorPicker", null);
-    this.config = { ...j, ...t.initialConfig };
+    n(this, "config");
+    n(this, "title", null);
+    n(this, "colorPicker", null);
+    this.config = { ...W, ...t.initialConfig };
   }
   render() {
     const { showControls: t = !0 } = this.props;
-    return this.title = new E({ text: this.config.text }), `
+    return this.title = new T({ text: this.config.text }), `
             <div class="kwami-title-configurator" data-kwami-id="${this.id}">
                 <div class="kwami-title-configurator-preview" style="--kwami-accent: ${this.config.glowColor}">
                     ${this.title.render()}
@@ -794,14 +976,14 @@ class ot extends u {
     t && this.title && this.title.hydrate(t);
     const e = this.element.querySelector('[data-color-target="glow"]');
     if (e) {
-      this.colorPicker = new v({
+      this.colorPicker = new y({
         defaultColor: this.config.glowColor,
         popupDirection: "up",
         onChange: (a) => {
-          var o;
+          var l;
           this.config.glowColor = a;
-          const l = (o = this.element) == null ? void 0 : o.querySelector(".kwami-title-configurator-preview");
-          l && l.style.setProperty("--kwami-accent", a), this.emitChange();
+          const r = (l = this.element) == null ? void 0 : l.querySelector(".kwami-title-configurator-preview");
+          r && r.style.setProperty("--kwami-accent", a), this.emitChange();
         }
       }), e.innerHTML = this.colorPicker.render();
       const s = e.querySelector(".kwami-colorpicker");
@@ -816,8 +998,8 @@ class ot extends u {
     var s, a;
     const e = (s = this.element) == null ? void 0 : s.querySelector(".kwami-title-text"), i = (a = this.element) == null ? void 0 : a.querySelector(".kwami-title-glow");
     if (e) {
-      const l = t.split("").map((o, c) => o === " " ? `<span class="kwami-title-char kwami-title-space" style="--char-index: ${c}">&nbsp;</span>` : `<span class="kwami-title-char" style="--char-index: ${c}">${o}</span>`).join("");
-      e.innerHTML = l;
+      const r = t.split("").map((l, c) => l === " " ? `<span class="kwami-title-char kwami-title-space" style="--char-index: ${c}">&nbsp;</span>` : `<span class="kwami-title-char" style="--char-index: ${c}">${l}</span>`).join("");
+      e.innerHTML = r;
     }
     i && (i.textContent = t);
   }
@@ -828,19 +1010,19 @@ class ot extends u {
     return { ...this.config };
   }
 }
-class Y extends u {
-  constructor(n) {
-    super(n);
+class Y extends p {
+  constructor(o) {
+    super(o);
   }
   render() {
     const {
-      content: n,
+      content: o,
       size: t = "md",
       weight: e = 400,
       color: i,
       align: s = "left",
       className: a = ""
-    } = this.props, l = [
+    } = this.props, r = [
       i ? `color: ${i}` : "",
       `font-weight: ${e}`,
       `text-align: ${s}`
@@ -848,36 +1030,36 @@ class Y extends u {
     return `
             <p class="kwami-text kwami-text-${t} ${a}" 
                data-kwami-id="${this.id}"
-               style="${l}">
-                ${n}
+               style="${r}">
+                ${o}
             </p>
         `;
   }
   onHydrate() {
   }
   /** Update the text content */
-  setContent(n) {
-    this.element && (this.element.textContent = n);
+  setContent(o) {
+    this.element && (this.element.textContent = o);
   }
   /** Update text styles */
-  setStyle(n) {
-    this.element && (n.color && (this.element.style.color = n.color), n.weight && (this.element.style.fontWeight = String(n.weight)), n.align && (this.element.style.textAlign = n.align));
+  setStyle(o) {
+    this.element && (o.color && (this.element.style.color = o.color), o.weight && (this.element.style.fontWeight = String(o.weight)), o.align && (this.element.style.textAlign = o.align));
   }
 }
-const R = {
+const G = {
   content: "Sample text content",
   size: "md",
   weight: 400,
   color: "#333333",
   align: "left"
 };
-class ct extends u {
+class ct extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "config");
-    r(this, "text", null);
-    r(this, "colorPicker", null);
-    this.config = { ...R, ...t.initialConfig };
+    n(this, "config");
+    n(this, "text", null);
+    n(this, "colorPicker", null);
+    this.config = { ...G, ...t.initialConfig };
   }
   render() {
     const { showControls: t = !0 } = this.props;
@@ -948,12 +1130,12 @@ class ct extends u {
     t && this.text && this.text.hydrate(t);
     const e = this.element.querySelector('[data-color-target="text"]');
     if (e) {
-      this.colorPicker = new v({
+      this.colorPicker = new y({
         defaultColor: this.config.color,
         popupDirection: "up",
         onChange: (d) => {
-          var p;
-          this.config.color = d, (p = this.text) == null || p.setStyle({ color: d }), this.emitChange();
+          var u;
+          this.config.color = d, (u = this.text) == null || u.setStyle({ color: d }), this.emitChange();
         }
       }), e.innerHTML = this.colorPicker.render();
       const c = e.querySelector(".kwami-colorpicker");
@@ -967,25 +1149,25 @@ class ct extends u {
     const s = this.element.querySelectorAll("[data-size]");
     s.forEach((c) => {
       this.addListener(c, "click", () => {
-        var g;
+        var m;
         const d = c.getAttribute("data-size");
-        this.config.size = d, s.forEach((w) => w.classList.remove("active")), c.classList.add("active");
-        const p = (g = this.element) == null ? void 0 : g.querySelector(".kwami-text");
-        p && (p.className = `kwami-text kwami-text-${d}`), this.emitChange();
+        this.config.size = d, s.forEach((g) => g.classList.remove("active")), c.classList.add("active");
+        const u = (m = this.element) == null ? void 0 : m.querySelector(".kwami-text");
+        u && (u.className = `kwami-text kwami-text-${d}`), this.emitChange();
       });
     });
-    const a = this.element.querySelector('[data-prop="weight"]'), l = this.element.querySelector(".kwami-cfg-slider-wrap .kwami-cfg-value");
+    const a = this.element.querySelector('[data-prop="weight"]'), r = this.element.querySelector(".kwami-cfg-slider-wrap .kwami-cfg-value");
     a && this.addListener(a, "input", () => {
       var d;
       const c = parseInt(a.value);
-      this.config.weight = c, l && (l.textContent = String(c)), (d = this.text) == null || d.setStyle({ weight: c }), this.emitChange();
+      this.config.weight = c, r && (r.textContent = String(c)), (d = this.text) == null || d.setStyle({ weight: c }), this.emitChange();
     });
-    const o = this.element.querySelectorAll("[data-align]");
-    o.forEach((c) => {
+    const l = this.element.querySelectorAll("[data-align]");
+    l.forEach((c) => {
       this.addListener(c, "click", () => {
-        var p;
+        var u;
         const d = c.getAttribute("data-align");
-        this.config.align = d, o.forEach((g) => g.classList.remove("active")), c.classList.add("active"), (p = this.text) == null || p.setStyle({ align: d }), this.emitChange();
+        this.config.align = d, l.forEach((m) => m.classList.remove("active")), c.classList.add("active"), (u = this.text) == null || u.setStyle({ align: d }), this.emitChange();
       });
     });
   }
@@ -996,57 +1178,57 @@ class ct extends u {
     return { ...this.config };
   }
 }
-class L extends u {
-  constructor(n) {
-    super(n);
+class M extends p {
+  constructor(o) {
+    super(o);
   }
   render() {
     const {
-      text: n,
+      text: o,
       size: t = "md",
       required: e = !1,
       color: i,
       htmlFor: s,
       className: a = ""
-    } = this.props, l = s ? `for="${s}"` : "", o = i ? `style="color: ${i}"` : "", c = e ? '<span class="kwami-label-required">*</span>' : "";
+    } = this.props, r = s ? `for="${s}"` : "", l = i ? `style="color: ${i}"` : "", c = e ? '<span class="kwami-label-required">*</span>' : "";
     return `
             <label class="kwami-label kwami-label-${t} ${a}" 
                    data-kwami-id="${this.id}"
-                   ${l}
-                   ${o}>
-                ${n}${c}
+                   ${r}
+                   ${l}>
+                ${o}${c}
             </label>
         `;
   }
   onHydrate() {
   }
-  setText(n) {
+  setText(o) {
     if (this.element) {
       const t = this.element.querySelector(".kwami-label-required");
-      this.element.textContent = n, t && this.element.appendChild(t);
+      this.element.textContent = o, t && this.element.appendChild(t);
     }
   }
-  setColor(n) {
-    this.element && (this.element.style.color = n);
+  setColor(o) {
+    this.element && (this.element.style.color = o);
   }
 }
-const W = {
+const U = {
   text: "Label",
   size: "md",
   color: "#666666",
   required: !1
 };
-class ht extends u {
+class ht extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "config");
-    r(this, "label", null);
-    r(this, "colorPicker", null);
-    this.config = { ...W, ...t.initialConfig };
+    n(this, "config");
+    n(this, "label", null);
+    n(this, "colorPicker", null);
+    this.config = { ...U, ...t.initialConfig };
   }
   render() {
     const { showControls: t = !0 } = this.props;
-    return this.label = new L({
+    return this.label = new M({
       text: this.config.text,
       size: this.config.size,
       color: this.config.color,
@@ -1097,44 +1279,44 @@ class ht extends u {
     t && this.label && this.label.hydrate(t);
     const e = this.element.querySelector('[data-color-target="label"]');
     if (e) {
-      this.colorPicker = new v({
+      this.colorPicker = new y({
         defaultColor: this.config.color,
         popupDirection: "up",
-        onChange: (o) => {
+        onChange: (l) => {
           var c;
-          this.config.color = o, (c = this.label) == null || c.setColor(o), this.emitChange();
+          this.config.color = l, (c = this.label) == null || c.setColor(l), this.emitChange();
         }
       }), e.innerHTML = this.colorPicker.render();
-      const l = e.querySelector(".kwami-colorpicker");
-      l && this.colorPicker.hydrate(l);
+      const r = e.querySelector(".kwami-colorpicker");
+      r && this.colorPicker.hydrate(r);
     }
     const i = this.element.querySelector('[data-prop="text"]');
     i && this.addListener(i, "input", () => {
-      var l;
-      this.config.text = i.value, (l = this.label) == null || l.setText(i.value), this.emitChange();
+      var r;
+      this.config.text = i.value, (r = this.label) == null || r.setText(i.value), this.emitChange();
     });
     const s = this.element.querySelectorAll("[data-size]");
-    s.forEach((l) => {
-      this.addListener(l, "click", () => {
+    s.forEach((r) => {
+      this.addListener(r, "click", () => {
         var d;
-        const o = l.getAttribute("data-size");
-        this.config.size = o, s.forEach((p) => p.classList.remove("active")), l.classList.add("active");
+        const l = r.getAttribute("data-size");
+        this.config.size = l, s.forEach((u) => u.classList.remove("active")), r.classList.add("active");
         const c = (d = this.element) == null ? void 0 : d.querySelector(".kwami-label");
-        c && (c.className = `kwami-label kwami-label-${o}`), this.emitChange();
+        c && (c.className = `kwami-label kwami-label-${l}`), this.emitChange();
       });
     });
     const a = this.element.querySelector('[data-prop="required"]');
     a && this.addListener(a, "click", () => {
-      var o, c;
+      var l, c;
       this.config.required = !this.config.required, a.classList.toggle("active", this.config.required);
-      const l = (o = this.element) == null ? void 0 : o.querySelector(".kwami-label");
-      if (l && this.label) {
-        l.outerHTML = new L({
+      const r = (l = this.element) == null ? void 0 : l.querySelector(".kwami-label");
+      if (r && this.label) {
+        r.outerHTML = new M({
           text: this.config.text,
           size: this.config.size,
           color: this.config.color,
           required: this.config.required
-        }).render(), this.label = new L(this.config);
+        }).render(), this.label = new M(this.config);
         const d = (c = this.element) == null ? void 0 : c.querySelector(".kwami-label");
         d && this.label.hydrate(d);
       }
@@ -1148,47 +1330,47 @@ class ht extends u {
     return { ...this.config };
   }
 }
-class G extends u {
-  constructor(n) {
-    super(n);
+class K extends p {
+  constructor(o) {
+    super(o);
   }
   render() {
     const {
-      icon: n,
+      icon: o,
       size: t = 24,
       color: e,
       className: i = ""
     } = this.props, s = e ? `color: ${e}` : "";
     return `
             <span class="kwami-icon ${i}" data-kwami-id="${this.id}" style="${s}">
-                <iconify-icon icon="${n}" width="${t}" height="${t}"></iconify-icon>
+                <iconify-icon icon="${o}" width="${t}" height="${t}"></iconify-icon>
             </span>
         `;
   }
   onHydrate() {
   }
   /** Change the icon */
-  setIcon(n) {
+  setIcon(o) {
     var e;
     const t = (e = this.element) == null ? void 0 : e.querySelector("iconify-icon");
-    t && t.setAttribute("icon", n);
+    t && t.setAttribute("icon", o);
   }
   /** Change the size */
-  setSize(n) {
+  setSize(o) {
     var e;
     const t = (e = this.element) == null ? void 0 : e.querySelector("iconify-icon");
-    t && (t.setAttribute("width", String(n)), t.setAttribute("height", String(n)));
+    t && (t.setAttribute("width", String(o)), t.setAttribute("height", String(o)));
   }
   /** Change the color */
-  setColor(n) {
-    this.element && (this.element.style.color = n);
+  setColor(o) {
+    this.element && (this.element.style.color = o);
   }
 }
-const U = {
+const X = {
   icon: "solar:star-bold",
   size: 48,
   color: "#ff9500"
-}, K = [
+}, _ = [
   "solar:star-bold",
   "solar:heart-bold",
   "solar:home-2-bold",
@@ -1202,17 +1384,17 @@ const U = {
   "solar:map-point-bold",
   "solar:sun-bold"
 ];
-class dt extends u {
+class dt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "config");
-    r(this, "icon", null);
-    r(this, "colorPicker", null);
-    this.config = { ...U, ...t.initialConfig };
+    n(this, "config");
+    n(this, "icon", null);
+    n(this, "colorPicker", null);
+    this.config = { ...X, ...t.initialConfig };
   }
   render() {
     const { showControls: t = !0 } = this.props;
-    return this.icon = new G({
+    return this.icon = new K({
       icon: this.config.icon,
       size: this.config.size,
       color: this.config.color
@@ -1226,7 +1408,7 @@ class dt extends u {
         `;
   }
   renderControls() {
-    const { config: t } = this, e = K.map((i) => `
+    const { config: t } = this, e = _.map((i) => `
             <button class="kwami-icon-preset ${i === t.icon ? "active" : ""}" data-icon="${i}" title="${i}">
                 <iconify-icon icon="${i}" width="20" height="20"></iconify-icon>
             </button>
@@ -1260,7 +1442,7 @@ class dt extends u {
     t && this.icon && this.icon.hydrate(t);
     const e = this.element.querySelector('[data-color-target="icon"]');
     if (e) {
-      this.colorPicker = new v({
+      this.colorPicker = new y({
         defaultColor: this.config.color,
         popupDirection: "up",
         onChange: (c) => {
@@ -1268,23 +1450,23 @@ class dt extends u {
           this.config.color = c, (d = this.icon) == null || d.setColor(c), this.emitChange();
         }
       }), e.innerHTML = this.colorPicker.render();
-      const o = e.querySelector(".kwami-colorpicker");
-      o && this.colorPicker.hydrate(o);
+      const l = e.querySelector(".kwami-colorpicker");
+      l && this.colorPicker.hydrate(l);
     }
     const i = this.element.querySelector('[data-prop="icon"]');
     i && this.addListener(i, "input", () => {
-      var o;
-      this.config.icon = i.value, (o = this.icon) == null || o.setIcon(i.value), this.updatePresetSelection(i.value), this.emitChange();
+      var l;
+      this.config.icon = i.value, (l = this.icon) == null || l.setIcon(i.value), this.updatePresetSelection(i.value), this.emitChange();
     });
     const s = this.element.querySelector('[data-prop="size"]'), a = this.element.querySelector(".kwami-cfg-slider-wrap .kwami-cfg-value");
     s && this.addListener(s, "input", () => {
       var c;
-      const o = parseInt(s.value);
-      this.config.size = o, a && (a.textContent = `${o}px`), (c = this.icon) == null || c.setSize(o), this.emitChange();
-    }), this.element.querySelectorAll(".kwami-icon-preset").forEach((o) => {
-      this.addListener(o, "click", () => {
+      const l = parseInt(s.value);
+      this.config.size = l, a && (a.textContent = `${l}px`), (c = this.icon) == null || c.setSize(l), this.emitChange();
+    }), this.element.querySelectorAll(".kwami-icon-preset").forEach((l) => {
+      this.addListener(l, "click", () => {
         var d;
-        const c = o.getAttribute("data-icon");
+        const c = l.getAttribute("data-icon");
         this.config.icon = c, (d = this.icon) == null || d.setIcon(c), i && (i.value = c), this.updatePresetSelection(c), this.emitChange();
       });
     });
@@ -1303,14 +1485,14 @@ class dt extends u {
     return { ...this.config };
   }
 }
-class ut extends u {
+class ut extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "input", null);
-    r(this, "valueDisplay", null);
-    r(this, "fill", null);
-    r(this, "thumbVisual", null);
-    r(this, "currentValue");
+    n(this, "input", null);
+    n(this, "valueDisplay", null);
+    n(this, "fill", null);
+    n(this, "thumbVisual", null);
+    n(this, "currentValue");
     this.currentValue = t.value ?? 50;
   }
   render() {
@@ -1320,12 +1502,12 @@ class ut extends u {
       value: i = 50,
       step: s = 1,
       label: a = "SLIDER"
-    } = this.props, l = (i - t) / (e - t) * 100;
+    } = this.props, r = (i - t) / (e - t) * 100;
     return `
             <div class="kwami-slider-container" data-kwami-id="${this.id}">
                 <div class="kwami-slider-bezel">
                     <div class="kwami-slider-track">
-                        <div class="kwami-slider-fill" style="width: ${l}%"></div>
+                        <div class="kwami-slider-fill" style="width: ${r}%"></div>
                         <input 
                             type="range" 
                             class="kwami-slider" 
@@ -1334,7 +1516,7 @@ class ut extends u {
                             value="${i}"
                             step="${s}"
                         />
-                        <div class="kwami-slider-thumb-visual" style="left: ${l}%"></div>
+                        <div class="kwami-slider-thumb-visual" style="left: ${r}%"></div>
                     </div>
                 </div>
                 <div class="kwami-slider-value-container">
@@ -1372,34 +1554,91 @@ class ut extends u {
     this.input && (this.input.value = String(t)), this.fill && (this.fill.style.width = `${s}%`), this.thumbVisual && (this.thumbVisual.style.left = `${s}%`), this.valueDisplay && (this.valueDisplay.textContent = String(t));
   }
 }
-class pt extends u {
+class pt extends p {
   constructor(t) {
     super(t);
-    r(this, "isExpanded", !1);
-    r(this, "isAnimating", !1);
-    r(this, "overlay", null);
-    r(this, "placeholder", null);
-    r(this, "btn", null);
-    r(this, "titleComponent", null);
-    this.titleComponent = new E({ text: t.title });
+    n(this, "isExpanded", !1);
+    n(this, "isAnimating", !1);
+    n(this, "activeScreenId", null);
+    n(this, "overlay", null);
+    n(this, "placeholder", null);
+    n(this, "minimizeBtn", null);
+    n(this, "screenBtns", /* @__PURE__ */ new Map());
+    n(this, "titleComponent", null);
+    n(this, "contentEl", null);
+    n(this, "previewEl", null);
+    this.titleComponent = new T({ text: t.title });
+  }
+  /** Check if using multi-screen mode */
+  isMultiScreen() {
+    return Array.isArray(this.props.screens) && this.props.screens.length > 0;
   }
   render() {
-    const { content: t, expandableId: e, expandedWidth: i = "min(90vw, 500px)", expandedHeight: s = "min(90vh, 500px)" } = this.props, a = this.titleComponent ? this.titleComponent.render() : "";
+    const { expandableId: t, expandedWidth: e = "min(90vw, 500px)", expandedHeight: i = "min(90vh, 500px)" } = this.props, s = this.titleComponent ? this.titleComponent.render() : "";
+    return this.isMultiScreen() ? this.renderMultiScreen(s, t) : this.renderSingleScreen(s, t, e, i);
+  }
+  renderSingleScreen(t, e, i, s) {
+    const { content: a = "" } = this.props;
     return `
       <div class="kwami-expandable-placeholder" data-placeholder-for="${e}"></div>
       <div class="kwami-expandable" data-kwami-id="${this.id}" data-expandable-id="${e}"
            style="--end-width: ${i}; --end-height: ${s}">
           <div class="kwami-expandable-inner">
-        <button class="kwami-expandable-btn" aria-label="Expand" title="Expand">
-            <iconify-icon class="kwami-expandable-icon-expand" icon="solar:maximize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
-            <iconify-icon class="kwami-expandable-icon-minimize" icon="solar:minimize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
-        </button>
-        <div class="kwami-expandable-title">
-            ${a}
-        </div>
-        <div class="kwami-expandable-content" data-component="${e}">
-            ${t}
-        </div>
+              <div class="kwami-expandable-actions">
+                  <button class="kwami-expandable-btn kwami-expandable-btn-expand" aria-label="Expand" title="Expand">
+                      <iconify-icon class="kwami-expandable-icon-expand" icon="solar:maximize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
+                  </button>
+                  <button class="kwami-expandable-btn kwami-expandable-btn-minimize" aria-label="Minimize" title="Minimize">
+                      <iconify-icon icon="solar:minimize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
+                  </button>
+              </div>
+              <div class="kwami-expandable-title">
+                  ${t}
+              </div>
+              <div class="kwami-expandable-content" data-component="${e}">
+                  ${a}
+              </div>
+          </div>
+      </div>
+      <div class="kwami-expandable-overlay" data-overlay-for="${e}"></div>
+      `;
+  }
+  renderMultiScreen(t, e) {
+    const { preview: i = "", screens: s = [] } = this.props, a = s[0], r = (a == null ? void 0 : a.expandedWidth) || "min(90vw, 500px)", l = (a == null ? void 0 : a.expandedHeight) || "min(90vh, 500px)", c = s.map((u) => `
+          <button class="kwami-expandable-btn kwami-expandable-btn-screen" 
+                  data-screen-id="${u.id}" 
+                  aria-label="${u.title || u.id}" 
+                  title="${u.title || u.id}">
+              <iconify-icon icon="${u.icon}" width="18" height="18"></iconify-icon>
+          </button>
+      `).join(""), d = s.map((u) => `
+          <div class="kwami-expandable-screen" data-screen="${u.id}" 
+               data-width="${u.expandedWidth || r}"
+               data-height="${u.expandedHeight || l}"
+               ${u.noScroll ? 'data-no-scroll="true"' : ""}>
+              ${u.content}
+          </div>
+      `).join("");
+    return `
+      <div class="kwami-expandable-placeholder" data-placeholder-for="${e}"></div>
+      <div class="kwami-expandable kwami-expandable-multi" data-kwami-id="${this.id}" data-expandable-id="${e}"
+           style="--end-width: ${r}; --end-height: ${l}">
+          <div class="kwami-expandable-inner">
+              <div class="kwami-expandable-actions">
+                  ${c}
+                  <button class="kwami-expandable-btn kwami-expandable-btn-minimize" aria-label="Minimize" title="Minimize">
+                      <iconify-icon icon="solar:minimize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
+                  </button>
+              </div>
+              <div class="kwami-expandable-title">
+                  ${t}
+              </div>
+              <div class="kwami-expandable-preview">
+                  ${i}
+              </div>
+              <div class="kwami-expandable-screens">
+                  ${d}
+              </div>
           </div>
       </div>
       <div class="kwami-expandable-overlay" data-overlay-for="${e}"></div>
@@ -1408,11 +1647,9 @@ class pt extends u {
   onHydrate() {
     if (!this.element) return;
     const { expandableId: t } = this.props, e = this.element.parentElement;
-    if (!e || (this.btn = this.element.querySelector(".kwami-expandable-btn"), this.overlay = e.querySelector(`[data-overlay-for="${t}"]`), this.placeholder = e.querySelector(`[data-placeholder-for="${t}"]`), !this.btn || !this.overlay || !this.placeholder)) return;
+    if (!e || (this.overlay = e.querySelector(`[data-overlay-for="${t}"]`), this.placeholder = e.querySelector(`[data-placeholder-for="${t}"]`), this.minimizeBtn = this.element.querySelector(".kwami-expandable-btn-minimize"), this.contentEl = this.element.querySelector(".kwami-expandable-content"), this.previewEl = this.element.querySelector(".kwami-expandable-preview"), !this.overlay || !this.placeholder)) return;
     const i = this.element.querySelector(".kwami-title");
-    i && this.titleComponent && this.titleComponent.hydrate(i), this.addListener(this.btn, "click", (a) => {
-      a.stopPropagation(), this.toggle();
-    }), this.addListener(this.overlay, "click", () => {
+    i && this.titleComponent && this.titleComponent.hydrate(i), this.isMultiScreen() ? this.hydrateMultiScreen() : this.hydrateSingleScreen(), this.addListener(this.overlay, "click", () => {
       this.isExpanded && !this.isAnimating && this.collapse();
     });
     const s = (a) => {
@@ -1420,28 +1657,60 @@ class pt extends u {
     };
     document.addEventListener("keydown", s);
   }
-  toggle() {
-    this.isExpanded ? this.collapse() : this.expand();
+  hydrateSingleScreen() {
+    var e;
+    const t = (e = this.element) == null ? void 0 : e.querySelector(".kwami-expandable-btn-expand");
+    t && this.addListener(t, "click", (i) => {
+      i.stopPropagation(), this.expand();
+    }), this.minimizeBtn && this.addListener(this.minimizeBtn, "click", (i) => {
+      i.stopPropagation(), this.collapse();
+    });
   }
-  expand() {
-    if (this.isAnimating || !this.element || !this.placeholder || !this.overlay || !this.btn) return;
+  hydrateMultiScreen() {
+    var e;
+    const t = (e = this.element) == null ? void 0 : e.querySelectorAll(".kwami-expandable-btn-screen");
+    t == null || t.forEach((i) => {
+      const s = i.getAttribute("data-screen-id");
+      s && (this.screenBtns.set(s, i), this.addListener(i, "click", (a) => {
+        a.stopPropagation(), this.expandToScreen(s);
+      }));
+    }), this.minimizeBtn && this.addListener(this.minimizeBtn, "click", (i) => {
+      i.stopPropagation(), this.collapse();
+    });
+  }
+  /** Expand to a specific screen (multi-screen mode) */
+  expandToScreen(t) {
+    if (this.isAnimating || !this.element || !this.placeholder || !this.overlay) return;
+    const e = this.element.querySelector(`[data-screen="${t}"]`);
+    if (!e) return;
+    const i = e.dataset.width || "min(90vw, 500px)", s = e.dataset.height || "min(90vh, 500px)";
+    this.element.style.setProperty("--end-width", i), this.element.style.setProperty("--end-height", s), this.element.querySelectorAll(".kwami-expandable-screen").forEach((a) => {
+      a.classList.remove("active");
+    }), e.classList.add("active"), this.screenBtns.forEach((a, r) => {
+      a.classList.toggle("active", r === t);
+    }), this.activeScreenId = t, this.isExpanded || this.expand(t);
+  }
+  expand(t) {
+    if (this.isAnimating || !this.element || !this.placeholder || !this.overlay) return;
     this.isAnimating = !0;
-    const t = this.element.getBoundingClientRect();
-    this.element.style.setProperty("--start-x", `${t.left}px`), this.element.style.setProperty("--start-y", `${t.top}px`), this.element.style.setProperty("--start-width", `${t.width}px`), this.element.style.setProperty("--start-height", `${t.height}px`), this.placeholder.classList.add("active"), this.element.classList.add("expanding"), this.overlay.classList.add("active"), document.body.style.overflow = "hidden", this.btn.setAttribute("aria-label", "Minimize"), this.btn.setAttribute("title", "Minimize");
-    const e = () => {
-      var i, s, a;
-      (i = this.element) == null || i.removeEventListener("animationend", e), (s = this.element) == null || s.classList.remove("expanding"), (a = this.element) == null || a.classList.add("expanded"), this.isExpanded = !0, this.isAnimating = !1, this.props.onExpand && this.props.onExpand();
+    const e = this.element.getBoundingClientRect();
+    this.element.style.setProperty("--start-x", `${e.left}px`), this.element.style.setProperty("--start-y", `${e.top}px`), this.element.style.setProperty("--start-width", `${e.width}px`), this.element.style.setProperty("--start-height", `${e.height}px`), this.placeholder.classList.add("active"), this.element.classList.add("expanding"), this.overlay.classList.add("active"), document.body.style.overflow = "hidden";
+    const i = () => {
+      var s, a, r;
+      (s = this.element) == null || s.removeEventListener("animationend", i), (a = this.element) == null || a.classList.remove("expanding"), (r = this.element) == null || r.classList.add("expanded"), this.isExpanded = !0, this.isAnimating = !1, this.props.onExpand && this.props.onExpand(t);
     };
-    this.element.addEventListener("animationend", e, { once: !0 });
+    this.element.addEventListener("animationend", i, { once: !0 });
   }
   collapse() {
-    if (this.isAnimating || !this.element || !this.placeholder || !this.overlay || !this.btn) return;
+    if (this.isAnimating || !this.element || !this.placeholder || !this.overlay) return;
     this.isAnimating = !0;
     const t = this.placeholder.getBoundingClientRect();
-    this.element.style.setProperty("--start-x", `${t.left}px`), this.element.style.setProperty("--start-y", `${t.top}px`), this.element.style.setProperty("--start-width", `${t.width}px`), this.element.style.setProperty("--start-height", `${t.height}px`), this.element.classList.remove("expanded"), this.element.classList.add("collapsing"), this.overlay.classList.remove("active"), this.btn.setAttribute("aria-label", "Expand"), this.btn.setAttribute("title", "Expand");
+    this.element.style.setProperty("--start-x", `${t.left}px`), this.element.style.setProperty("--start-y", `${t.top}px`), this.element.style.setProperty("--start-width", `${t.width}px`), this.element.style.setProperty("--start-height", `${t.height}px`), this.element.classList.remove("expanded"), this.element.classList.add("collapsing"), this.overlay.classList.remove("active");
     const e = () => {
-      var i, s, a;
-      (i = this.element) == null || i.removeEventListener("animationend", e), (s = this.element) == null || s.classList.remove("collapsing"), (a = this.placeholder) == null || a.classList.remove("active"), document.body.style.overflow = "", this.isExpanded = !1, this.isAnimating = !1, this.props.onCollapse && this.props.onCollapse();
+      var i, s, a, r;
+      (i = this.element) == null || i.removeEventListener("animationend", e), (s = this.element) == null || s.classList.remove("collapsing"), (a = this.placeholder) == null || a.classList.remove("active"), document.body.style.overflow = "", this.isExpanded = !1, this.isAnimating = !1, this.isMultiScreen() && ((r = this.element) == null || r.querySelectorAll(".kwami-expandable-screen").forEach((l) => {
+        l.classList.remove("active");
+      }), this.screenBtns.forEach((l) => l.classList.remove("active")), this.activeScreenId = null), this.props.onCollapse && this.props.onCollapse();
     };
     this.element.addEventListener("animationend", e, { once: !0 });
   }
@@ -1449,27 +1718,40 @@ class pt extends u {
   getIsExpanded() {
     return this.isExpanded;
   }
+  /** Get the currently active screen ID (multi-screen mode) */
+  getActiveScreenId() {
+    return this.activeScreenId;
+  }
   /** Get the content container element */
   getContentElement() {
     var t;
     return ((t = this.element) == null ? void 0 : t.querySelector(".kwami-expandable-content")) || null;
   }
+  /** Get a specific screen element by ID */
+  getScreenElement(t) {
+    var e;
+    return ((e = this.element) == null ? void 0 : e.querySelector(`[data-screen="${t}"]`)) || null;
+  }
+  /** Get the preview element (multi-screen mode) */
+  getPreviewElement() {
+    return this.previewEl;
+  }
 }
-const X = [
+const J = [
   { icon: "solar:sun-bold", label: "Light" },
   { icon: "solar:moon-bold", label: "Dark" },
   { icon: "solar:monitor-bold", label: "System" }
 ];
-class _ extends u {
+class Q extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "currentState");
-    r(this, "states");
+    n(this, "currentState");
+    n(this, "states");
     // DOM references
-    r(this, "btn", null);
-    r(this, "icon", null);
-    r(this, "label", null);
-    this.states = t.states || X, this.currentState = t.initialState || 0;
+    n(this, "btn", null);
+    n(this, "icon", null);
+    n(this, "label", null);
+    this.states = t.states || J, this.currentState = t.initialState || 0;
   }
   render() {
     const { className: t = "" } = this.props, e = this.states[this.currentState];
@@ -1527,14 +1809,14 @@ class _ extends u {
     };
   }
 }
-class gt extends u {
+class mt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "isActive");
-    r(this, "ledColor");
+    n(this, "isActive");
+    n(this, "ledColor");
     // DOM references
-    r(this, "activator", null);
-    r(this, "led", null);
+    n(this, "activator", null);
+    n(this, "led", null);
     this.isActive = t.active || !1, this.ledColor = t.ledColor || "#ff9500";
   }
   render() {
@@ -1579,8 +1861,8 @@ class gt extends u {
   }
   /** Set the active state */
   setActive(t) {
-    var e, i, s, a, l;
-    this.isActive = t, this.isActive ? ((e = this.led) == null || e.classList.add("active"), (i = this.activator) == null || i.classList.add("active"), this.updateLedStyle()) : ((s = this.led) == null || s.classList.remove("active"), (a = this.activator) == null || a.classList.remove("active"), this.led && (this.led.style.background = "", this.led.style.boxShadow = "")), (l = this.element) == null || l.dispatchEvent(new CustomEvent("activatorchange", {
+    var e, i, s, a, r;
+    this.isActive = t, this.isActive ? ((e = this.led) == null || e.classList.add("active"), (i = this.activator) == null || i.classList.add("active"), this.updateLedStyle()) : ((s = this.led) == null || s.classList.remove("active"), (a = this.activator) == null || a.classList.remove("active"), this.led && (this.led.style.background = "", this.led.style.boxShadow = "")), (r = this.element) == null || r.dispatchEvent(new CustomEvent("activatorchange", {
       detail: { active: this.isActive },
       bubbles: !0
     })), this.props.onChange && this.props.onChange(this.isActive);
@@ -1594,16 +1876,16 @@ class gt extends u {
     this.ledColor = t, this.isActive && this.updateLedStyle();
   }
 }
-class mt extends u {
+class gt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "isChecked");
-    r(this, "activeThumbColor");
-    r(this, "activeTrackColor");
+    n(this, "isChecked");
+    n(this, "activeThumbColor");
+    n(this, "activeTrackColor");
     // DOM references
-    r(this, "input", null);
-    r(this, "track", null);
-    r(this, "thumb", null);
+    n(this, "input", null);
+    n(this, "track", null);
+    n(this, "thumb", null);
     this.isChecked = t.checked || !1, this.activeThumbColor = t.activeThumbColor || "#ff9500", this.activeTrackColor = t.activeTrackColor || "#ffe8cc";
   }
   render() {
@@ -1639,11 +1921,11 @@ class mt extends u {
     this.track.style.background = `linear-gradient(145deg, ${this.activeTrackColor} 0%, ${t} 100%)`;
     const e = this.adjustBrightness(this.activeThumbColor, 30), i = this.adjustBrightness(this.activeThumbColor, 10), s = this.adjustBrightness(this.activeThumbColor, -15), a = this.adjustBrightness(this.activeThumbColor, -25);
     this.thumb.style.background = `linear-gradient(160deg, ${e} 0%, ${i} 20%, ${this.activeThumbColor} 50%, ${s} 80%, ${a} 100%)`;
-    const l = 10;
+    const r = 10;
     this.thumb.style.boxShadow = `
-            0 3px ${l}px ${this.activeThumbColor}66,
+            0 3px ${r}px ${this.activeThumbColor}66,
             0 2px 6px ${this.activeThumbColor}4d,
-            0 0 ${l * 2}px ${this.activeThumbColor}4d,
+            0 0 ${r * 2}px ${this.activeThumbColor}4d,
             inset 0 2px 3px rgba(255, 255, 255, 0.4),
             inset 0 -2px 4px ${a}4d
         `;
@@ -1677,13 +1959,13 @@ class mt extends u {
     this.activeTrackColor = t, this.isChecked && this.updateActiveStyles();
   }
 }
-class ft extends u {
+class ft extends p {
   constructor(t = {}) {
     super(t);
     // DOM references
-    r(this, "input", null);
-    r(this, "wrapper", null);
-    r(this, "highlight", null);
+    n(this, "input", null);
+    n(this, "wrapper", null);
+    n(this, "highlight", null);
   }
   render() {
     const {
@@ -1692,10 +1974,10 @@ class ft extends u {
       type: i = "text",
       label: s = "",
       className: a = "",
-      disabled: l = !1
-    } = this.props, o = l ? "disabled" : "";
+      disabled: r = !1
+    } = this.props, l = r ? "disabled" : "";
     return `
-            <div class="kwami-textinput-container ${a} ${l ? "kwami-textinput-disabled" : ""}" data-kwami-id="${this.id}">
+            <div class="kwami-textinput-container ${a} ${r ? "kwami-textinput-disabled" : ""}" data-kwami-id="${this.id}">
                 <div class="kwami-textinput-bezel">
                     <div class="kwami-textinput-wrapper">
                         <input 
@@ -1703,7 +1985,7 @@ class ft extends u {
                             class="kwami-textinput" 
                             placeholder="${t}"
                             value="${e}"
-                            ${o}
+                            ${l}
                         />
                         <span class="kwami-textinput-highlight"></span>
                     </div>
@@ -1743,13 +2025,13 @@ class ft extends u {
     (t = this.input) == null || t.blur();
   }
 }
-class kt extends u {
+class kt extends p {
   constructor(t = {}) {
     super(t);
     // DOM references
-    r(this, "textarea", null);
-    r(this, "wrapper", null);
-    r(this, "highlight", null);
+    n(this, "textarea", null);
+    n(this, "wrapper", null);
+    n(this, "highlight", null);
   }
   render() {
     const {
@@ -1758,18 +2040,18 @@ class kt extends u {
       rows: i = 3,
       label: s = "",
       className: a = "",
-      disabled: l = !1,
-      resize: o = "vertical"
-    } = this.props, c = l ? "disabled" : "";
+      disabled: r = !1,
+      resize: l = "vertical"
+    } = this.props, c = r ? "disabled" : "";
     return `
-            <div class="kwami-textarea-container ${a} ${l ? "kwami-textarea-disabled" : ""}" data-kwami-id="${this.id}">
+            <div class="kwami-textarea-container ${a} ${r ? "kwami-textarea-disabled" : ""}" data-kwami-id="${this.id}">
                 <div class="kwami-textarea-bezel">
                     <div class="kwami-textarea-wrapper">
                         <textarea 
                             class="kwami-textarea" 
                             placeholder="${t}"
                             rows="${i}"
-                            style="resize: ${o}"
+                            style="resize: ${l}"
                             ${c}
                         >${e}</textarea>
                         <span class="kwami-textarea-highlight"></span>
@@ -1810,11 +2092,11 @@ class kt extends u {
     (t = this.textarea) == null || t.blur();
   }
 }
-class wt extends u {
+class wt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "inputs", []);
-    r(this, "values", []);
+    n(this, "inputs", []);
+    n(this, "values", []);
     const e = t.length || 4;
     this.values = new Array(e).fill("");
   }
@@ -1825,7 +2107,7 @@ class wt extends u {
       masked: i = !1,
       className: s = "",
       disabled: a = !1
-    } = this.props, l = a ? "disabled" : "", o = a ? "kwami-pin-disabled" : "", c = i ? "password" : "text", d = Array.from({ length: t }, (p, g) => `
+    } = this.props, r = a ? "disabled" : "", l = a ? "kwami-pin-disabled" : "", c = i ? "password" : "text", d = Array.from({ length: t }, (u, m) => `
             <div class="kwami-pin-digit-wrapper">
                 <input 
                     type="${c}" 
@@ -1833,14 +2115,14 @@ class wt extends u {
                     maxlength="1"
                     inputmode="numeric"
                     pattern="[0-9]"
-                    data-index="${g}"
-                    ${l}
+                    data-index="${m}"
+                    ${r}
                 />
                 <span class="kwami-pin-digit-highlight"></span>
             </div>
         `).join("");
     return `
-            <div class="kwami-pin-container ${s} ${o}" data-kwami-id="${this.id}">
+            <div class="kwami-pin-container ${s} ${l}" data-kwami-id="${this.id}">
                 <div class="kwami-pin-bezel">
                     <div class="kwami-pin-inputs">
                         ${d}
@@ -1866,14 +2148,14 @@ class wt extends u {
         const s = i.key;
         s === "Backspace" ? (!t.value && e > 0 ? (this.inputs[e - 1].focus(), this.inputs[e - 1].value = "", this.values[e - 1] = "", i.preventDefault()) : this.values[e] = "", this.notifyChange()) : s === "ArrowLeft" && e > 0 ? (i.preventDefault(), this.inputs[e - 1].focus()) : s === "ArrowRight" && e < this.inputs.length - 1 && (i.preventDefault(), this.inputs[e + 1].focus());
       }), this.addListener(t, "paste", (i) => {
-        var o;
+        var l;
         i.preventDefault();
-        const a = (((o = i.clipboardData) == null ? void 0 : o.getData("text")) || "").replace(/[^0-9]/g, "").slice(0, this.inputs.length);
+        const a = (((l = i.clipboardData) == null ? void 0 : l.getData("text")) || "").replace(/[^0-9]/g, "").slice(0, this.inputs.length);
         a.split("").forEach((c, d) => {
           this.inputs[d] && (this.inputs[d].value = c, this.values[d] = c);
         });
-        const l = Math.min(a.length, this.inputs.length - 1);
-        this.inputs[l].focus(), this.notifyChange(), this.isComplete() && this.props.onComplete && this.props.onComplete(this.getValue());
+        const r = Math.min(a.length, this.inputs.length - 1);
+        this.inputs[r].focus(), this.notifyChange(), this.isComplete() && this.props.onComplete && this.props.onComplete(this.getValue());
       });
     }));
   }
@@ -1907,39 +2189,39 @@ class wt extends u {
     (t = this.inputs[0]) == null || t.focus();
   }
 }
-const J = [
+const Z = [
   { value: "option1", label: "Option 1" },
   { value: "option2", label: "Option 2" },
   { value: "option3", label: "Option 3" }
 ];
-class vt extends u {
+class vt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "isOpen", !1);
-    r(this, "selectedValue");
+    n(this, "isOpen", !1);
+    n(this, "selectedValue");
     // DOM references
-    r(this, "selector", null);
-    r(this, "valueDisplay", null);
-    r(this, "dropdown", null);
+    n(this, "selector", null);
+    n(this, "valueDisplay", null);
+    n(this, "dropdown", null);
     this.selectedValue = t.value || "";
   }
   render() {
     const {
-      options: t = J,
+      options: t = Z,
       placeholder: e = "Select...",
       label: i = "",
       className: s = "",
       disabled: a = !1
-    } = this.props, l = a ? "kwami-selector-disabled" : "", o = t.find((g) => g.value === this.selectedValue), c = o ? o.label : e, d = !o, p = t.map((g) => `
-            <div class="kwami-selector-option ${g.value === this.selectedValue ? "selected" : ""}" 
-                 data-value="${g.value}" 
+    } = this.props, r = a ? "kwami-selector-disabled" : "", l = t.find((m) => m.value === this.selectedValue), c = l ? l.label : e, d = !l, u = t.map((m) => `
+            <div class="kwami-selector-option ${m.value === this.selectedValue ? "selected" : ""}" 
+                 data-value="${m.value}" 
                  role="option"
                  tabindex="0">
-                ${g.label}
+                ${m.label}
             </div>
         `).join("");
     return `
-            <div class="kwami-selector-container ${s} ${l}" data-kwami-id="${this.id}">
+            <div class="kwami-selector-container ${s} ${r}" data-kwami-id="${this.id}">
                 <div class="kwami-selector-bezel">
                     <div class="kwami-selector" tabindex="0" role="listbox" aria-expanded="false">
                         <div class="kwami-selector-face">
@@ -1951,7 +2233,7 @@ class vt extends u {
                             </span>
                         </div>
                         <div class="kwami-selector-dropdown">
-                            ${p}
+                            ${u}
                         </div>
                     </div>
                 </div>
@@ -1971,7 +2253,7 @@ class vt extends u {
         (s.key === "Enter" || s.key === " ") && (s.preventDefault(), this.selectOption(i));
       });
     }), this.addListener(this.selector, "keydown", (i) => {
-      var a, l, o;
+      var a, r, l;
       switch (i.key) {
         case "Enter":
         case " ":
@@ -1984,13 +2266,13 @@ class vt extends u {
           if (i.preventDefault(), !this.isOpen)
             this.toggleDropdown(!0);
           else {
-            const c = (l = this.dropdown) == null ? void 0 : l.querySelector(".kwami-selector-option:focus"), d = c == null ? void 0 : c.nextElementSibling;
+            const c = (r = this.dropdown) == null ? void 0 : r.querySelector(".kwami-selector-option:focus"), d = c == null ? void 0 : c.nextElementSibling;
             d == null || d.focus();
           }
           break;
         case "ArrowUp":
           if (i.preventDefault(), this.isOpen) {
-            const c = (o = this.dropdown) == null ? void 0 : o.querySelector(".kwami-selector-option:focus"), d = c == null ? void 0 : c.previousElementSibling;
+            const c = (l = this.dropdown) == null ? void 0 : l.querySelector(".kwami-selector-option:focus"), d = c == null ? void 0 : c.previousElementSibling;
             d == null || d.focus();
           }
           break;
@@ -2006,18 +2288,18 @@ class vt extends u {
     });
   }
   toggleDropdown(t) {
-    var e, i, s, a, l, o;
+    var e, i, s, a, r, l;
     if (this.isOpen = t !== void 0 ? t : !this.isOpen, (e = this.selector) == null || e.setAttribute("aria-expanded", this.isOpen.toString()), this.isOpen) {
       (i = this.selector) == null || i.classList.add("open");
       const c = (s = this.dropdown) == null ? void 0 : s.querySelector(".kwami-selector-option.selected"), d = (a = this.dropdown) == null ? void 0 : a.querySelector(".kwami-selector-option");
-      (l = c || d) == null || l.focus();
+      (r = c || d) == null || r.focus();
     } else
-      (o = this.selector) == null || o.classList.remove("open");
+      (l = this.selector) == null || l.classList.remove("open");
   }
   selectOption(t) {
-    var a, l, o, c;
-    const e = t.getAttribute("data-value") || "", i = ((a = t.textContent) == null ? void 0 : a.trim()) || "", s = (l = this.element) == null ? void 0 : l.querySelectorAll(".kwami-selector-option");
-    s == null || s.forEach((d) => d.classList.remove("selected")), t.classList.add("selected"), this.selectedValue = e, this.valueDisplay && (this.valueDisplay.textContent = i, this.valueDisplay.setAttribute("data-placeholder", "false")), this.toggleDropdown(!1), (o = this.selector) == null || o.focus(), (c = this.element) == null || c.dispatchEvent(new CustomEvent("selectorchange", {
+    var a, r, l, c;
+    const e = t.getAttribute("data-value") || "", i = ((a = t.textContent) == null ? void 0 : a.trim()) || "", s = (r = this.element) == null ? void 0 : r.querySelectorAll(".kwami-selector-option");
+    s == null || s.forEach((d) => d.classList.remove("selected")), t.classList.add("selected"), this.selectedValue = e, this.valueDisplay && (this.valueDisplay.textContent = i, this.valueDisplay.setAttribute("data-placeholder", "false")), this.toggleDropdown(!1), (l = this.selector) == null || l.focus(), (c = this.element) == null || c.dispatchEvent(new CustomEvent("selectorchange", {
       detail: { value: e, label: i },
       bubbles: !0
     })), this.props.onChange && this.props.onChange(e, i);
@@ -2041,32 +2323,32 @@ class vt extends u {
     this.toggleDropdown(!1);
   }
 }
-const q = [
+const P = [
   { value: "a", label: "Option A", checked: !0 },
   { value: "b", label: "Option B", checked: !1 },
   { value: "c", label: "Option C", checked: !1 }
 ];
-class bt extends u {
+class bt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "selectedValues");
-    const e = t.options || q;
+    n(this, "selectedValues");
+    const e = t.options || P;
     this.selectedValues = new Set(
       e.filter((i) => i.checked).map((i) => i.value)
     );
   }
   render() {
     const {
-      options: t = q,
+      options: t = P,
       className: e = "",
       disabled: i = !1
-    } = this.props, s = i ? "kwami-checkbox-group-disabled" : "", a = t.map((l) => `
+    } = this.props, s = i ? "kwami-checkbox-group-disabled" : "", a = t.map((r) => `
             <label class="kwami-checkbox">
-                <input type="checkbox" value="${l.value}" ${l.checked ? "checked" : ""} ${i ? "disabled" : ""} />
+                <input type="checkbox" value="${r.value}" ${r.checked ? "checked" : ""} ${i ? "disabled" : ""} />
                 <span class="kwami-checkbox-box">
                     <iconify-icon icon="solar:check-read-linear" width="14" height="14"></iconify-icon>
                 </span>
-                <span class="kwami-checkbox-label">${l.label}</span>
+                <span class="kwami-checkbox-label">${r.label}</span>
             </label>
         `).join("");
     return `
@@ -2079,9 +2361,9 @@ class bt extends u {
     if (!this.element) return;
     this.element.querySelectorAll(".kwami-checkbox input").forEach((e) => {
       this.addListener(e, "change", (i) => {
-        var l;
+        var r;
         const s = i.target, a = s.value;
-        s.checked ? this.selectedValues.add(a) : this.selectedValues.delete(a), (l = this.element) == null || l.dispatchEvent(new CustomEvent("checkboxchange", {
+        s.checked ? this.selectedValues.add(a) : this.selectedValues.delete(a), (r = this.element) == null || r.dispatchEvent(new CustomEvent("checkboxchange", {
           detail: { values: this.getValues(), changed: a, checked: s.checked },
           bubbles: !0
         })), this.props.onChange && this.props.onChange(this.getValues());
@@ -2119,33 +2401,33 @@ class bt extends u {
     }), this.selectedValues.clear();
   }
 }
-const T = [
+const H = [
   { value: "a", label: "Choice A" },
   { value: "b", label: "Choice B" },
   { value: "c", label: "Choice C" }
 ];
-class yt extends u {
+class yt extends p {
   constructor(t = {}) {
     var e, i;
     super(t);
-    r(this, "selectedValue");
-    r(this, "groupName");
-    this.selectedValue = t.value || ((i = (e = t.options) == null ? void 0 : e[0]) == null ? void 0 : i.value) || T[0].value, this.groupName = t.name || `radio-${this.id}`;
+    n(this, "selectedValue");
+    n(this, "groupName");
+    this.selectedValue = t.value || ((i = (e = t.options) == null ? void 0 : e[0]) == null ? void 0 : i.value) || H[0].value, this.groupName = t.name || `radio-${this.id}`;
   }
   render() {
     const {
-      options: t = T,
+      options: t = H,
       className: e = "",
       disabled: i = !1
-    } = this.props, s = i ? "kwami-radio-group-disabled" : "", a = t.map((l, o) => {
-      const c = l.value === this.selectedValue || o === 0 && !this.selectedValue;
+    } = this.props, s = i ? "kwami-radio-group-disabled" : "", a = t.map((r, l) => {
+      const c = r.value === this.selectedValue || l === 0 && !this.selectedValue;
       return `
                 <label class="kwami-radio">
-                    <input type="radio" name="${this.groupName}" value="${l.value}" ${c ? "checked" : ""} ${i ? "disabled" : ""} />
+                    <input type="radio" name="${this.groupName}" value="${r.value}" ${c ? "checked" : ""} ${i ? "disabled" : ""} />
                     <span class="kwami-radio-circle">
                         <span class="kwami-radio-dot"></span>
                     </span>
-                    <span class="kwami-radio-label">${l.label}</span>
+                    <span class="kwami-radio-label">${r.label}</span>
                 </label>
             `;
     }).join("");
@@ -2179,20 +2461,20 @@ class yt extends u {
     e && (e.checked = !0, this.selectedValue = t);
   }
 }
-class Ct extends u {
+class $t extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "currentMonth");
-    r(this, "selectedDate", null);
-    r(this, "isOpen", !1);
+    n(this, "currentMonth");
+    n(this, "selectedDate", null);
+    n(this, "isOpen", !1);
     // DOM references
-    r(this, "trigger", null);
-    r(this, "popup", null);
-    r(this, "monthLabel", null);
-    r(this, "daysGrid", null);
-    r(this, "prevBtn", null);
-    r(this, "nextBtn", null);
-    r(this, "valueDisplay", null);
+    n(this, "trigger", null);
+    n(this, "popup", null);
+    n(this, "monthLabel", null);
+    n(this, "daysGrid", null);
+    n(this, "prevBtn", null);
+    n(this, "nextBtn", null);
+    n(this, "valueDisplay", null);
     const { defaultDate: e } = t;
     e ? (this.selectedDate = new Date(e), this.currentMonth = new Date(e.getFullYear(), e.getMonth(), 1)) : (this.currentMonth = /* @__PURE__ */ new Date(), this.currentMonth.setDate(1));
   }
@@ -2236,8 +2518,8 @@ class Ct extends u {
   renderWeekdays() {
     const { firstDayOfWeek: t = 0, locale: e = "en-US" } = this.props, i = [], s = new Date(2024, 0, 7);
     for (let a = 0; a < 7; a++) {
-      const l = (t + a) % 7, o = new Date(s);
-      o.setDate(o.getDate() + l), i.push(o.toLocaleDateString(e, { weekday: "short" }).slice(0, 2));
+      const r = (t + a) % 7, l = new Date(s);
+      l.setDate(l.getDate() + r), i.push(l.toLocaleDateString(e, { weekday: "short" }).slice(0, 2));
     }
     return i.map((a) => `<span class="kwami-datepicker-weekday">${a}</span>`).join("");
   }
@@ -2256,8 +2538,8 @@ class Ct extends u {
       i.stopPropagation();
       const a = i.target.closest(".kwami-datepicker-day:not(.disabled):not(.outside)");
       if (a) {
-        const l = parseInt(a.dataset.day || "0");
-        l > 0 && this.selectDate(l);
+        const r = parseInt(a.dataset.day || "0");
+        r > 0 && this.selectDate(r);
       }
     });
     const t = (i) => {
@@ -2292,24 +2574,24 @@ class Ct extends u {
     this.daysGrid.innerHTML = e;
   }
   generateDays() {
-    const { firstDayOfWeek: t = 0, minDate: e, maxDate: i } = this.props, s = this.currentMonth.getFullYear(), a = this.currentMonth.getMonth(), l = new Date(s, a, 1), c = new Date(s, a + 1, 0).getDate();
-    let d = l.getDay() - t;
+    const { firstDayOfWeek: t = 0, minDate: e, maxDate: i } = this.props, s = this.currentMonth.getFullYear(), a = this.currentMonth.getMonth(), r = new Date(s, a, 1), c = new Date(s, a + 1, 0).getDate();
+    let d = r.getDay() - t;
     d < 0 && (d += 7);
-    const p = new Date(s, a, 0).getDate(), g = [], w = /* @__PURE__ */ new Date();
-    w.setHours(0, 0, 0, 0);
-    for (let m = d - 1; m >= 0; m--) {
-      const k = p - m;
-      g.push(`<button class="kwami-datepicker-day outside" disabled>${k}</button>`);
+    const u = new Date(s, a, 0).getDate(), m = [], g = /* @__PURE__ */ new Date();
+    g.setHours(0, 0, 0, 0);
+    for (let f = d - 1; f >= 0; f--) {
+      const w = u - f;
+      m.push(`<button class="kwami-datepicker-day outside" disabled>${w}</button>`);
     }
-    for (let m = 1; m <= c; m++) {
-      const k = new Date(s, a, m), b = ["kwami-datepicker-day"];
-      let $ = !1;
-      k.getTime() === w.getTime() && b.push("today"), this.selectedDate && k.getFullYear() === this.selectedDate.getFullYear() && k.getMonth() === this.selectedDate.getMonth() && k.getDate() === this.selectedDate.getDate() && b.push("selected"), e && k < e && (b.push("disabled"), $ = !0), i && k > i && (b.push("disabled"), $ = !0), g.push(`<button class="${b.join(" ")}" data-day="${m}"${$ ? " disabled" : ""}>${m}</button>`);
+    for (let f = 1; f <= c; f++) {
+      const w = new Date(s, a, f), $ = ["kwami-datepicker-day"];
+      let L = !1;
+      w.getTime() === g.getTime() && $.push("today"), this.selectedDate && w.getFullYear() === this.selectedDate.getFullYear() && w.getMonth() === this.selectedDate.getMonth() && w.getDate() === this.selectedDate.getDate() && $.push("selected"), e && w < e && ($.push("disabled"), L = !0), i && w > i && ($.push("disabled"), L = !0), m.push(`<button class="${$.join(" ")}" data-day="${f}"${L ? " disabled" : ""}>${f}</button>`);
     }
-    const V = Math.ceil((d + c) / 7) * 7 - (d + c);
-    for (let m = 1; m <= V; m++)
-      g.push(`<button class="kwami-datepicker-day outside" disabled>${m}</button>`);
-    return g.join("");
+    const S = Math.ceil((d + c) / 7) * 7 - (d + c);
+    for (let f = 1; f <= S; f++)
+      m.push(`<button class="kwami-datepicker-day outside" disabled>${f}</button>`);
+    return m.join("");
   }
   selectDate(t) {
     var s;
@@ -2336,13 +2618,13 @@ class Ct extends u {
     this.currentMonth = new Date(t, e, 1), this.renderMonth();
   }
 }
-class xt extends u {
+class xt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "currentValue");
-    r(this, "valueDisplay", null);
-    r(this, "minusBtn", null);
-    r(this, "plusBtn", null);
+    n(this, "currentValue");
+    n(this, "valueDisplay", null);
+    n(this, "minusBtn", null);
+    n(this, "plusBtn", null);
     this.currentValue = t.value ?? 0;
   }
   render() {
@@ -2403,14 +2685,14 @@ class xt extends u {
     this.updateValue(t);
   }
 }
-class $t extends u {
+class Ct extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "currentValue");
-    r(this, "isDragging", !1);
-    r(this, "track", null);
-    r(this, "knob", null);
-    r(this, "fill", null);
+    n(this, "currentValue");
+    n(this, "isDragging", !1);
+    n(this, "track", null);
+    n(this, "knob", null);
+    n(this, "fill", null);
     this.currentValue = t.value ?? 75;
   }
   render() {
@@ -2441,8 +2723,8 @@ class $t extends u {
   setupEventListeners() {
     if (!this.knob || !this.track) return;
     this.addListener(this.knob, "mousedown", (a) => {
-      var l;
-      a.preventDefault(), this.isDragging = !0, (l = this.knob) == null || l.classList.add("dragging");
+      var r;
+      a.preventDefault(), this.isDragging = !0, (r = this.knob) == null || r.classList.add("dragging");
     });
     const t = (a) => {
       this.isDragging && this.handleMove(a.clientY);
@@ -2453,8 +2735,8 @@ class $t extends u {
       this.isDragging = !1, (a = this.knob) == null || a.classList.remove("dragging");
     };
     document.addEventListener("mouseup", e), this.addListener(this.knob, "touchstart", (a) => {
-      var l;
-      a.preventDefault(), this.isDragging = !0, (l = this.knob) == null || l.classList.add("dragging");
+      var r;
+      a.preventDefault(), this.isDragging = !0, (r = this.knob) == null || r.classList.add("dragging");
     });
     const i = (a) => {
       this.isDragging && this.handleMove(a.touches[0].clientY);
@@ -2465,13 +2747,13 @@ class $t extends u {
       this.isDragging = !1, (a = this.knob) == null || a.classList.remove("dragging");
     };
     document.addEventListener("touchend", s), this.addListener(this.track, "click", (a) => {
-      var l;
-      a.target === this.knob || (l = this.knob) != null && l.contains(a.target) || this.handleMove(a.clientY);
+      var r;
+      a.target === this.knob || (r = this.knob) != null && r.contains(a.target) || this.handleMove(a.clientY);
     });
   }
   handleMove(t) {
     if (!this.track) return;
-    const { min: e = 0, max: i = 100 } = this.props, s = this.track.getBoundingClientRect(), a = s.height - 40, l = s.bottom - 20 - t, o = Math.max(0, Math.min(100, l / a * 100)), c = e + o / 100 * (i - e);
+    const { min: e = 0, max: i = 100 } = this.props, s = this.track.getBoundingClientRect(), a = s.height - 40, r = s.bottom - 20 - t, l = Math.max(0, Math.min(100, r / a * 100)), c = e + l / 100 * (i - e);
     this.updatePosition(c);
   }
   updatePosition(t) {
@@ -2493,16 +2775,16 @@ class $t extends u {
     this.updatePosition(t);
   }
 }
-class St extends u {
+class St extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "currentValue");
-    r(this, "isDragging", !1);
-    r(this, "startY", 0);
-    r(this, "startValue", 0);
-    r(this, "knobEl", null);
-    r(this, "track", null);
-    r(this, "ledsContainer", null);
+    n(this, "currentValue");
+    n(this, "isDragging", !1);
+    n(this, "startY", 0);
+    n(this, "startValue", 0);
+    n(this, "knobEl", null);
+    n(this, "track", null);
+    n(this, "ledsContainer", null);
     this.currentValue = t.value ?? 50;
   }
   render() {
@@ -2604,22 +2886,22 @@ class St extends u {
     this.updateKnob(t);
   }
 }
-const Q = [
+const tt = [
   { id: "tab1", label: "Tab 1", content: "Content 1" },
   { id: "tab2", label: "Tab 2", content: "Content 2" },
   { id: "tab3", label: "Tab 3", content: "Content 3" }
 ];
-class Lt extends u {
+class Lt extends p {
   constructor(t = {}) {
     var e;
     super(t);
-    r(this, "tabs");
-    r(this, "activeTabId");
+    n(this, "tabs");
+    n(this, "activeTabId");
     // DOM references
-    r(this, "indicator", null);
-    r(this, "tabButtons", null);
-    r(this, "panels", null);
-    this.tabs = t.tabs || Q, this.activeTabId = t.activeTab || ((e = this.tabs[0]) == null ? void 0 : e.id) || "";
+    n(this, "indicator", null);
+    n(this, "tabButtons", null);
+    n(this, "panels", null);
+    this.tabs = t.tabs || tt, this.activeTabId = t.activeTab || ((e = this.tabs[0]) == null ? void 0 : e.id) || "";
   }
   render() {
     const { className: t = "" } = this.props, e = this.tabs.map((s) => `
@@ -2691,16 +2973,16 @@ class Lt extends u {
     return this.activeTabId;
   }
 }
-const Z = [
+const et = [
   { id: "section1", title: "Section 1", content: "Content for section 1", expanded: !0 },
   { id: "section2", title: "Section 2", content: "Content for section 2" }
 ];
-class Et extends u {
+class Et extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "items");
-    r(this, "allowMultiple");
-    this.items = t.items || Z, this.allowMultiple = t.allowMultiple ?? !0;
+    n(this, "items");
+    n(this, "allowMultiple");
+    this.items = t.items || et, this.allowMultiple = t.allowMultiple ?? !0;
   }
   render() {
     const { className: t = "" } = this.props, e = this.items.map((i) => `
@@ -2729,19 +3011,19 @@ class Et extends u {
       const i = e.querySelector(".kwami-accordion-header"), s = e.querySelector(".kwami-accordion-content"), a = e.querySelector(".kwami-accordion-body");
       !i || !s || !a || (e.classList.contains("expanded") && (s.style.maxHeight = `${a.offsetHeight}px`), this.addListener(i, "click", () => {
         var c;
-        const l = e.classList.contains("expanded"), o = e.getAttribute("data-item") || "";
-        l ? (s.style.maxHeight = "0", e.classList.remove("expanded")) : (this.allowMultiple || t.forEach((d) => {
+        const r = e.classList.contains("expanded"), l = e.getAttribute("data-item") || "";
+        r ? (s.style.maxHeight = "0", e.classList.remove("expanded")) : (this.allowMultiple || t.forEach((d) => {
           if (d !== e && d.classList.contains("expanded")) {
-            const p = d.querySelector(".kwami-accordion-content");
-            p && (p.style.maxHeight = "0", d.classList.remove("expanded"));
+            const u = d.querySelector(".kwami-accordion-content");
+            u && (u.style.maxHeight = "0", d.classList.remove("expanded"));
           }
         }), s.style.maxHeight = `${a.offsetHeight}px`, e.classList.add("expanded")), (c = this.element) == null || c.dispatchEvent(new CustomEvent("accordionchange", {
           detail: {
-            itemId: o,
-            expanded: !l
+            itemId: l,
+            expanded: !r
           },
           bubbles: !0
-        })), this.props.onChange && this.props.onChange(o, !l);
+        })), this.props.onChange && this.props.onChange(l, !r);
       }));
     });
   }
@@ -2770,14 +3052,14 @@ class Et extends u {
     return (e == null ? void 0 : e.classList.contains("expanded")) ?? !1;
   }
 }
-class Dt extends u {
+class Mt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "isOpen", !1);
+    n(this, "isOpen", !1);
     // DOM references
-    r(this, "trigger", null);
-    r(this, "popover", null);
-    r(this, "documentClickHandler", null);
+    n(this, "trigger", null);
+    n(this, "popover", null);
+    n(this, "documentClickHandler", null);
   }
   render() {
     const {
@@ -2841,13 +3123,13 @@ class Dt extends u {
     this.documentClickHandler && document.removeEventListener("click", this.documentClickHandler), super.destroy();
   }
 }
-class qt extends u {
+class Dt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "isVisible", !1);
+    n(this, "isVisible", !1);
     // DOM references
-    r(this, "trigger", null);
-    r(this, "tooltip", null);
+    n(this, "trigger", null);
+    n(this, "tooltip", null);
   }
   render() {
     const {
@@ -2904,15 +3186,15 @@ class qt extends u {
     return this.isVisible;
   }
 }
-class Tt extends u {
+class qt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "isOpen", !1);
+    n(this, "isOpen", !1);
     // DOM references
-    r(this, "trigger", null);
-    r(this, "overlay", null);
-    r(this, "closeBtn", null);
-    r(this, "escHandler", null);
+    n(this, "trigger", null);
+    n(this, "overlay", null);
+    n(this, "closeBtn", null);
+    n(this, "escHandler", null);
   }
   getOverlayHTML() {
     const {
@@ -3008,15 +3290,15 @@ class Tt extends u {
     this.escHandler && document.removeEventListener("keydown", this.escHandler), this.overlay && this.overlay.parentNode && this.overlay.parentNode.removeChild(this.overlay), document.body.style.overflow = "", super.destroy();
   }
 }
-class Mt extends u {
+class Tt extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "isVisible", !1);
-    r(this, "hideTimeout", null);
+    n(this, "isVisible", !1);
+    n(this, "hideTimeout", null);
     // DOM references
-    r(this, "trigger", null);
-    r(this, "toast", null);
-    r(this, "closeBtn", null);
+    n(this, "trigger", null);
+    n(this, "toast", null);
+    n(this, "closeBtn", null);
   }
   getIcon(t) {
     return {
@@ -3117,19 +3399,19 @@ class Mt extends u {
     this.hideTimeout && clearTimeout(this.hideTimeout), this.toast && this.toast.parentNode && this.toast.parentNode.removeChild(this.toast), super.destroy();
   }
 }
-class Vt extends u {
-  constructor(n = {}) {
-    super(n);
+class zt extends p {
+  constructor(o = {}) {
+    super(o);
   }
   render() {
     const {
-      className: n = "",
+      className: o = "",
       content: t = "This is a depth note with an inset neumorphic style.",
       icon: e,
       padding: i = "md"
     } = this.props, s = e ? `<iconify-icon class="kwami-depth-icon" icon="${e}" width="18" height="18"></iconify-icon>` : "";
     return `
-            <div class="kwami-depth kwami-depth-${i} ${n}" data-kwami-id="${this.id}">
+            <div class="kwami-depth kwami-depth-${i} ${o}" data-kwami-id="${this.id}">
                 ${s}
                 <div class="kwami-depth-content">${t}</div>
             </div>
@@ -3138,38 +3420,38 @@ class Vt extends u {
   onHydrate() {
   }
   /** Update the content dynamically */
-  setContent(n) {
+  setContent(o) {
     var e;
     const t = (e = this.element) == null ? void 0 : e.querySelector(".kwami-depth-content");
-    t && (t.innerHTML = n);
+    t && (t.innerHTML = o);
   }
   /** Update the icon dynamically */
-  setIcon(n) {
+  setIcon(o) {
     if (!this.element) return;
     const t = this.element.querySelector(".kwami-depth-icon");
-    if (n)
+    if (o)
       if (t)
-        t.setAttribute("icon", n);
+        t.setAttribute("icon", o);
       else {
         const e = document.createElement("iconify-icon");
-        e.className = "kwami-depth-icon", e.setAttribute("icon", n), e.setAttribute("width", "18"), e.setAttribute("height", "18"), this.element.insertBefore(e, this.element.firstChild);
+        e.className = "kwami-depth-icon", e.setAttribute("icon", o), e.setAttribute("width", "18"), e.setAttribute("height", "18"), this.element.insertBefore(e, this.element.firstChild);
       }
     else t && t.remove();
   }
 }
-class Pt extends u {
-  constructor(n = {}) {
-    super(n);
+class Pt extends p {
+  constructor(o = {}) {
+    super(o);
   }
   render() {
     const {
-      className: n = "",
+      className: o = "",
       content: t = "This is a shallow note with a raised neumorphic style.",
       icon: e,
       padding: i = "md"
     } = this.props, s = e ? `<iconify-icon class="kwami-shallow-icon" icon="${e}" width="18" height="18"></iconify-icon>` : "";
     return `
-            <div class="kwami-shallow kwami-shallow-${i} ${n}" data-kwami-id="${this.id}">
+            <div class="kwami-shallow kwami-shallow-${i} ${o}" data-kwami-id="${this.id}">
                 ${s}
                 <div class="kwami-shallow-content">${t}</div>
             </div>
@@ -3178,51 +3460,51 @@ class Pt extends u {
   onHydrate() {
   }
   /** Update the content dynamically */
-  setContent(n) {
+  setContent(o) {
     var e;
     const t = (e = this.element) == null ? void 0 : e.querySelector(".kwami-shallow-content");
-    t && (t.innerHTML = n);
+    t && (t.innerHTML = o);
   }
   /** Update the icon dynamically */
-  setIcon(n) {
+  setIcon(o) {
     if (!this.element) return;
     const t = this.element.querySelector(".kwami-shallow-icon");
-    if (n)
+    if (o)
       if (t)
-        t.setAttribute("icon", n);
+        t.setAttribute("icon", o);
       else {
         const e = document.createElement("iconify-icon");
-        e.className = "kwami-shallow-icon", e.setAttribute("icon", n), e.setAttribute("width", "18"), e.setAttribute("height", "18"), this.element.insertBefore(e, this.element.firstChild);
+        e.className = "kwami-shallow-icon", e.setAttribute("icon", o), e.setAttribute("width", "18"), e.setAttribute("height", "18"), this.element.insertBefore(e, this.element.firstChild);
       }
     else t && t.remove();
   }
 }
-const tt = {
+const D = {
   primary: "#ff9500",
   secondary: "#5856d6",
   background: "#1e1e1e",
   shadow: "rgba(0, 0, 0, 0.5)",
   light: "rgba(255, 255, 255, 0.03)"
-}, et = {
+}, q = {
   primary: "#ff9500",
   secondary: "#007aff",
   background: "#e0e5ec",
   shadow: "rgba(163, 177, 198, 0.6)",
   light: "rgba(255, 255, 255, 0.8)"
-}, M = {
+}, A = {
   mode: "dark",
   colors: {
-    light: et,
-    dark: tt
+    light: q,
+    dark: D
   }
 };
-class At extends u {
+class Ht extends p {
   constructor(t = {}) {
     super(t);
-    r(this, "config");
-    r(this, "toggle", null);
-    r(this, "colorPickers", /* @__PURE__ */ new Map());
-    r(this, "systemThemeListener", null);
+    n(this, "config");
+    n(this, "toggle", null);
+    n(this, "colorPickers", /* @__PURE__ */ new Map());
+    n(this, "systemThemeListener", null);
     this.config = this.loadConfig();
   }
   loadConfig() {
@@ -3237,7 +3519,7 @@ class At extends u {
         }
       } catch {
       }
-    return this.mergeConfig(M, t);
+    return this.mergeConfig(A, t);
   }
   mergeConfig(t, e) {
     var i, s;
@@ -3264,32 +3546,36 @@ class At extends u {
     return this.props.controls || ["mode", "primary", "secondary", "background", "shadow", "light"];
   }
   render() {
-    const { layout: t = "horizontal", showLabels: e = !0 } = this.props, i = this.getControls(), s = this.getEffectiveMode(), a = this.config.colors[s], l = this.config.mode === "light" ? 0 : this.config.mode === "dark" ? 1 : 2;
-    this.toggle = new _({
+    const { layout: t = "horizontal", showLabels: e = !0 } = this.props, i = this.getControls(), s = this.getEffectiveMode(), a = this.config.colors[s], r = this.config.mode === "light" ? 0 : this.config.mode === "dark" ? 1 : 2;
+    this.toggle = new Q({
       states: [
         { icon: "solar:sun-bold", label: "Light" },
         { icon: "solar:moon-bold", label: "Dark" },
         { icon: "solar:monitor-bold", label: "System" }
       ],
-      initialState: l
+      initialState: r
     });
-    const o = [
+    const l = [
       { key: "background", label: "Background", icon: "solar:layers-linear" },
       { key: "shadow", label: "Shadow", icon: "solar:cloud-linear" },
       { key: "light", label: "Light", icon: "solar:sun-fog-linear" },
       { key: "primary", label: "Primary", icon: "solar:palette-linear" },
       { key: "secondary", label: "Secondary", icon: "solar:palette-2-linear" }
-    ];
-    let c = "";
-    for (const { key: d, label: p } of o)
-      if (i.includes(d)) {
-        const g = new v({
-          defaultColor: a[d],
-          popupDirection: "down"
+    ], c = s === "light" ? q : D;
+    let d = "";
+    for (const { key: u, label: m } of l)
+      if (i.includes(u)) {
+        const g = new y({
+          defaultColor: a[u],
+          popupDirection: "down",
+          showRandomize: !0,
+          showReset: !0,
+          showCopyToOpposite: !0,
+          showOpacity: !0
         });
-        this.colorPickers.set(d, g), c += `
-                    <div class="kwami-theme-control-item" data-control="${d}">
-                        ${e ? `<span class="kwami-theme-control-label">${p}</span>` : ""}
+        g.setDefaultColor(c[u]), this.colorPickers.set(u, g), d += `
+                    <div class="kwami-theme-control-item" data-control="${u}">
+                        ${e ? `<span class="kwami-theme-control-label">${m}</span>` : ""}
                         ${g.render()}
                     </div>
                 `;
@@ -3302,9 +3588,9 @@ class At extends u {
                         ${this.toggle.render()}
                     </div>
                 ` : ""}
-                ${c ? `
+                ${d ? `
                     <div class="kwami-theme-control-colors">
-                        ${c}
+                        ${d}
                     </div>
                 ` : ""}
             </div>
@@ -3327,17 +3613,28 @@ class At extends u {
     var i;
     const t = (i = this.element) == null ? void 0 : i.querySelector(".kwami-toggle");
     t && this.addListener(t, "togglechange", (s) => {
-      const a = s.detail, l = ["light", "dark", "system"];
-      this.config.mode = l[a.state], this.onConfigChange(), this.updateColorPickerValues();
+      const a = s.detail, r = ["light", "dark", "system"];
+      this.config.mode = r[a.state], this.onConfigChange(), this.updateColorPickerValues(), this.updateColorPickerDefaults();
     }), ["primary", "secondary", "background", "shadow", "light"].forEach((s) => {
-      var l;
+      var r;
       if (this.colorPickers.get(s)) {
-        const o = (l = this.element) == null ? void 0 : l.querySelector(`[data-control="${s}"] .kwami-colorpicker`);
-        o && this.addListener(o, "colorchange", (c) => {
-          const d = c.detail.color, p = this.getEffectiveMode();
-          this.config.colors[p][s] = d, this.onConfigChange();
-        });
+        const l = (r = this.element) == null ? void 0 : r.querySelector(`[data-control="${s}"] .kwami-colorpicker`);
+        l && (this.addListener(l, "colorchange", (c) => {
+          const d = c.detail.color, u = this.getEffectiveMode();
+          this.config.colors[u][s] = d, this.onConfigChange();
+        }), this.addListener(l, "copytoopposite", (c) => {
+          const d = c.detail.color, m = this.getEffectiveMode() === "light" ? "dark" : "light";
+          this.config.colors[m][s] = d, this.saveConfig();
+        }));
       }
+    });
+  }
+  /** Update color picker default colors when theme mode changes */
+  updateColorPickerDefaults() {
+    const e = this.getEffectiveMode() === "light" ? q : D;
+    this.colorPickers.forEach((i, s) => {
+      const a = s;
+      i.setDefaultColor(e[a]);
     });
   }
   setupSystemThemeListener() {
@@ -3383,7 +3680,7 @@ class At extends u {
   }
   /** Reset to default configuration */
   reset() {
-    if (this.config = { ...M }, this.onConfigChange(), this.updateColorPickerValues(), this.toggle) {
+    if (this.config = { ...A }, this.onConfigChange(), this.updateColorPickerValues(), this.toggle) {
       const t = this.config.mode === "light" ? 0 : this.config.mode === "dark" ? 1 : 2;
       this.toggle.setState(t);
     }
@@ -3395,58 +3692,58 @@ class At extends u {
 }
 export {
   Et as Accordion,
-  gt as Activator,
-  F as Button,
+  mt as Activator,
+  R as Button,
   rt as ButtonConfigurator,
   bt as Checkbox,
-  v as ColorPicker,
-  u as Component,
-  Ct as DatePicker,
-  Vt as Depth,
+  y as ColorPicker,
+  p as Component,
+  $t as DatePicker,
+  zt as Depth,
   pt as Expandable,
-  $t as Fader,
-  G as Icon,
+  Ct as Fader,
+  K as Icon,
   dt as IconConfigurator,
   St as Knob,
-  L as Label,
+  M as Label,
   ht as LabelConfigurator,
-  Tt as Modal,
+  qt as Modal,
   wt as Pin,
-  Dt as Popover,
+  Mt as Popover,
   yt as Radio,
   vt as Selector,
   Pt as Shallow,
   ut as Slider,
   xt as Stepper,
-  mt as Switch,
+  gt as Switch,
   Lt as Tabs,
   Y as Text,
   kt as TextArea,
   ct as TextConfigurator,
   ft as TextInput,
-  At as ThemeControl,
-  E as Title,
-  ot as TitleConfigurator,
-  Mt as Toast,
-  _ as Toggle,
-  qt as Tooltip,
-  f as adjustBrightness,
+  Ht as ThemeControl,
+  T as Title,
+  lt as TitleConfigurator,
+  Tt as Toast,
+  Q as Toggle,
+  Dt as Tooltip,
+  k as adjustBrightness,
   at as applyTheme,
-  N as defaultButtonConfig,
-  H as defaultDarkColors,
-  U as defaultIconConfig,
-  W as defaultLabelConfig,
-  z as defaultLightColors,
-  R as defaultTextConfig,
+  j as defaultButtonConfig,
+  O as defaultDarkColors,
+  X as defaultIconConfig,
+  U as defaultLabelConfig,
+  I as defaultLightColors,
+  G as defaultTextConfig,
   st as defaultTheme,
-  M as defaultThemeControlConfig,
-  j as defaultTitleConfig,
+  A as defaultThemeControlConfig,
+  W as defaultTitleConfig,
   nt as generateGradientColors,
-  I as getEffectiveTheme,
-  O as hexToRgb,
-  S as hslToHex,
-  B as hslToRgb,
-  C as parseColor,
-  lt as renderTitle,
-  D as rgbToHsl
+  F as getEffectiveTheme,
+  N as hexToRgb,
+  b as hslToHex,
+  z as hslToRgb,
+  x as parseColor,
+  ot as renderTitle,
+  E as rgbToHsl
 };
