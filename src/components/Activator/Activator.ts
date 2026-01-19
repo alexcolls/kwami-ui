@@ -37,18 +37,18 @@ export class Activator extends Component<ActivatorProps> {
     const activeClass = this.isActive ? 'active' : '';
 
     return `
-            <div class="kwami-activator-container ${className}" data-kwami-id="${this.id}">
-                <div class="kwami-activator-bezel">
-                    <button class="kwami-activator ${activeClass}">
-                        <span class="kwami-activator-face">
-                            <span class="kwami-activator-highlight"></span>
-                            <span class="kwami-activator-text">${text}</span>
-                        </span>
-                        <span class="kwami-activator-led ${activeClass}"></span>
-                    </button>
-                </div>
+   <div class="kwami-activator-container ${className}" data-kwami-id="${this.id}">
+    <div class="kwami-activator-bezel">
+     <button class="kwami-activator ${activeClass}">
+      <span class="kwami-activator-face">
+       <span class="kwami-activator-highlight"></span>
+       <span class="kwami-activator-text">${text}</span>
+      </span>
+      <span class="kwami-activator-led ${activeClass}"></span>
+     </button>
+    </div>
                 ${label ? `<span class="kwami-activator-label">${label}</span>` : ''}
-            </div>
+   </div>
         `;
   }
 

@@ -49,21 +49,21 @@ export class TextArea extends Component<TextAreaProps> {
     const disabledClass = disabled ? 'kwami-textarea-disabled' : '';
 
     return `
-            <div class="kwami-textarea-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
-                <div class="kwami-textarea-bezel">
-                    <div class="kwami-textarea-wrapper">
-                        <textarea 
-                            class="kwami-textarea" 
-                            placeholder="${placeholder}"
-                            rows="${rows}"
-                            style="resize: ${resize}"
-                            ${disabledAttr}
-                        >${value}</textarea>
-                        <span class="kwami-textarea-highlight"></span>
-                    </div>
-                </div>
+   <div class="kwami-textarea-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
+    <div class="kwami-textarea-bezel">
+     <div class="kwami-textarea-wrapper">
+      <textarea 
+       class="kwami-textarea" 
+       placeholder="${placeholder}"
+       rows="${rows}"
+       style="resize: ${resize}"
+       ${disabledAttr}
+      >${value}</textarea>
+      <span class="kwami-textarea-highlight"></span>
+     </div>
+    </div>
                 ${label ? `<span class="kwami-textarea-label">${label}</span>` : ''}
-            </div>
+   </div>
         `;
   }
 

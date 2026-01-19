@@ -37,29 +37,29 @@ export class Modal extends Component<ModalProps> {
     } = this.props;
 
     return `
-            <div class="kwami-modal-overlay hidden" data-modal-id="${this.id}">
-                <div class="kwami-modal">
-                    <div class="kwami-modal-header">
-                        <h3 class="kwami-modal-title">${title}</h3>
-                        ${
-                          showCloseButton
-                            ? `
+   <div class="kwami-modal-overlay hidden" data-modal-id="${this.id}">
+    <div class="kwami-modal">
+     <div class="kwami-modal-header">
+      <h3 class="kwami-modal-title">${title}</h3>
+      ${
+        showCloseButton
+          ? `
                             <button class="kwami-modal-close" aria-label="Close modal">
                                 <iconify-icon icon="solar:close-circle-linear" width="24" height="24"></iconify-icon>
                             </button>
                         `
-                            : ''
-                        }
-                    </div>
-                    <div class="kwami-modal-content">
-                        <p>${content}</p>
-                    </div>
-                    <div class="kwami-modal-footer">
-                        <button class="kwami-modal-btn kwami-modal-btn-secondary">Cancel</button>
-                        <button class="kwami-modal-btn kwami-modal-btn-primary">Confirm</button>
-                    </div>
-                </div>
-            </div>
+          : ''
+      }
+     </div>
+     <div class="kwami-modal-content">
+      <p>${content}</p>
+     </div>
+     <div class="kwami-modal-footer">
+      <button class="kwami-modal-btn kwami-modal-btn-secondary">Cancel</button>
+      <button class="kwami-modal-btn kwami-modal-btn-primary">Confirm</button>
+     </div>
+    </div>
+   </div>
         `;
   }
 
@@ -67,16 +67,16 @@ export class Modal extends Component<ModalProps> {
     const { className = '', triggerText = 'OPEN' } = this.props;
 
     return `
-            <div class="kwami-modal-wrapper ${className}" data-kwami-id="${this.id}">
-                <div class="kwami-modal-trigger-bezel">
-                    <button class="kwami-modal-trigger">
-                        <span class="kwami-modal-trigger-face">
-                            <span class="kwami-modal-trigger-highlight"></span>
-                            <span class="kwami-modal-trigger-text">${triggerText}</span>
-                        </span>
-                    </button>
-                </div>
-            </div>
+   <div class="kwami-modal-wrapper ${className}" data-kwami-id="${this.id}">
+    <div class="kwami-modal-trigger-bezel">
+     <button class="kwami-modal-trigger">
+      <span class="kwami-modal-trigger-face">
+       <span class="kwami-modal-trigger-highlight"></span>
+       <span class="kwami-modal-trigger-text">${triggerText}</span>
+      </span>
+     </button>
+    </div>
+   </div>
         `;
   }
 

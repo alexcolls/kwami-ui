@@ -34,30 +34,30 @@ export class Knob extends Component<KnobProps> {
     ).join('');
 
     return `
-            <div class="kwami-knob-container" data-kwami-id="${this.id}">
-                <div class="kwami-knob-outer">
-                    <div class="kwami-knob-bezel" aria-hidden="true"></div>
-                    <div class="kwami-knob-track-ring" aria-hidden="true"></div>
-                    <div class="kwami-knob-leds" aria-hidden="true">
-                        ${leds}
-                    </div>
-                    <div class="kwami-knob" data-value="${this.currentValue}">
-                        <div class="kwami-knob-edge" aria-hidden="true"></div>
-                        <div class="kwami-knob-face" aria-hidden="true"></div>
-                        <div class="kwami-knob-grooves" aria-hidden="true">
-                            <div class="kwami-knob-groove kwami-knob-groove-1"></div>
-                            <div class="kwami-knob-groove kwami-knob-groove-2"></div>
-                            <div class="kwami-knob-groove kwami-knob-groove-3"></div>
-                            <div class="kwami-knob-groove kwami-knob-groove-4"></div>
-                        </div>
-                        <div class="kwami-knob-cap" aria-hidden="true"></div>
-                        <div class="kwami-knob-track">
-                            <div class="kwami-knob-indicator"></div>
-                        </div>
-                    </div>
-                </div>
-                <span class="kwami-knob-label">${label}</span>
-            </div>
+   <div class="kwami-knob-container" data-kwami-id="${this.id}">
+    <div class="kwami-knob-outer">
+     <div class="kwami-knob-bezel" aria-hidden="true"></div>
+     <div class="kwami-knob-track-ring" aria-hidden="true"></div>
+     <div class="kwami-knob-leds" aria-hidden="true">
+      ${leds}
+     </div>
+     <div class="kwami-knob" data-value="${this.currentValue}">
+      <div class="kwami-knob-edge" aria-hidden="true"></div>
+      <div class="kwami-knob-face" aria-hidden="true"></div>
+      <div class="kwami-knob-grooves" aria-hidden="true">
+       <div class="kwami-knob-groove kwami-knob-groove-1"></div>
+       <div class="kwami-knob-groove kwami-knob-groove-2"></div>
+       <div class="kwami-knob-groove kwami-knob-groove-3"></div>
+       <div class="kwami-knob-groove kwami-knob-groove-4"></div>
+      </div>
+      <div class="kwami-knob-cap" aria-hidden="true"></div>
+      <div class="kwami-knob-track">
+       <div class="kwami-knob-indicator"></div>
+      </div>
+     </div>
+    </div>
+    <span class="kwami-knob-label">${label}</span>
+   </div>
         `;
   }
 

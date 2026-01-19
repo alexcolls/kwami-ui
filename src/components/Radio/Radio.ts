@@ -46,21 +46,21 @@ export class Radio extends Component<RadioProps> {
       .map((opt, index) => {
         const isChecked = opt.value === this.selectedValue || (index === 0 && !this.selectedValue);
         return `
-                <label class="kwami-radio">
-                    <input type="radio" name="${this.groupName}" value="${opt.value}" ${isChecked ? 'checked' : ''} ${disabled ? 'disabled' : ''} />
-                    <span class="kwami-radio-circle">
-                        <span class="kwami-radio-dot"></span>
-                    </span>
-                    <span class="kwami-radio-label">${opt.label}</span>
-                </label>
+    <label class="kwami-radio">
+     <input type="radio" name="${this.groupName}" value="${opt.value}" ${isChecked ? 'checked' : ''} ${disabled ? 'disabled' : ''} />
+     <span class="kwami-radio-circle">
+      <span class="kwami-radio-dot"></span>
+     </span>
+     <span class="kwami-radio-label">${opt.label}</span>
+    </label>
             `;
       })
       .join('');
 
     return `
-            <div class="kwami-radio-group ${className} ${disabledClass}" data-kwami-id="${this.id}" role="radiogroup">
-                ${optionsHtml}
-            </div>
+   <div class="kwami-radio-group ${className} ${disabledClass}" data-kwami-id="${this.id}" role="radiogroup">
+    ${optionsHtml}
+   </div>
         `;
   }
 

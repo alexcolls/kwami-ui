@@ -46,59 +46,59 @@ export class TextConfigurator extends Component<TextConfiguratorProps> {
     });
 
     return `
-            <div class="kwami-text-configurator" data-kwami-id="${this.id}">
-                <div class="kwami-text-configurator-preview">
-                    ${this.text.render()}
-                </div>
-                ${showControls ? this.renderControls() : ''}
-            </div>
+   <div class="kwami-text-configurator" data-kwami-id="${this.id}">
+    <div class="kwami-text-configurator-preview">
+     ${this.text.render()}
+    </div>
+    ${showControls ? this.renderControls() : ''}
+   </div>
         `;
   }
 
   private renderControls(): string {
     const { config } = this;
     return `
-            <div class="kwami-text-configurator-controls">
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Content</label>
-                    <input type="text" class="kwami-cfg-input" data-prop="content" value="${config.content}" />
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Size</label>
-                    <div class="kwami-cfg-select-group">
-                        <button class="kwami-cfg-select-btn ${config.size === 'xs' ? 'active' : ''}" data-size="xs">XS</button>
-                        <button class="kwami-cfg-select-btn ${config.size === 'sm' ? 'active' : ''}" data-size="sm">SM</button>
-                        <button class="kwami-cfg-select-btn ${config.size === 'md' ? 'active' : ''}" data-size="md">MD</button>
-                        <button class="kwami-cfg-select-btn ${config.size === 'lg' ? 'active' : ''}" data-size="lg">LG</button>
-                        <button class="kwami-cfg-select-btn ${config.size === 'xl' ? 'active' : ''}" data-size="xl">XL</button>
-                    </div>
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Weight</label>
-                    <div class="kwami-cfg-slider-wrap">
-                        <input type="range" class="kwami-cfg-slider" data-prop="weight" min="300" max="700" step="100" value="${config.weight}" />
-                        <span class="kwami-cfg-value">${config.weight}</span>
-                    </div>
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Color</label>
-                    <div class="kwami-cfg-color" data-color-target="text"></div>
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Align</label>
-                    <div class="kwami-cfg-select-group">
-                        <button class="kwami-cfg-select-btn ${config.align === 'left' ? 'active' : ''}" data-align="left">
-                            <iconify-icon icon="solar:align-left-linear" width="16"></iconify-icon>
-                        </button>
-                        <button class="kwami-cfg-select-btn ${config.align === 'center' ? 'active' : ''}" data-align="center">
-                            <iconify-icon icon="solar:align-horizontal-center-linear" width="16"></iconify-icon>
-                        </button>
-                        <button class="kwami-cfg-select-btn ${config.align === 'right' ? 'active' : ''}" data-align="right">
-                            <iconify-icon icon="solar:align-right-linear" width="16"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
+   <div class="kwami-text-configurator-controls">
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Content</label>
+     <input type="text" class="kwami-cfg-input" data-prop="content" value="${config.content}" />
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Size</label>
+     <div class="kwami-cfg-select-group">
+      <button class="kwami-cfg-select-btn ${config.size === 'xs' ? 'active' : ''}" data-size="xs">XS</button>
+      <button class="kwami-cfg-select-btn ${config.size === 'sm' ? 'active' : ''}" data-size="sm">SM</button>
+      <button class="kwami-cfg-select-btn ${config.size === 'md' ? 'active' : ''}" data-size="md">MD</button>
+      <button class="kwami-cfg-select-btn ${config.size === 'lg' ? 'active' : ''}" data-size="lg">LG</button>
+      <button class="kwami-cfg-select-btn ${config.size === 'xl' ? 'active' : ''}" data-size="xl">XL</button>
+     </div>
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Weight</label>
+     <div class="kwami-cfg-slider-wrap">
+      <input type="range" class="kwami-cfg-slider" data-prop="weight" min="300" max="700" step="100" value="${config.weight}" />
+      <span class="kwami-cfg-value">${config.weight}</span>
+     </div>
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Color</label>
+     <div class="kwami-cfg-color" data-color-target="text"></div>
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Align</label>
+     <div class="kwami-cfg-select-group">
+      <button class="kwami-cfg-select-btn ${config.align === 'left' ? 'active' : ''}" data-align="left">
+       <iconify-icon icon="solar:align-left-linear" width="16"></iconify-icon>
+      </button>
+      <button class="kwami-cfg-select-btn ${config.align === 'center' ? 'active' : ''}" data-align="center">
+       <iconify-icon icon="solar:align-horizontal-center-linear" width="16"></iconify-icon>
+      </button>
+      <button class="kwami-cfg-select-btn ${config.align === 'right' ? 'active' : ''}" data-align="right">
+       <iconify-icon icon="solar:align-right-linear" width="16"></iconify-icon>
+      </button>
+     </div>
+    </div>
+   </div>
         `;
   }
 

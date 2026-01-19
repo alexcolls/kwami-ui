@@ -56,12 +56,12 @@ export class IconConfigurator extends Component<IconConfiguratorProps> {
     });
 
     return `
-            <div class="kwami-icon-configurator" data-kwami-id="${this.id}">
-                <div class="kwami-icon-configurator-preview">
-                    ${this.icon.render()}
-                </div>
-                ${showControls ? this.renderControls() : ''}
-            </div>
+   <div class="kwami-icon-configurator" data-kwami-id="${this.id}">
+    <div class="kwami-icon-configurator-preview">
+     ${this.icon.render()}
+    </div>
+    ${showControls ? this.renderControls() : ''}
+   </div>
         `;
   }
 
@@ -69,33 +69,33 @@ export class IconConfigurator extends Component<IconConfiguratorProps> {
     const { config } = this;
     const iconGrid = PRESET_ICONS.map(
       (icon) => `
-            <button class="kwami-icon-preset ${icon === config.icon ? 'active' : ''}" data-icon="${icon}" title="${icon}">
-                <iconify-icon icon="${icon}" width="20" height="20"></iconify-icon>
-            </button>
+   <button class="kwami-icon-preset ${icon === config.icon ? 'active' : ''}" data-icon="${icon}" title="${icon}">
+    <iconify-icon icon="${icon}" width="20" height="20"></iconify-icon>
+   </button>
         `
     ).join('');
 
     return `
-            <div class="kwami-icon-configurator-controls">
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Icon</label>
-                    <input type="text" class="kwami-cfg-input kwami-cfg-input-sm" data-prop="icon" value="${config.icon}" placeholder="solar:icon-name" />
-                </div>
-                <div class="kwami-icon-preset-grid">
-                    ${iconGrid}
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Size</label>
-                    <div class="kwami-cfg-slider-wrap">
-                        <input type="range" class="kwami-cfg-slider" data-prop="size" min="16" max="96" value="${config.size}" />
-                        <span class="kwami-cfg-value">${config.size}px</span>
-                    </div>
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Color</label>
-                    <div class="kwami-cfg-color" data-color-target="icon"></div>
-                </div>
-            </div>
+   <div class="kwami-icon-configurator-controls">
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Icon</label>
+     <input type="text" class="kwami-cfg-input kwami-cfg-input-sm" data-prop="icon" value="${config.icon}" placeholder="solar:icon-name" />
+    </div>
+    <div class="kwami-icon-preset-grid">
+     ${iconGrid}
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Size</label>
+     <div class="kwami-cfg-slider-wrap">
+      <input type="range" class="kwami-cfg-slider" data-prop="size" min="16" max="96" value="${config.size}" />
+      <span class="kwami-cfg-value">${config.size}px</span>
+     </div>
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Color</label>
+     <div class="kwami-cfg-color" data-color-target="icon"></div>
+    </div>
+   </div>
         `;
   }
 

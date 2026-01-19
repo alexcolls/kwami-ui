@@ -34,10 +34,10 @@ export class Depth extends Component<DepthProps> {
       : '';
 
     return `
-            <div class="kwami-depth kwami-depth-${padding} ${className}" data-kwami-id="${this.id}">
-                ${iconHtml}
-                <div class="kwami-depth-content">${content}</div>
-            </div>
+   <div class="kwami-depth kwami-depth-${padding} ${className}" data-kwami-id="${this.id}">
+    ${iconHtml}
+    <div class="kwami-depth-content">${content}</div>
+   </div>
         `;
   }
 

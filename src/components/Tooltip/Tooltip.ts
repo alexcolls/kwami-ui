@@ -27,20 +27,20 @@ export class Tooltip extends Component<TooltipProps> {
     const { className = '', triggerText = 'HOVER', text = 'Helpful tooltip info!' } = this.props;
 
     return `
-            <div class="kwami-tooltip-wrapper ${className}" data-kwami-id="${this.id}">
-                <div class="kwami-tooltip-trigger-bezel">
-                    <button class="kwami-tooltip-trigger">
-                        <span class="kwami-tooltip-trigger-face">
-                            <span class="kwami-tooltip-trigger-highlight"></span>
-                            <span class="kwami-tooltip-trigger-text">${triggerText}</span>
-                        </span>
-                    </button>
-                </div>
-                <div class="kwami-tooltip hidden">
-                    <span class="kwami-tooltip-text">${text}</span>
-                    <div class="kwami-tooltip-arrow"></div>
-                </div>
-            </div>
+   <div class="kwami-tooltip-wrapper ${className}" data-kwami-id="${this.id}">
+    <div class="kwami-tooltip-trigger-bezel">
+     <button class="kwami-tooltip-trigger">
+      <span class="kwami-tooltip-trigger-face">
+       <span class="kwami-tooltip-trigger-highlight"></span>
+       <span class="kwami-tooltip-trigger-text">${triggerText}</span>
+      </span>
+     </button>
+    </div>
+    <div class="kwami-tooltip hidden">
+     <span class="kwami-tooltip-text">${text}</span>
+     <div class="kwami-tooltip-arrow"></div>
+    </div>
+   </div>
         `;
   }
 

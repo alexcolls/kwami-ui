@@ -44,25 +44,25 @@ export class Accordion extends Component<AccordionProps> {
     const sections = this.items
       .map(
         (item) => `
-            <div class="kwami-accordion-item${item.expanded ? ' expanded' : ''}" data-item="${item.id}">
-                <button class="kwami-accordion-header">
-                    <span>${item.title}</span>
-                    <iconify-icon icon="solar:alt-arrow-down-linear" width="16" height="16"></iconify-icon>
-                </button>
-                <div class="kwami-accordion-content">
-                    <div class="kwami-accordion-body">
-                        ${item.content}
-                    </div>
-                </div>
-            </div>
+   <div class="kwami-accordion-item${item.expanded ? ' expanded' : ''}" data-item="${item.id}">
+    <button class="kwami-accordion-header">
+     <span>${item.title}</span>
+     <iconify-icon icon="solar:alt-arrow-down-linear" width="16" height="16"></iconify-icon>
+    </button>
+    <div class="kwami-accordion-content">
+     <div class="kwami-accordion-body">
+      ${item.content}
+     </div>
+    </div>
+   </div>
         `
       )
       .join('');
 
     return `
-            <div class="kwami-accordion ${className}" data-kwami-id="${this.id}">
-                ${sections}
-            </div>
+   <div class="kwami-accordion ${className}" data-kwami-id="${this.id}">
+    ${sections}
+   </div>
         `;
   }
 

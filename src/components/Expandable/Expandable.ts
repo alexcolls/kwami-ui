@@ -86,27 +86,27 @@ export class Expandable extends Component<ExpandableProps> {
     const { content = '' } = this.props;
 
     return `
-      <div class="kwami-expandable-placeholder" data-placeholder-for="${expandableId}"></div>
-      <div class="kwami-expandable" data-kwami-id="${this.id}" data-expandable-id="${expandableId}"
-           style="--end-width: ${expandedWidth}; --end-height: ${expandedHeight}">
-          <div class="kwami-expandable-inner">
-              <div class="kwami-expandable-actions">
-                  <button class="kwami-expandable-btn kwami-expandable-btn-expand" aria-label="Expand" title="Expand">
-                      <iconify-icon class="kwami-expandable-icon-expand" icon="solar:maximize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
-                  </button>
-                  <button class="kwami-expandable-btn kwami-expandable-btn-minimize" aria-label="Minimize" title="Minimize">
-                      <iconify-icon icon="solar:minimize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
-                  </button>
-              </div>
-              <div class="kwami-expandable-title">
-                  ${titleHtml}
-              </div>
-              <div class="kwami-expandable-content" data-component="${expandableId}">
-                  ${content}
-              </div>
-          </div>
-      </div>
-      <div class="kwami-expandable-overlay" data-overlay-for="${expandableId}"></div>
+ <div class="kwami-expandable-placeholder" data-placeholder-for="${expandableId}"></div>
+ <div class="kwami-expandable" data-kwami-id="${this.id}" data-expandable-id="${expandableId}"
+  style="--end-width: ${expandedWidth}; --end-height: ${expandedHeight}">
+  <div class="kwami-expandable-inner">
+   <div class="kwami-expandable-actions">
+    <button class="kwami-expandable-btn kwami-expandable-btn-expand" aria-label="Expand" title="Expand">
+     <iconify-icon class="kwami-expandable-icon-expand" icon="solar:maximize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
+    </button>
+    <button class="kwami-expandable-btn kwami-expandable-btn-minimize" aria-label="Minimize" title="Minimize">
+     <iconify-icon icon="solar:minimize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
+    </button>
+   </div>
+   <div class="kwami-expandable-title">
+    ${titleHtml}
+   </div>
+   <div class="kwami-expandable-content" data-component="${expandableId}">
+    ${content}
+   </div>
+  </div>
+ </div>
+ <div class="kwami-expandable-overlay" data-overlay-for="${expandableId}"></div>
       `;
   }
 
@@ -120,12 +120,12 @@ export class Expandable extends Component<ExpandableProps> {
     const screenBtnsHtml = screens
       .map(
         (screen) => `
-          <button class="kwami-expandable-btn kwami-expandable-btn-screen" 
-                  data-screen-id="${screen.id}" 
-                  aria-label="${screen.title || screen.id}" 
-                  title="${screen.title || screen.id}">
-              <iconify-icon icon="${screen.icon}" width="18" height="18"></iconify-icon>
-          </button>
+  <button class="kwami-expandable-btn kwami-expandable-btn-screen" 
+    data-screen-id="${screen.id}" 
+    aria-label="${screen.title || screen.id}" 
+    title="${screen.title || screen.id}">
+   <iconify-icon icon="${screen.icon}" width="18" height="18"></iconify-icon>
+  </button>
       `
       )
       .join('');
@@ -134,39 +134,39 @@ export class Expandable extends Component<ExpandableProps> {
     const screensHtml = screens
       .map(
         (screen) => `
-          <div class="kwami-expandable-screen" data-screen="${screen.id}" 
-               data-width="${screen.expandedWidth || defaultWidth}"
-               data-height="${screen.expandedHeight || defaultHeight}"
-               ${screen.noScroll ? 'data-no-scroll="true"' : ''}>
-              ${screen.content}
-          </div>
+  <div class="kwami-expandable-screen" data-screen="${screen.id}" 
+   data-width="${screen.expandedWidth || defaultWidth}"
+   data-height="${screen.expandedHeight || defaultHeight}"
+   ${screen.noScroll ? 'data-no-scroll="true"' : ''}>
+   ${screen.content}
+  </div>
       `
       )
       .join('');
 
     return `
-      <div class="kwami-expandable-placeholder" data-placeholder-for="${expandableId}"></div>
-      <div class="kwami-expandable kwami-expandable-multi" data-kwami-id="${this.id}" data-expandable-id="${expandableId}"
-           style="--end-width: ${defaultWidth}; --end-height: ${defaultHeight}">
-          <div class="kwami-expandable-inner">
-              <div class="kwami-expandable-actions">
-                  ${screenBtnsHtml}
-                  <button class="kwami-expandable-btn kwami-expandable-btn-minimize" aria-label="Minimize" title="Minimize">
-                      <iconify-icon icon="solar:minimize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
-                  </button>
-              </div>
-              <div class="kwami-expandable-title">
-                  ${titleHtml}
-              </div>
-              <div class="kwami-expandable-preview">
-                  ${preview}
-              </div>
-              <div class="kwami-expandable-screens">
-                  ${screensHtml}
-              </div>
-          </div>
-      </div>
-      <div class="kwami-expandable-overlay" data-overlay-for="${expandableId}"></div>
+ <div class="kwami-expandable-placeholder" data-placeholder-for="${expandableId}"></div>
+ <div class="kwami-expandable kwami-expandable-multi" data-kwami-id="${this.id}" data-expandable-id="${expandableId}"
+  style="--end-width: ${defaultWidth}; --end-height: ${defaultHeight}">
+  <div class="kwami-expandable-inner">
+   <div class="kwami-expandable-actions">
+    ${screenBtnsHtml}
+    <button class="kwami-expandable-btn kwami-expandable-btn-minimize" aria-label="Minimize" title="Minimize">
+     <iconify-icon icon="solar:minimize-square-minimalistic-linear" width="18" height="18"></iconify-icon>
+    </button>
+   </div>
+   <div class="kwami-expandable-title">
+    ${titleHtml}
+   </div>
+   <div class="kwami-expandable-preview">
+    ${preview}
+   </div>
+   <div class="kwami-expandable-screens">
+    ${screensHtml}
+   </div>
+  </div>
+ </div>
+ <div class="kwami-expandable-overlay" data-overlay-for="${expandableId}"></div>
       `;
   }
 

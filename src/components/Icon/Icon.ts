@@ -23,9 +23,9 @@ export class Icon extends Component<IconProps> {
     const style = color ? `color: ${color}` : '';
 
     return `
-            <span class="kwami-icon ${className}" data-kwami-id="${this.id}" style="${style}">
-                <iconify-icon icon="${icon}" width="${size}" height="${size}"></iconify-icon>
-            </span>
+   <span class="kwami-icon ${className}" data-kwami-id="${this.id}" style="${style}">
+    <iconify-icon icon="${icon}" width="${size}" height="${size}"></iconify-icon>
+   </span>
         `;
   }
 

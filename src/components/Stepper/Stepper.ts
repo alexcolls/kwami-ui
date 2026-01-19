@@ -31,18 +31,18 @@ export class Stepper extends Component<StepperProps> {
     const { value = 0, min = -10, max = 10, step = 1, label } = this.props;
 
     return `
-            <div class="kwami-stepper-container" data-kwami-id="${this.id}">
+   <div class="kwami-stepper-container" data-kwami-id="${this.id}">
                 ${label ? `<span class="kwami-stepper-label">${label}</span>` : ''}
-                <div class="kwami-stepper" data-value="${value}" data-min="${min}" data-max="${max}" data-step="${step}">
-                    <button class="kwami-stepper-btn kwami-stepper-minus" aria-label="Decrease">
-                        <iconify-icon icon="solar:minus-circle-linear" width="20" height="20"></iconify-icon>
-                    </button>
-                    <div class="kwami-stepper-value">${value}</div>
-                    <button class="kwami-stepper-btn kwami-stepper-plus" aria-label="Increase">
-                        <iconify-icon icon="solar:add-circle-linear" width="20" height="20"></iconify-icon>
-                    </button>
-                </div>
-            </div>
+    <div class="kwami-stepper" data-value="${value}" data-min="${min}" data-max="${max}" data-step="${step}">
+     <button class="kwami-stepper-btn kwami-stepper-minus" aria-label="Decrease">
+      <iconify-icon icon="solar:minus-circle-linear" width="20" height="20"></iconify-icon>
+     </button>
+     <div class="kwami-stepper-value">${value}</div>
+     <button class="kwami-stepper-btn kwami-stepper-plus" aria-label="Increase">
+      <iconify-icon icon="solar:add-circle-linear" width="20" height="20"></iconify-icon>
+     </button>
+    </div>
+   </div>
         `;
   }
 

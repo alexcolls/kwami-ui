@@ -29,12 +29,12 @@ export class Label extends Component<LabelProps> {
     const requiredMark = required ? '<span class="kwami-label-required">*</span>' : '';
 
     return `
-            <label class="kwami-label kwami-label-${size} ${className}" 
-                   data-kwami-id="${this.id}"
-                   ${forAttr}
-                   ${style}>
-                ${text}${requiredMark}
-            </label>
+   <label class="kwami-label kwami-label-${size} ${className}" 
+    data-kwami-id="${this.id}"
+    ${forAttr}
+    ${style}>
+    ${text}${requiredMark}
+   </label>
         `;
   }
 

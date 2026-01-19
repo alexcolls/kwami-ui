@@ -34,10 +34,10 @@ export class Shallow extends Component<ShallowProps> {
       : '';
 
     return `
-            <div class="kwami-shallow kwami-shallow-${padding} ${className}" data-kwami-id="${this.id}">
-                ${iconHtml}
-                <div class="kwami-shallow-content">${content}</div>
-            </div>
+   <div class="kwami-shallow kwami-shallow-${padding} ${className}" data-kwami-id="${this.id}">
+    ${iconHtml}
+    <div class="kwami-shallow-content">${content}</div>
+   </div>
         `;
   }
 

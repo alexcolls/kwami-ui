@@ -34,26 +34,26 @@ export class Slider extends Component<SliderProps> {
     const percent = ((value - min) / (max - min)) * 100;
 
     return `
-            <div class="kwami-slider-container" data-kwami-id="${this.id}">
-                <div class="kwami-slider-bezel">
-                    <div class="kwami-slider-track">
-                        <div class="kwami-slider-fill" style="width: ${percent}%"></div>
-                        <input 
-                            type="range" 
-                            class="kwami-slider" 
-                            min="${min}" 
-                            max="${max}" 
-                            value="${value}"
-                            step="${step}"
-                        />
-                        <div class="kwami-slider-thumb-visual" style="left: ${percent}%"></div>
-                    </div>
-                </div>
-                <div class="kwami-slider-value-container">
-                    <span class="kwami-slider-value">${value}</span>
-                </div>
-                <span class="kwami-slider-label">${label}</span>
-            </div>
+   <div class="kwami-slider-container" data-kwami-id="${this.id}">
+    <div class="kwami-slider-bezel">
+     <div class="kwami-slider-track">
+      <div class="kwami-slider-fill" style="width: ${percent}%"></div>
+      <input 
+       type="range" 
+       class="kwami-slider" 
+       min="${min}" 
+       max="${max}" 
+       value="${value}"
+       step="${step}"
+      />
+      <div class="kwami-slider-thumb-visual" style="left: ${percent}%"></div>
+     </div>
+    </div>
+    <div class="kwami-slider-value-container">
+     <span class="kwami-slider-value">${value}</span>
+    </div>
+    <span class="kwami-slider-label">${label}</span>
+   </div>
         `;
   }
 

@@ -43,13 +43,13 @@ export class Toggle extends Component<ToggleProps> {
     const state = this.states[this.currentState];
 
     return `
-            <div class="kwami-toggle ${className}" data-kwami-id="${this.id}" data-state="${this.currentState}">
-                <button class="kwami-toggle-btn" title="Click to toggle">
-                    <span class="kwami-toggle-highlight"></span>
-                    <iconify-icon class="kwami-toggle-icon" icon="${state.icon}" width="20" height="20"></iconify-icon>
-                </button>
-                <span class="kwami-toggle-label">${state.label}</span>
-            </div>
+   <div class="kwami-toggle ${className}" data-kwami-id="${this.id}" data-state="${this.currentState}">
+    <button class="kwami-toggle-btn" title="Click to toggle">
+     <span class="kwami-toggle-highlight"></span>
+     <iconify-icon class="kwami-toggle-icon" icon="${state.icon}" width="20" height="20"></iconify-icon>
+    </button>
+    <span class="kwami-toggle-label">${state.label}</span>
+   </div>
         `;
   }
 

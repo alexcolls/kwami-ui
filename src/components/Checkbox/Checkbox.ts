@@ -41,22 +41,22 @@ export class Checkbox extends Component<CheckboxProps> {
     const optionsHtml = options
       .map(
         (opt) => `
-            <label class="kwami-checkbox">
-                <input type="checkbox" value="${opt.value}" ${opt.checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} />
-                <span class="kwami-checkbox-box">
-                    <iconify-icon icon="solar:check-read-linear" width="14" height="14"></iconify-icon>
-                </span>
-                <span class="kwami-checkbox-label">${opt.label}</span>
-            </label>
+     <label class="kwami-checkbox">
+      <input type="checkbox" value="${opt.value}" ${opt.checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} />
+      <span class="kwami-checkbox-box">
+       <iconify-icon icon="solar:check-read-linear" width="14" height="14"></iconify-icon>
+      </span>
+      <span class="kwami-checkbox-label">${opt.label}</span>
+     </label>
         `
       )
       .join('');
 
     return `
-            <div class="kwami-checkbox-group ${className} ${disabledClass}" data-kwami-id="${this.id}">
-                ${optionsHtml}
-            </div>
-        `;
+   <div class="kwami-checkbox-group ${className} ${disabledClass}" data-kwami-id="${this.id}">
+    ${optionsHtml}
+   </div>
+    `;
   }
 
   protected onHydrate(): void {

@@ -46,21 +46,21 @@ export class TextInput extends Component<TextInputProps> {
     const disabledClass = disabled ? 'kwami-textinput-disabled' : '';
 
     return `
-            <div class="kwami-textinput-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
-                <div class="kwami-textinput-bezel">
-                    <div class="kwami-textinput-wrapper">
-                        <input 
-                            type="${type}" 
-                            class="kwami-textinput" 
-                            placeholder="${placeholder}"
-                            value="${value}"
-                            ${disabledAttr}
-                        />
-                        <span class="kwami-textinput-highlight"></span>
-                    </div>
-                </div>
+   <div class="kwami-textinput-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
+    <div class="kwami-textinput-bezel">
+     <div class="kwami-textinput-wrapper">
+      <input 
+       type="${type}" 
+       class="kwami-textinput" 
+       placeholder="${placeholder}"
+       value="${value}"
+       ${disabledAttr}
+      />
+      <span class="kwami-textinput-highlight"></span>
+     </div>
+    </div>
                 ${label ? `<span class="kwami-textinput-label">${label}</span>` : ''}
-            </div>
+   </div>
         `;
   }
 

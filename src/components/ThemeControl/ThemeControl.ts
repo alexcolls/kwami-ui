@@ -179,26 +179,26 @@ export class ThemeControl extends Component<ThemeControlProps> {
         this.colorPickers.set(key, picker);
 
         colorPickersHtml += `
-                    <div class="kwami-theme-control-item" data-control="${key}">
+     <div class="kwami-theme-control-item" data-control="${key}">
                         ${showLabels ? `<span class="kwami-theme-control-label">${label}</span>` : ''}
-                        ${picker.render()}
-                    </div>
+      ${picker.render()}
+     </div>
                 `;
       }
     }
 
     return `
-            <div class="kwami-theme-control kwami-theme-control-${layout}" data-kwami-id="${this.id}">
-                ${
-                  controls.includes('mode')
-                    ? `
+   <div class="kwami-theme-control kwami-theme-control-${layout}" data-kwami-id="${this.id}">
+    ${
+      controls.includes('mode')
+        ? `
                     <div class="kwami-theme-control-item kwami-theme-control-mode" data-control="mode">
                         ${showLabels ? `<span class="kwami-theme-control-label">Theme</span>` : ''}
                         ${this.toggle.render()}
                     </div>
                 `
-                    : ''
-                }
+        : ''
+    }
                 ${
                   colorPickersHtml
                     ? `
@@ -208,7 +208,7 @@ export class ThemeControl extends Component<ThemeControlProps> {
                 `
                     : ''
                 }
-            </div>
+   </div>
         `;
   }
 

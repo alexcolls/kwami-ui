@@ -28,10 +28,10 @@ export class Title extends Component<TitleProps> {
       .join('');
 
     return `
-      <${as} class="kwami-title" data-kwami-id="${this.id}">
-          <span class="kwami-title-text">${chars}</span>
-          <span class="kwami-title-glow" aria-hidden="true">${text}</span>
-      </${as}>
+ <${as} class="kwami-title" data-kwami-id="${this.id}">
+  <span class="kwami-title-text">${chars}</span>
+  <span class="kwami-title-glow" aria-hidden="true">${text}</span>
+ </${as}>
       `;
   }
 

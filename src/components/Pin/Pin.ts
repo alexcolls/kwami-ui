@@ -38,30 +38,30 @@ export class Pin extends Component<PinProps> {
     const inputsHtml = Array.from(
       { length },
       (_, i) => `
-            <div class="kwami-pin-digit-wrapper">
-                <input 
-                    type="${inputType}" 
-                    class="kwami-pin-digit" 
-                    maxlength="1"
-                    inputmode="numeric"
-                    pattern="[0-9]"
-                    data-index="${i}"
-                    ${disabledAttr}
-                />
-                <span class="kwami-pin-digit-highlight"></span>
-            </div>
+   <div class="kwami-pin-digit-wrapper">
+    <input 
+     type="${inputType}" 
+     class="kwami-pin-digit" 
+     maxlength="1"
+     inputmode="numeric"
+     pattern="[0-9]"
+     data-index="${i}"
+     ${disabledAttr}
+    />
+    <span class="kwami-pin-digit-highlight"></span>
+   </div>
         `
     ).join('');
 
     return `
-            <div class="kwami-pin-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
-                <div class="kwami-pin-bezel">
-                    <div class="kwami-pin-inputs">
-                        ${inputsHtml}
-                    </div>
-                </div>
+   <div class="kwami-pin-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
+    <div class="kwami-pin-bezel">
+     <div class="kwami-pin-inputs">
+      ${inputsHtml}
+     </div>
+    </div>
                 ${label ? `<span class="kwami-pin-label">${label}</span>` : ''}
-            </div>
+   </div>
         `;
   }
 

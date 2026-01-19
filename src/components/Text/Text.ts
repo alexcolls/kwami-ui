@@ -36,11 +36,11 @@ export class Text extends Component<TextProps> {
       .join('; ');
 
     return `
-            <p class="kwami-text kwami-text-${size} ${className}" 
-               data-kwami-id="${this.id}"
-               style="${style}">
-                ${content}
-            </p>
+   <p class="kwami-text kwami-text-${size} ${className}" 
+   data-kwami-id="${this.id}"
+   style="${style}">
+    ${content}
+   </p>
         `;
   }
 

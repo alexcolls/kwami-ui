@@ -60,35 +60,35 @@ export class Selector extends Component<SelectorProps> {
     const optionsHtml = options
       .map(
         (opt) => `
-            <div class="kwami-selector-option ${opt.value === this.selectedValue ? 'selected' : ''}" 
-                 data-value="${opt.value}" 
-                 role="option"
-                 tabindex="0">
-                ${opt.label}
-            </div>
+   <div class="kwami-selector-option ${opt.value === this.selectedValue ? 'selected' : ''}" 
+    data-value="${opt.value}" 
+    role="option"
+    tabindex="0">
+    ${opt.label}
+   </div>
         `
       )
       .join('');
 
     return `
-            <div class="kwami-selector-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
-                <div class="kwami-selector-bezel">
-                    <div class="kwami-selector" tabindex="0" role="listbox" aria-expanded="false">
-                        <div class="kwami-selector-face">
-                            <span class="kwami-selector-value" data-placeholder="${isPlaceholder}">${displayText}</span>
-                            <span class="kwami-selector-arrow">
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="kwami-selector-dropdown">
-                            ${optionsHtml}
-                        </div>
-                    </div>
-                </div>
+   <div class="kwami-selector-container ${className} ${disabledClass}" data-kwami-id="${this.id}">
+    <div class="kwami-selector-bezel">
+     <div class="kwami-selector" tabindex="0" role="listbox" aria-expanded="false">
+      <div class="kwami-selector-face">
+       <span class="kwami-selector-value" data-placeholder="${isPlaceholder}">${displayText}</span>
+       <span class="kwami-selector-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+         <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+       </span>
+      </div>
+      <div class="kwami-selector-dropdown">
+       ${optionsHtml}
+      </div>
+     </div>
+    </div>
                 ${label ? `<span class="kwami-selector-label">${label}</span>` : ''}
-            </div>
+   </div>
         `;
   }
 

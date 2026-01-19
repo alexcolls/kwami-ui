@@ -94,51 +94,51 @@ export class ColorPicker extends Component<ColorPickerProps> {
       showRandomize || showReset || showCopyToOpposite || this.props.showPipette !== false;
 
     return `
-            <div class="kwami-colorpicker" data-kwami-id="${this.id}" data-color="${defaultColor}">
-                <button class="kwami-colorpicker-trigger" aria-label="Pick a color" title="Pick a color">
-                    <span class="kwami-colorpicker-preview" style="background-color: ${defaultColor}"></span>
-                    <iconify-icon icon="solar:palette-linear" width="16" height="16"></iconify-icon>
-                </button>
-                <div class="kwami-colorpicker-popup ${popupClass}">
-                    <div class="kwami-colorpicker-wheel">
-                        <canvas class="kwami-colorpicker-canvas" width="200" height="200"></canvas>
-                        <div class="kwami-colorpicker-cursor"></div>
-                    </div>
-                    <div class="kwami-colorpicker-sliders">
-                        <div class="kwami-colorpicker-slider-row">
-                            <iconify-icon icon="solar:sun-linear" width="14" height="14"></iconify-icon>
-                            <input type="range" class="kwami-colorpicker-brightness-slider" min="0" max="100" value="${this.currentLightness}" />
-                            <iconify-icon icon="solar:moon-linear" width="14" height="14"></iconify-icon>
-                        </div>
-                        ${
-                          showOpacity
-                            ? `
+   <div class="kwami-colorpicker" data-kwami-id="${this.id}" data-color="${defaultColor}">
+    <button class="kwami-colorpicker-trigger" aria-label="Pick a color" title="Pick a color">
+     <span class="kwami-colorpicker-preview" style="background-color: ${defaultColor}"></span>
+     <iconify-icon icon="solar:palette-linear" width="16" height="16"></iconify-icon>
+    </button>
+    <div class="kwami-colorpicker-popup ${popupClass}">
+     <div class="kwami-colorpicker-wheel">
+      <canvas class="kwami-colorpicker-canvas" width="200" height="200"></canvas>
+      <div class="kwami-colorpicker-cursor"></div>
+     </div>
+     <div class="kwami-colorpicker-sliders">
+      <div class="kwami-colorpicker-slider-row">
+       <iconify-icon icon="solar:sun-linear" width="14" height="14"></iconify-icon>
+       <input type="range" class="kwami-colorpicker-brightness-slider" min="0" max="100" value="${this.currentLightness}" />
+       <iconify-icon icon="solar:moon-linear" width="14" height="14"></iconify-icon>
+      </div>
+      ${
+        showOpacity
+          ? `
                             <div class="kwami-colorpicker-slider-row">
                                 <iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>
                                 <input type="range" class="kwami-colorpicker-opacity-slider" min="0" max="100" value="${this.currentOpacity}" />
                                 <iconify-icon icon="solar:eye-closed-linear" width="14" height="14"></iconify-icon>
                             </div>
                         `
-                            : ''
-                        }
-                    </div>
-                    <div class="kwami-colorpicker-value-row">
-                        <button class="kwami-colorpicker-format-toggle" data-format="hex" title="Toggle format">HEX</button>
-                        <input type="text" class="kwami-colorpicker-value-input" value="${defaultColor}" spellcheck="false" />
-                    </div>
-                    ${
-                      hasActions
-                        ? `
+          : ''
+      }
+     </div>
+     <div class="kwami-colorpicker-value-row">
+      <button class="kwami-colorpicker-format-toggle" data-format="hex" title="Toggle format">HEX</button>
+      <input type="text" class="kwami-colorpicker-value-input" value="${defaultColor}" spellcheck="false" />
+     </div>
+     ${
+       hasActions
+         ? `
                         <div class="kwami-colorpicker-actions">
                             ${
                               showRandomize
                                 ? `
-                                <div class="kwami-colorpicker-action-item">
-                                    <button class="kwami-colorpicker-randomize" aria-label="Randomize color" title="Randomize color">
-                                        <iconify-icon icon="solar:shuffle-linear" width="14" height="14"></iconify-icon>
-                                    </button>
-                                    <span class="kwami-colorpicker-action-label">Random</span>
-                                </div>
+        <div class="kwami-colorpicker-action-item">
+         <button class="kwami-colorpicker-randomize" aria-label="Randomize color" title="Randomize color">
+          <iconify-icon icon="solar:shuffle-linear" width="14" height="14"></iconify-icon>
+         </button>
+         <span class="kwami-colorpicker-action-label">Random</span>
+        </div>
                             `
                                 : ''
                             }
@@ -151,33 +151,33 @@ export class ColorPicker extends Component<ColorPickerProps> {
                             ${
                               showReset
                                 ? `
-                                <div class="kwami-colorpicker-action-item">
-                                    <button class="kwami-colorpicker-reset" aria-label="Reset to default" title="Reset to default color">
-                                        <iconify-icon icon="solar:restart-linear" width="14" height="14"></iconify-icon>
-                                    </button>
-                                    <span class="kwami-colorpicker-action-label">Reset</span>
-                                </div>
+        <div class="kwami-colorpicker-action-item">
+         <button class="kwami-colorpicker-reset" aria-label="Reset to default" title="Reset to default color">
+          <iconify-icon icon="solar:restart-linear" width="14" height="14"></iconify-icon>
+         </button>
+         <span class="kwami-colorpicker-action-label">Reset</span>
+        </div>
                             `
                                 : ''
                             }
                             ${
                               showCopyToOpposite
                                 ? `
-                                <div class="kwami-colorpicker-action-item">
-                                    <button class="kwami-colorpicker-copy-opposite" aria-label="Use for both themes" title="Use this color for both light and dark themes">
-                                        <iconify-icon icon="solar:link-linear" width="14" height="14"></iconify-icon>
-                                    </button>
-                                    <span class="kwami-colorpicker-action-label">Both</span>
-                                </div>
+        <div class="kwami-colorpicker-action-item">
+         <button class="kwami-colorpicker-copy-opposite" aria-label="Use for both themes" title="Use this color for both light and dark themes">
+          <iconify-icon icon="solar:link-linear" width="14" height="14"></iconify-icon>
+         </button>
+         <span class="kwami-colorpicker-action-label">Both</span>
+        </div>
                             `
                                 : ''
                             }
                         </div>
                     `
-                        : ''
-                    }
-                </div>
-            </div>
+         : ''
+     }
+    </div>
+   </div>
         `;
   }
 

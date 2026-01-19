@@ -30,23 +30,23 @@ export class Fader extends Component<FaderProps> {
     const { value = 75, min = 0, max = 100, label } = this.props;
 
     return `
-            <div class="kwami-fader-container" data-kwami-id="${this.id}">
+   <div class="kwami-fader-container" data-kwami-id="${this.id}">
                 ${label ? `<span class="kwami-fader-label">${label}</span>` : ''}
-                <div class="kwami-fader" data-value="${value}" data-min="${min}" data-max="${max}">
-                    <div class="kwami-fader-track">
-                        <div class="kwami-fader-groove"></div>
-                        <div class="kwami-fader-fill"></div>
-                        <div class="kwami-fader-knob">
-                            <div class="kwami-fader-knob-grip"></div>
-                            <div class="kwami-fader-knob-grip"></div>
-                            <div class="kwami-fader-knob-grip"></div>
-                        </div>
-                    </div>
-                    <div class="kwami-fader-ticks">
-                        <span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                </div>
-            </div>
+    <div class="kwami-fader" data-value="${value}" data-min="${min}" data-max="${max}">
+     <div class="kwami-fader-track">
+      <div class="kwami-fader-groove"></div>
+      <div class="kwami-fader-fill"></div>
+      <div class="kwami-fader-knob">
+       <div class="kwami-fader-knob-grip"></div>
+       <div class="kwami-fader-knob-grip"></div>
+       <div class="kwami-fader-knob-grip"></div>
+      </div>
+     </div>
+     <div class="kwami-fader-ticks">
+      <span></span><span></span><span></span><span></span><span></span>
+     </div>
+    </div>
+   </div>
         `;
   }
 

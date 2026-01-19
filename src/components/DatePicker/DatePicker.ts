@@ -55,30 +55,30 @@ export class DatePicker extends Component<DatePickerProps> {
     const displayValue = this.selectedDate ? this.formatDate(this.selectedDate) : placeholder;
 
     return `
-            <div class="kwami-datepicker-container" data-kwami-id="${this.id}">
+   <div class="kwami-datepicker-container" data-kwami-id="${this.id}">
                 ${label ? `<span class="kwami-datepicker-label">${label}</span>` : ''}
-                <div class="kwami-datepicker">
-                    <button class="kwami-datepicker-trigger" aria-label="Pick a date" title="Pick a date">
-                        <span class="kwami-datepicker-value">${displayValue}</span>
-                        <iconify-icon icon="solar:calendar-linear" width="16" height="16"></iconify-icon>
-                    </button>
-                    <div class="kwami-datepicker-popup ${popupClass}">
-                        <div class="kwami-datepicker-header">
-                            <button class="kwami-datepicker-nav kwami-datepicker-prev" aria-label="Previous month">
-                                <iconify-icon icon="solar:alt-arrow-left-linear" width="18" height="18"></iconify-icon>
-                            </button>
-                            <span class="kwami-datepicker-month-label"></span>
-                            <button class="kwami-datepicker-nav kwami-datepicker-next" aria-label="Next month">
-                                <iconify-icon icon="solar:alt-arrow-right-linear" width="18" height="18"></iconify-icon>
-                            </button>
-                        </div>
-                        <div class="kwami-datepicker-weekdays">
-                            ${this.renderWeekdays()}
-                        </div>
-                        <div class="kwami-datepicker-days"></div>
-                    </div>
-                </div>
-            </div>
+    <div class="kwami-datepicker">
+     <button class="kwami-datepicker-trigger" aria-label="Pick a date" title="Pick a date">
+      <span class="kwami-datepicker-value">${displayValue}</span>
+      <iconify-icon icon="solar:calendar-linear" width="16" height="16"></iconify-icon>
+     </button>
+     <div class="kwami-datepicker-popup ${popupClass}">
+      <div class="kwami-datepicker-header">
+       <button class="kwami-datepicker-nav kwami-datepicker-prev" aria-label="Previous month">
+        <iconify-icon icon="solar:alt-arrow-left-linear" width="18" height="18"></iconify-icon>
+       </button>
+       <span class="kwami-datepicker-month-label"></span>
+       <button class="kwami-datepicker-nav kwami-datepicker-next" aria-label="Next month">
+        <iconify-icon icon="solar:alt-arrow-right-linear" width="18" height="18"></iconify-icon>
+       </button>
+      </div>
+      <div class="kwami-datepicker-weekdays">
+       ${this.renderWeekdays()}
+      </div>
+      <div class="kwami-datepicker-days"></div>
+     </div>
+    </div>
+   </div>
         `;
   }
 

@@ -35,23 +35,23 @@ export class Popover extends Component<PopoverProps> {
     } = this.props;
 
     return `
-            <div class="kwami-popover-wrapper ${className}" data-kwami-id="${this.id}">
-                <div class="kwami-popover-trigger-bezel">
-                    <button class="kwami-popover-trigger">
-                        <span class="kwami-popover-trigger-face">
-                            <span class="kwami-popover-trigger-highlight"></span>
-                            <span class="kwami-popover-trigger-text">${triggerText}</span>
-                        </span>
-                    </button>
-                </div>
-                <div class="kwami-popover hidden">
-                    <div class="kwami-popover-content">
-                        <h4>${title}</h4>
-                        <p>${content}</p>
-                    </div>
-                    <div class="kwami-popover-arrow"></div>
-                </div>
-            </div>
+   <div class="kwami-popover-wrapper ${className}" data-kwami-id="${this.id}">
+    <div class="kwami-popover-trigger-bezel">
+     <button class="kwami-popover-trigger">
+      <span class="kwami-popover-trigger-face">
+       <span class="kwami-popover-trigger-highlight"></span>
+       <span class="kwami-popover-trigger-text">${triggerText}</span>
+      </span>
+     </button>
+    </div>
+    <div class="kwami-popover hidden">
+     <div class="kwami-popover-content">
+      <h4>${title}</h4>
+      <p>${content}</p>
+     </div>
+     <div class="kwami-popover-arrow"></div>
+    </div>
+   </div>
         `;
   }
 

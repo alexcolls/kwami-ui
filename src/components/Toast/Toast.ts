@@ -58,16 +58,16 @@ export class Toast extends Component<ToastProps> {
     } = this.props;
 
     return `
-            <div class="kwami-toast kwami-toast-${type} kwami-toast-${position} hidden" data-toast-id="${this.id}">
-                <div class="kwami-toast-icon">
-                    <iconify-icon icon="${this.getIcon(type)}" width="20" height="20"></iconify-icon>
-                </div>
-                <span class="kwami-toast-message">${message}</span>
-                <button class="kwami-toast-close" aria-label="Close toast">
-                    <iconify-icon icon="solar:close-square-linear" width="18" height="18"></iconify-icon>
-                </button>
-                <div class="kwami-toast-progress"></div>
-            </div>
+   <div class="kwami-toast kwami-toast-${type} kwami-toast-${position} hidden" data-toast-id="${this.id}">
+    <div class="kwami-toast-icon">
+     <iconify-icon icon="${this.getIcon(type)}" width="20" height="20"></iconify-icon>
+    </div>
+    <span class="kwami-toast-message">${message}</span>
+    <button class="kwami-toast-close" aria-label="Close toast">
+     <iconify-icon icon="solar:close-square-linear" width="18" height="18"></iconify-icon>
+    </button>
+    <div class="kwami-toast-progress"></div>
+   </div>
         `;
   }
 
@@ -75,16 +75,16 @@ export class Toast extends Component<ToastProps> {
     const { className = '', triggerText = 'NOTIFY' } = this.props;
 
     return `
-            <div class="kwami-toast-wrapper ${className}" data-kwami-id="${this.id}">
-                <div class="kwami-toast-trigger-bezel">
-                    <button class="kwami-toast-trigger">
-                        <span class="kwami-toast-trigger-face">
-                            <span class="kwami-toast-trigger-highlight"></span>
-                            <span class="kwami-toast-trigger-text">${triggerText}</span>
-                        </span>
-                    </button>
-                </div>
-            </div>
+   <div class="kwami-toast-wrapper ${className}" data-kwami-id="${this.id}">
+    <div class="kwami-toast-trigger-bezel">
+     <button class="kwami-toast-trigger">
+      <span class="kwami-toast-trigger-face">
+       <span class="kwami-toast-trigger-highlight"></span>
+       <span class="kwami-toast-trigger-text">${triggerText}</span>
+      </span>
+     </button>
+    </div>
+   </div>
         `;
   }
 

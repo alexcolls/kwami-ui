@@ -2,7 +2,7 @@ import { Component } from '../../core/Component';
 import './Button.css';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
-export type ButtonVariant = 'default' | 'primary' | 'danger' | 'ghost' | 'outline';
+export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'mini';
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type IconPosition = 'left' | 'right';
 
@@ -15,13 +15,13 @@ export interface ButtonProps {
   className?: string;
   /** Button size variant */
   size?: ButtonSize;
-  /** Button color variant */
+  /** Button style variant: primary (accent), secondary (neutral), danger (destructive), mini (icon-only) */
   variant?: ButtonVariant;
   /** Disabled state */
   disabled?: boolean;
   /** Loading state (shows spinner and disables interaction) */
   loading?: boolean;
-  /** Iconify icon name */
+  /** Iconify icon name (required for mini variant) */
   icon?: string;
   /** Icon position relative to label */
   iconPosition?: IconPosition;
@@ -47,7 +47,7 @@ export class Button extends Component<ButtonProps> {
       label = 'CLICK',
       className = '',
       size = 'md',
-      variant = 'default',
+      variant = 'primary',
       disabled = false,
       loading = false,
       icon,
@@ -56,26 +56,36 @@ export class Button extends Component<ButtonProps> {
       fullWidth = false,
     } = this.props;
 
+    // Mini variant is always icon-only and uses sm size internally
+    const isMini = variant === 'mini';
+    const effectiveSize = isMini ? 'sm' : size;
+    const iconSize = isMini ? 20 : effectiveSize === 'lg' ? 22 : effectiveSize === 'sm' ? 14 : 18;
+
     const bezelClasses = [
       'kwami-button-bezel',
-      `kwami-button-bezel--${size}`,
+      `kwami-button-bezel--${effectiveSize}`,
       `kwami-button-bezel--${variant}`,
       disabled || loading ? 'kwami-button-disabled' : '',
-      fullWidth ? 'kwami-button-bezel--full' : '',
+      fullWidth && !isMini ? 'kwami-button-bezel--full' : '',
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
     const iconHtml = icon
-      ? `<iconify-icon class="kwami-button-icon" icon="${icon}" width="18" height="18"></iconify-icon>`
+      ? `<iconify-icon class="kwami-button-icon" icon="${icon}" width="${iconSize}" height="${iconSize}"></iconify-icon>`
       : '';
     const spinnerHtml = loading ? `<span class="kwami-button-spinner"></span>` : '';
 
-    const contentHtml =
-      icon && iconPosition === 'right'
-        ? `<span class="kwami-button-text">${label}</span>${iconHtml}`
-        : `${iconHtml}<span class="kwami-button-text">${label}</span>`;
+    // Mini variant only shows icon, no label
+    let contentHtml: string;
+    if (isMini) {
+      contentHtml = iconHtml;
+    } else if (icon && iconPosition === 'right') {
+      contentHtml = `<span class="kwami-button-text">${label}</span>${iconHtml}`;
+    } else {
+      contentHtml = `${iconHtml}<span class="kwami-button-text">${label}</span>`;
+    }
 
     return `
             <div class="${bezelClasses}" data-kwami-id="${this.id}">
@@ -84,6 +94,7 @@ export class Button extends Component<ButtonProps> {
                     type="${type}"
                     ${disabled || loading ? 'disabled aria-disabled="true"' : ''}
                     ${loading ? 'aria-busy="true"' : ''}
+                    ${isMini ? 'aria-label="' + (label || 'Button') + '"' : ''}
                 >
                     <span class="kwami-button-face">
                         <span class="kwami-button-highlight"></span>
@@ -152,14 +163,35 @@ export class Button extends Component<ButtonProps> {
         face.appendChild(spinner);
       } else {
         // Re-render content
-        const { label = 'CLICK', icon, iconPosition = 'left' } = this.props;
+        const {
+          label = 'CLICK',
+          icon,
+          iconPosition = 'left',
+          variant = 'primary',
+          size = 'md',
+        } = this.props;
+        const isMini = variant === 'mini';
+        const effectiveSize = isMini ? 'sm' : size;
+        const iconSize = isMini
+          ? 20
+          : effectiveSize === 'lg'
+            ? 22
+            : effectiveSize === 'sm'
+              ? 14
+              : 18;
+
         const iconHtml = icon
-          ? `<iconify-icon class="kwami-button-icon" icon="${icon}" width="18" height="18"></iconify-icon>`
+          ? `<iconify-icon class="kwami-button-icon" icon="${icon}" width="${iconSize}" height="${iconSize}"></iconify-icon>`
           : '';
-        const contentHtml =
-          icon && iconPosition === 'right'
-            ? `<span class="kwami-button-text">${label}</span>${iconHtml}`
-            : `${iconHtml}<span class="kwami-button-text">${label}</span>`;
+
+        let contentHtml: string;
+        if (isMini) {
+          contentHtml = iconHtml;
+        } else if (icon && iconPosition === 'right') {
+          contentHtml = `<span class="kwami-button-text">${label}</span>${iconHtml}`;
+        } else {
+          contentHtml = `${iconHtml}<span class="kwami-button-text">${label}</span>`;
+        }
 
         face.innerHTML = `<span class="kwami-button-highlight"></span>${contentHtml}`;
       }

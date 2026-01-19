@@ -1,47 +1,98 @@
-/* Core Button Styles with CSS Custom Properties for Theming */
+/* ============================================
+   KWAMI BUTTON COMPONENT
+   ============================================
+   
+   A fully customizable button with neumorphic styling.
+   
+   CSS Custom Properties Reference:
+   ================================
+   
+   BEZEL (outer frame):
+   --kwami-btn-bezel-bg          : Background gradient/color
+   --kwami-btn-bezel-radius      : Border radius
+   --kwami-btn-bezel-padding     : Padding around button face
+   --kwami-btn-bezel-shadow      : Box shadow
+   
+   FACE (button surface):
+   --kwami-btn-face-bg           : Background gradient/color
+   --kwami-btn-face-radius       : Border radius  
+   --kwami-btn-face-shadow       : Box shadow
+   --kwami-btn-face-border       : Border style
+   
+   TEXT:
+   --kwami-btn-text-color        : Text color
+   --kwami-btn-text-size         : Font size
+   --kwami-btn-text-weight       : Font weight
+   --kwami-btn-text-spacing      : Letter spacing
+   --kwami-btn-text-shadow       : Text shadow
+   --kwami-btn-text-transform    : Text transform (uppercase, etc)
+   
+   ICON:
+   --kwami-btn-icon-color        : Icon color
+   --kwami-btn-icon-size         : Icon dimensions
+   --kwami-btn-icon-gap          : Gap between icon and text
+   
+   HIGHLIGHT (glass reflection):
+   --kwami-btn-highlight-bg      : Highlight gradient
+   --kwami-btn-highlight-height  : Height of highlight effect
+   
+   DIMENSIONS:
+   --kwami-btn-min-width         : Minimum width
+   --kwami-btn-height            : Button height
+   --kwami-btn-padding-x         : Horizontal padding
+   
+   TRANSITIONS:
+   --kwami-btn-transition        : Transition timing
+   
+   ============================================ */
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
 
 .kwami-button-bezel {
-  /* Customizable bezel colors */
-  --kwami-btn-bezel-start: #e0e0e0;
-  --kwami-btn-bezel-mid: #d0d0d0;
-  --kwami-btn-bezel-end: #c0c0c0;
-  --kwami-btn-bezel-shadow-inset: rgba(0, 0, 0, 0.12);
-  --kwami-btn-bezel-shadow-highlight: rgba(255, 255, 255, 0.7);
-  --kwami-btn-bezel-shadow-outer: rgba(0, 0, 0, 0.08);
-  --kwami-btn-bezel-radius: 14px;
-  --kwami-btn-bezel-padding: 6px;
+  /* Defaults for bezel */
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    var(--kwami-surface-light, #f0f0f0) 0%,
+    var(--kwami-surface, #e0e5ec) 50%,
+    var(--kwami-surface-dark, #d0d0d0) 100%
+  );
+  --kwami-btn-bezel-radius: 16px;
+  --kwami-btn-bezel-padding: 5px;
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.08);
 
   position: relative;
   padding: var(--kwami-btn-bezel-padding);
   border-radius: var(--kwami-btn-bezel-radius);
-  background: linear-gradient(
-    145deg,
-    var(--kwami-btn-bezel-start) 0%,
-    var(--kwami-btn-bezel-mid) 50%,
-    var(--kwami-btn-bezel-end) 100%
-  );
-  box-shadow:
-    inset 0 3px 8px var(--kwami-btn-bezel-shadow-inset),
-    inset 0 -2px 4px var(--kwami-btn-bezel-shadow-highlight),
-    0 2px 6px var(--kwami-btn-bezel-shadow-outer);
+  background: var(--kwami-btn-bezel-bg);
+  box-shadow: var(--kwami-btn-bezel-shadow);
   display: inline-block;
+  transition: var(--kwami-btn-transition, all 0.15s cubic-bezier(0.4, 0, 0.2, 1));
 }
 
-[data-theme='dark'] .kwami-button-bezel {
-  --kwami-btn-bezel-start: #252525;
-  --kwami-btn-bezel-mid: #1a1a1a;
-  --kwami-btn-bezel-end: #0f0f0f;
-  --kwami-btn-bezel-shadow-inset: rgba(0, 0, 0, 0.6);
-  --kwami-btn-bezel-shadow-highlight: rgba(255, 255, 255, 0.02);
-  --kwami-btn-bezel-shadow-outer: rgba(0, 0, 0, 0.4);
+[data-theme="dark"] .kwami-button-bezel {
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #2a2a2a 0%,
+    #1e1e1e 50%,
+    #151515 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02),
+    0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .kwami-button {
-  /* Customizable button dimensions */
-  --kwami-btn-min-width: 100px;
+  /* Defaults for button */
+  --kwami-btn-min-width: 110px;
   --kwami-btn-height: 44px;
-  --kwami-btn-padding-x: 28px;
-  --kwami-btn-face-radius: 10px;
+  --kwami-btn-padding-x: 24px;
+  --kwami-btn-face-radius: 12px;
 
   position: relative;
   display: flex;
@@ -53,24 +104,29 @@
   border: none;
   border-radius: var(--kwami-btn-face-radius);
   cursor: pointer;
-  transition: all 0.1s ease;
   background: transparent;
   outline: none;
   width: 100%;
+  transition: var(--kwami-btn-transition, all 0.15s cubic-bezier(0.4, 0, 0.2, 1));
 }
 
 .kwami-button-face {
-  /* Customizable face colors */
-  --kwami-btn-face-start: #ffffff;
-  --kwami-btn-face-light: #f5f5f5;
-  --kwami-btn-face-mid: #e8e8e8;
-  --kwami-btn-face-dark: #d8d8d8;
-  --kwami-btn-face-end: #c8c8c8;
-  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.15);
-  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.1);
-  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.9);
-  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.08);
-  --kwami-btn-face-radius: 10px;
+  /* Defaults for face */
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ffffff 0%,
+    #f8f8f8 25%,
+    #ececec 50%,
+    #e0e0e0 75%,
+    #d5d5d5 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+  --kwami-btn-face-border: none;
+  --kwami-btn-text-color: #4a4a4a;
 
   position: absolute;
   inset: 0;
@@ -79,158 +135,179 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  background: linear-gradient(
-    160deg,
-    var(--kwami-btn-face-start) 0%,
-    var(--kwami-btn-face-light) 20%,
-    var(--kwami-btn-face-mid) 50%,
-    var(--kwami-btn-face-dark) 80%,
-    var(--kwami-btn-face-end) 100%
-  );
-  box-shadow:
-    0 4px 12px var(--kwami-btn-face-shadow-outer),
-    0 2px 4px var(--kwami-btn-face-shadow-mid),
-    inset 0 2px 3px var(--kwami-btn-face-shadow-inner-light),
-    inset 0 -3px 6px var(--kwami-btn-face-shadow-inner-dark);
-  transition: all 0.1s ease;
+  gap: var(--kwami-btn-icon-gap, 8px);
+  background: var(--kwami-btn-face-bg);
+  box-shadow: var(--kwami-btn-face-shadow);
+  border: var(--kwami-btn-face-border);
   overflow: hidden;
-  color: var(--kwami-btn-text-color, #555);
+  color: var(--kwami-btn-text-color);
+  transition: var(--kwami-btn-transition, all 0.15s cubic-bezier(0.4, 0, 0.2, 1));
 }
 
-[data-theme='dark'] .kwami-button-face {
-  --kwami-btn-face-start: #4a4a4a;
-  --kwami-btn-face-light: #3a3a3a;
-  --kwami-btn-face-mid: #2d2d2d;
-  --kwami-btn-face-dark: #222222;
-  --kwami-btn-face-end: #1a1a1a;
-  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.4);
-  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.3);
-  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.06);
-  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.4);
+[data-theme="dark"] .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #454545 0%,
+    #3a3a3a 25%,
+    #2e2e2e 50%,
+    #252525 75%,
+    #1f1f1f 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  --kwami-btn-text-color: #b0b0b0;
 }
 
 .kwami-button-highlight {
-  /* Customizable highlight */
-  --kwami-btn-highlight-color: 255, 255, 255;
-  --kwami-btn-highlight-opacity-start: 0.4;
-  --kwami-btn-highlight-opacity-mid: 0.1;
-  --kwami-btn-highlight-height: 50%;
+  /* Defaults for highlight */
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 100%
+  );
+  --kwami-btn-highlight-height: 55%;
 
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: var(--kwami-btn-highlight-height);
-  border-radius: 10px 10px 50% 50%;
-  background: linear-gradient(
-    180deg,
-    rgba(var(--kwami-btn-highlight-color), var(--kwami-btn-highlight-opacity-start)) 0%,
-    rgba(var(--kwami-btn-highlight-color), var(--kwami-btn-highlight-opacity-mid)) 50%,
-    transparent 100%
-  );
+  border-radius: var(--kwami-btn-face-radius) var(--kwami-btn-face-radius) 60% 60%;
+  background: var(--kwami-btn-highlight-bg);
   pointer-events: none;
+  transition: opacity 0.15s ease;
 }
 
-[data-theme='dark'] .kwami-button-highlight {
-  --kwami-btn-highlight-opacity-start: 0.08;
-  --kwami-btn-highlight-opacity-mid: 0.02;
+[data-theme="dark"] .kwami-button-highlight {
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 100%
+  );
 }
 
 .kwami-button-text {
-  /* Customizable text */
-  --kwami-btn-text-color: #555;
-  --kwami-btn-text-shadow: rgba(255, 255, 255, 0.5);
+  /* Defaults for text */
   --kwami-btn-text-size: 0.75rem;
-  --kwami-btn-text-weight: 600;
-  --kwami-btn-text-spacing: 2px;
+  --kwami-btn-text-weight: 700;
+  --kwami-btn-text-spacing: 1.5px;
+  --kwami-btn-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  --kwami-btn-text-transform: uppercase;
 
   position: relative;
   z-index: 2;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: var(--kwami-btn-text-size);
   font-weight: var(--kwami-btn-text-weight);
   letter-spacing: var(--kwami-btn-text-spacing);
-  text-transform: uppercase;
-  color: var(--kwami-btn-text-color);
-  text-shadow: 0 1px 0 var(--kwami-btn-text-shadow);
-  transition: color 0.15s ease;
+  text-transform: var(--kwami-btn-text-transform);
+  color: inherit;
+  text-shadow: var(--kwami-btn-text-shadow);
   white-space: nowrap;
+  transition: color 0.15s ease;
 }
 
-/* Icon-only button (no text) */
-.kwami-button-icon:only-child + .kwami-button-text:empty,
+[data-theme="dark"] .kwami-button-text {
+  --kwami-btn-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Empty text handling */
 .kwami-button-text:empty {
   display: none;
 }
 
-[data-theme='dark'] .kwami-button-text {
-  --kwami-btn-text-color: #aaa;
-  --kwami-btn-text-shadow: rgba(0, 0, 0, 0.5);
+/* ============================================
+   ICON STYLES
+   ============================================ */
+
+.kwami-button-icon {
+  --kwami-btn-icon-size: 18px;
+  --kwami-btn-icon-color: inherit;
+
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--kwami-btn-icon-size);
+  height: var(--kwami-btn-icon-size);
+  color: var(--kwami-btn-icon-color);
+  flex-shrink: 0;
 }
 
-/* Hover State */
+/* Icon only - no margins needed */
+.kwami-button-icon:only-child {
+  margin: 0;
+}
+
+/* ============================================
+   INTERACTIVE STATES
+   ============================================ */
+
+/* Hover */
 .kwami-button:hover .kwami-button-face {
-  --kwami-btn-face-start: #ffffff;
-  --kwami-btn-face-light: #f8f8f8;
-  --kwami-btn-face-mid: #eeeeee;
-  --kwami-btn-face-dark: #e0e0e0;
-  --kwami-btn-face-end: #d0d0d0;
-  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.18);
-  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.12);
-  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.95);
-  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.06);
+  --kwami-btn-face-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 3px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.04);
 }
 
-[data-theme='dark'] .kwami-button:hover .kwami-button-face {
-  --kwami-btn-face-start: #525252;
-  --kwami-btn-face-light: #424242;
-  --kwami-btn-face-mid: #353535;
-  --kwami-btn-face-dark: #2a2a2a;
-  --kwami-btn-face-end: #222222;
-  --kwami-btn-face-shadow-outer: rgba(0, 0, 0, 0.5);
-  --kwami-btn-face-shadow-mid: rgba(0, 0, 0, 0.4);
-  --kwami-btn-face-shadow-inner-light: rgba(255, 255, 255, 0.08);
-  --kwami-btn-face-shadow-inner-dark: rgba(0, 0, 0, 0.35);
+[data-theme="dark"] .kwami-button:hover .kwami-button-face {
+  --kwami-btn-face-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 3px 8px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* Active/Pressed State */
+/* Active/Pressed */
 .kwami-button:active .kwami-button-face,
 .kwami-button.pressed .kwami-button-face {
-  --kwami-btn-face-start: #d8d8d8;
-  --kwami-btn-face-light: #e0e0e0;
-  --kwami-btn-face-mid: #e8e8e8;
-  --kwami-btn-face-dark: #f0f0f0;
-  --kwami-btn-face-end: #f5f5f5;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.1),
-    inset 0 3px 8px rgba(0, 0, 0, 0.12),
-    inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #d8d8d8 0%,
+    #e0e0e0 25%,
+    #e8e8e8 50%,
+    #f0f0f0 75%,
+    #f5f5f5 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    inset 0 3px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(0, 0, 0, 0.06);
   transform: translateY(2px);
 }
 
-[data-theme='dark'] .kwami-button:active .kwami-button-face,
-[data-theme='dark'] .kwami-button.pressed .kwami-button-face {
-  --kwami-btn-face-start: #2a2a2a;
-  --kwami-btn-face-light: #282828;
-  --kwami-btn-face-mid: #252525;
-  --kwami-btn-face-dark: #222222;
-  --kwami-btn-face-end: #1a1a1a;
-  box-shadow:
+[data-theme="dark"] .kwami-button:active .kwami-button-face,
+[data-theme="dark"] .kwami-button.pressed .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #2a2a2a 0%,
+    #262626 25%,
+    #222222 50%,
+    #1e1e1e 75%,
+    #1a1a1a 100%
+  );
+  --kwami-btn-face-shadow: 
     0 1px 2px rgba(0, 0, 0, 0.3),
-    inset 0 4px 12px rgba(0, 0, 0, 0.5),
-    inset 0 2px 4px rgba(0, 0, 0, 0.4);
-  transform: translateY(2px);
+    inset 0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .kwami-button:active .kwami-button-highlight,
 .kwami-button.pressed .kwami-button-highlight {
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
-/* Focus State */
+/* Focus */
 .kwami-button:focus-visible .kwami-button-face {
-  outline: 2px solid var(--kwami-accent, rgba(255, 170, 0, 0.6));
+  outline: 2px solid var(--kwami-accent, #ff9500);
   outline-offset: 2px;
 }
 
@@ -240,54 +317,56 @@
 
 /* Small */
 .kwami-button-bezel--sm {
-  --kwami-btn-bezel-radius: 10px;
+  --kwami-btn-bezel-radius: 12px;
   --kwami-btn-bezel-padding: 4px;
 }
 
 .kwami-button-bezel--sm .kwami-button {
-  --kwami-btn-min-width: 72px;
-  --kwami-btn-height: 32px;
+  --kwami-btn-min-width: 80px;
+  --kwami-btn-height: 34px;
   --kwami-btn-padding-x: 16px;
-  --kwami-btn-face-radius: 7px;
+  --kwami-btn-face-radius: 9px;
 }
 
 .kwami-button-bezel--sm .kwami-button-text {
   --kwami-btn-text-size: 0.65rem;
-  --kwami-btn-text-spacing: 1.5px;
+  --kwami-btn-text-spacing: 1px;
 }
 
 .kwami-button-bezel--sm .kwami-button-icon {
-  width: 14px;
-  height: 14px;
+  --kwami-btn-icon-size: 14px;
 }
 
-/* Medium (default) */
-.kwami-button-bezel--md {
-  --kwami-btn-bezel-radius: 14px;
-  --kwami-btn-bezel-padding: 6px;
+.kwami-button-bezel--sm .kwami-button-face {
+  gap: 6px;
 }
+
+/* Medium (default) - no additional styles needed */
 
 /* Large */
 .kwami-button-bezel--lg {
-  --kwami-btn-bezel-radius: 18px;
-  --kwami-btn-bezel-padding: 8px;
+  --kwami-btn-bezel-radius: 20px;
+  --kwami-btn-bezel-padding: 6px;
 }
 
 .kwami-button-bezel--lg .kwami-button {
   --kwami-btn-min-width: 140px;
   --kwami-btn-height: 56px;
-  --kwami-btn-padding-x: 36px;
-  --kwami-btn-face-radius: 12px;
+  --kwami-btn-padding-x: 32px;
+  --kwami-btn-face-radius: 15px;
 }
 
 .kwami-button-bezel--lg .kwami-button-text {
-  --kwami-btn-text-size: 0.875rem;
-  --kwami-btn-text-spacing: 2.5px;
+  --kwami-btn-text-size: 0.85rem;
+  --kwami-btn-text-spacing: 2px;
 }
 
 .kwami-button-bezel--lg .kwami-button-icon {
-  width: 22px;
-  height: 22px;
+  --kwami-btn-icon-size: 22px;
+}
+
+.kwami-button-bezel--lg .kwami-button-face {
+  gap: 10px;
 }
 
 /* Full Width */
@@ -296,224 +375,484 @@
 }
 
 /* ============================================
-   COLOR VARIANTS
+   PRIMARY VARIANT (Accent Color)
    ============================================ */
 
-/* Primary Variant */
 .kwami-button-bezel--primary {
-  --kwami-btn-bezel-start: #ffb84d;
-  --kwami-btn-bezel-mid: #ff9500;
-  --kwami-btn-bezel-end: #e68600;
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #ffbe4d 0%,
+    #ff9500 50%,
+    #e68600 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.1),
+    inset 0 -1px 3px rgba(255, 220, 150, 0.4),
+    0 4px 16px rgba(255, 149, 0, 0.3);
 }
 
 .kwami-button-bezel--primary .kwami-button-face {
-  --kwami-btn-face-start: #ffcc66;
-  --kwami-btn-face-light: #ffb84d;
-  --kwami-btn-face-mid: #ff9500;
-  --kwami-btn-face-dark: #e68600;
-  --kwami-btn-face-end: #cc7700;
-}
-
-.kwami-button-bezel--primary .kwami-button-text {
-  --kwami-btn-text-color: #4a2800;
-  --kwami-btn-text-shadow: rgba(255, 255, 255, 0.3);
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ffcc70 0%,
+    #ffb84d 25%,
+    #ff9f1a 50%,
+    #ff9500 75%,
+    #e68600 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 6px 24px rgba(255, 149, 0, 0.35),
+    0 2px 8px rgba(255, 149, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.1);
+  --kwami-btn-text-color: #3d2200;
 }
 
 .kwami-button-bezel--primary .kwami-button-highlight {
-  --kwami-btn-highlight-opacity-start: 0.5;
-  --kwami-btn-highlight-opacity-mid: 0.15;
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 100%
+  );
 }
 
-[data-theme='dark'] .kwami-button-bezel--primary {
-  --kwami-btn-bezel-start: #996300;
-  --kwami-btn-bezel-mid: #804f00;
-  --kwami-btn-bezel-end: #663f00;
+.kwami-button-bezel--primary .kwami-button-text {
+  --kwami-btn-text-shadow: 0 1px 0 rgba(255, 200, 100, 0.3);
 }
 
-[data-theme='dark'] .kwami-button-bezel--primary .kwami-button-face {
-  --kwami-btn-face-start: #cc8000;
-  --kwami-btn-face-light: #b37000;
-  --kwami-btn-face-mid: #996300;
-  --kwami-btn-face-dark: #804f00;
-  --kwami-btn-face-end: #663f00;
+.kwami-button-bezel--primary:hover .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ffd480 0%,
+    #ffc266 25%,
+    #ffaa33 50%,
+    #ffa31a 75%,
+    #f09000 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 8px 32px rgba(255, 149, 0, 0.45),
+    0 3px 12px rgba(255, 149, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme='dark'] .kwami-button-bezel--primary .kwami-button-text {
-  --kwami-btn-text-color: #ffe0b3;
-  --kwami-btn-text-shadow: rgba(0, 0, 0, 0.4);
+.kwami-button-bezel--primary .kwami-button:active .kwami-button-face,
+.kwami-button-bezel--primary .kwami-button.pressed .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #e68600 0%,
+    #f09000 25%,
+    #ff9500 50%,
+    #ffaa33 75%,
+    #ffb84d 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 2px 6px rgba(255, 149, 0, 0.2),
+    inset 0 3px 10px rgba(0, 0, 0, 0.15),
+    inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Danger Variant */
-.kwami-button-bezel--danger {
-  --kwami-btn-bezel-start: #ff6b6b;
-  --kwami-btn-bezel-mid: #ee5a5a;
-  --kwami-btn-bezel-end: #d94848;
+/* Primary - Dark Theme */
+[data-theme="dark"] .kwami-button-bezel--primary {
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #8a5a00 0%,
+    #704a00 50%,
+    #5c3d00 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 2px rgba(255, 180, 80, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-.kwami-button-bezel--danger .kwami-button-face {
-  --kwami-btn-face-start: #ff8080;
-  --kwami-btn-face-light: #ff6b6b;
-  --kwami-btn-face-mid: #ee5a5a;
-  --kwami-btn-face-dark: #d94848;
-  --kwami-btn-face-end: #c43c3c;
+[data-theme="dark"] .kwami-button-bezel--primary .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #b87400 0%,
+    #a36600 25%,
+    #8a5500 50%,
+    #704500 75%,
+    #5c3800 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 200, 100, 0.15),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+  --kwami-btn-text-color: #ffe0a0;
 }
 
-.kwami-button-bezel--danger .kwami-button-text {
-  --kwami-btn-text-color: #4a0f0f;
-  --kwami-btn-text-shadow: rgba(255, 255, 255, 0.3);
+[data-theme="dark"] .kwami-button-bezel--primary .kwami-button-highlight {
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 200, 100, 0.12) 0%,
+    rgba(255, 200, 100, 0.03) 40%,
+    transparent 100%
+  );
 }
 
-[data-theme='dark'] .kwami-button-bezel--danger {
-  --kwami-btn-bezel-start: #8b2a2a;
-  --kwami-btn-bezel-mid: #702222;
-  --kwami-btn-bezel-end: #5c1c1c;
-}
-
-[data-theme='dark'] .kwami-button-bezel--danger .kwami-button-face {
-  --kwami-btn-face-start: #a63333;
-  --kwami-btn-face-light: #8b2a2a;
-  --kwami-btn-face-mid: #702222;
-  --kwami-btn-face-dark: #5c1c1c;
-  --kwami-btn-face-end: #4a1616;
-}
-
-[data-theme='dark'] .kwami-button-bezel--danger .kwami-button-text {
-  --kwami-btn-text-color: #ffcccc;
-  --kwami-btn-text-shadow: rgba(0, 0, 0, 0.4);
-}
-
-/* Ghost Variant */
-.kwami-button-bezel--ghost {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-}
-
-.kwami-button-bezel--ghost .kwami-button-face {
-  background: transparent;
-  box-shadow: none;
-  border: 2px solid var(--kwami-border, #d0d0d0);
-}
-
-.kwami-button-bezel--ghost .kwami-button-highlight {
-  display: none;
-}
-
-.kwami-button-bezel--ghost .kwami-button-text {
-  --kwami-btn-text-color: var(--kwami-text, #555);
-  --kwami-btn-text-shadow: none;
-}
-
-.kwami-button-bezel--ghost:hover .kwami-button-face {
-  background: var(--kwami-surface-hover, rgba(0, 0, 0, 0.05));
-  border-color: var(--kwami-accent, #ff9500);
-}
-
-.kwami-button-bezel--ghost:hover .kwami-button-text {
-  --kwami-btn-text-color: var(--kwami-accent, #ff9500);
-}
-
-.kwami-button-bezel--ghost .kwami-button:active .kwami-button-face,
-.kwami-button-bezel--ghost .kwami-button.pressed .kwami-button-face {
-  background: var(--kwami-surface-active, rgba(0, 0, 0, 0.08));
-  transform: none;
-  box-shadow: none;
-}
-
-[data-theme='dark'] .kwami-button-bezel--ghost .kwami-button-face {
-  border-color: var(--kwami-border, #3a3a3a);
-}
-
-[data-theme='dark'] .kwami-button-bezel--ghost .kwami-button-text {
-  --kwami-btn-text-color: var(--kwami-text, #aaa);
-}
-
-[data-theme='dark'] .kwami-button-bezel--ghost:hover .kwami-button-face {
-  background: var(--kwami-surface-hover, rgba(255, 255, 255, 0.05));
-}
-
-[data-theme='dark'] .kwami-button-bezel--ghost .kwami-button:active .kwami-button-face {
-  background: var(--kwami-surface-active, rgba(255, 255, 255, 0.08));
-}
-
-/* Outline Variant */
-.kwami-button-bezel--outline {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-}
-
-.kwami-button-bezel--outline .kwami-button-face {
-  background: transparent;
-  box-shadow: none;
-  border: 2px solid var(--kwami-accent, #ff9500);
-}
-
-.kwami-button-bezel--outline .kwami-button-highlight {
-  display: none;
-}
-
-.kwami-button-bezel--outline .kwami-button-text {
-  --kwami-btn-text-color: var(--kwami-accent, #ff9500);
-  --kwami-btn-text-shadow: none;
-}
-
-.kwami-button-bezel--outline .kwami-button-icon {
-  color: var(--kwami-accent, #ff9500);
-}
-
-.kwami-button-bezel--outline:hover .kwami-button-face {
-  background: var(--kwami-accent, #ff9500);
-  border-color: var(--kwami-accent, #ff9500);
-}
-
-.kwami-button-bezel--outline:hover .kwami-button-text {
-  --kwami-btn-text-color: #fff;
-}
-
-.kwami-button-bezel--outline:hover .kwami-button-icon {
-  color: #fff;
-}
-
-.kwami-button-bezel--outline .kwami-button:active .kwami-button-face,
-.kwami-button-bezel--outline .kwami-button.pressed .kwami-button-face {
-  background: var(--kwami-accent-dark, #cc7700);
-  border-color: var(--kwami-accent-dark, #cc7700);
-  transform: none;
-  box-shadow: none;
-}
-
-[data-theme='dark'] .kwami-button-bezel--outline .kwami-button-face {
-  border-color: var(--kwami-accent, #ff9500);
-}
-
-[data-theme='dark'] .kwami-button-bezel--outline:hover .kwami-button-face {
-  background: var(--kwami-accent, #ff9500);
+[data-theme="dark"] .kwami-button-bezel--primary .kwami-button-text {
+  --kwami-btn-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================
-   ICON STYLES
+   SECONDARY VARIANT (Neutral/Subtle)
    ============================================ */
 
-.kwami-button-icon {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  color: inherit;
+.kwami-button-bezel--secondary {
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #e8e8e8 0%,
+    #d8d8d8 50%,
+    #c8c8c8 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.kwami-button-icon:last-child {
-  margin-right: 0;
-  margin-left: 8px;
+.kwami-button-bezel--secondary .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #fafafa 0%,
+    #f2f2f2 25%,
+    #e8e8e8 50%,
+    #dedede 75%,
+    #d4d4d4 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.03);
+  --kwami-btn-text-color: #5a5a5a;
 }
 
-.kwami-button-icon:only-child {
-  margin: 0;
+.kwami-button-bezel--secondary .kwami-button-highlight {
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.25) 40%,
+    transparent 100%
+  );
+}
+
+.kwami-button-bezel--secondary .kwami-button-text {
+  --kwami-btn-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.kwami-button-bezel--secondary:hover .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ffffff 0%,
+    #f8f8f8 25%,
+    #efefef 50%,
+    #e6e6e6 75%,
+    #dddddd 100%
+  );
+  --kwami-btn-text-color: #404040;
+}
+
+.kwami-button-bezel--secondary .kwami-button:active .kwami-button-face,
+.kwami-button-bezel--secondary .kwami-button.pressed .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #d0d0d0 0%,
+    #d8d8d8 25%,
+    #e0e0e0 50%,
+    #e8e8e8 75%,
+    #f0f0f0 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    inset 0 3px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Secondary - Dark Theme */
+[data-theme="dark"] .kwami-button-bezel--secondary {
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #3a3a3a 0%,
+    #2a2a2a 50%,
+    #1f1f1f 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .kwami-button-bezel--secondary .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #505050 0%,
+    #454545 25%,
+    #3a3a3a 50%,
+    #303030 75%,
+    #282828 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.06),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  --kwami-btn-text-color: #c0c0c0;
+}
+
+[data-theme="dark"] .kwami-button-bezel--secondary .kwami-button-highlight {
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 100%
+  );
+}
+
+[data-theme="dark"] .kwami-button-bezel--secondary .kwami-button-text {
+  --kwami-btn-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   DANGER VARIANT (Destructive Actions)
+   ============================================ */
+
+.kwami-button-bezel--danger {
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #ff6b6b 0%,
+    #e55555 50%,
+    #cc4444 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.12),
+    inset 0 -1px 3px rgba(255, 150, 150, 0.3),
+    0 4px 16px rgba(220, 60, 60, 0.3);
+}
+
+.kwami-button-bezel--danger .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ff8585 0%,
+    #ff6b6b 25%,
+    #f05555 50%,
+    #e04545 75%,
+    #cc3b3b 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 6px 24px rgba(220, 60, 60, 0.35),
+    0 2px 8px rgba(220, 60, 60, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.12);
+  --kwami-btn-text-color: #3a0f0f;
+}
+
+.kwami-button-bezel--danger .kwami-button-highlight {
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 100%
+  );
+}
+
+.kwami-button-bezel--danger .kwami-button-text {
+  --kwami-btn-text-shadow: 0 1px 0 rgba(255, 180, 180, 0.25);
+}
+
+.kwami-button-bezel--danger:hover .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ff9999 0%,
+    #ff7a7a 25%,
+    #ff5f5f 50%,
+    #f04f4f 75%,
+    #dc4545 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 8px 32px rgba(220, 60, 60, 0.45),
+    0 3px 12px rgba(220, 60, 60, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.kwami-button-bezel--danger .kwami-button:active .kwami-button-face,
+.kwami-button-bezel--danger .kwami-button.pressed .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #c43535 0%,
+    #d04040 25%,
+    #e04a4a 50%,
+    #f05555 75%,
+    #ff6565 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 2px 6px rgba(220, 60, 60, 0.2),
+    inset 0 3px 10px rgba(0, 0, 0, 0.18),
+    inset 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* Danger - Dark Theme */
+[data-theme="dark"] .kwami-button-bezel--danger {
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #7a2020 0%,
+    #5c1818 50%,
+    #481414 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 2px rgba(255, 100, 100, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .kwami-button-bezel--danger .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #9a3030 0%,
+    #852828 25%,
+    #702222 50%,
+    #5c1c1c 75%,
+    #4a1616 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 120, 120, 0.1),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+  --kwami-btn-text-color: #ffb8b8;
+}
+
+[data-theme="dark"] .kwami-button-bezel--danger .kwami-button-highlight {
+  --kwami-btn-highlight-bg: linear-gradient(
+    180deg,
+    rgba(255, 120, 120, 0.1) 0%,
+    rgba(255, 120, 120, 0.02) 40%,
+    transparent 100%
+  );
+}
+
+[data-theme="dark"] .kwami-button-bezel--danger .kwami-button-text {
+  --kwami-btn-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   MINI VARIANT (Compact Icon-Only)
+   ============================================ */
+
+.kwami-button-bezel--mini {
+  --kwami-btn-bezel-radius: 14px;
+  --kwami-btn-bezel-padding: 4px;
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    var(--kwami-surface-light, #f0f0f0) 0%,
+    var(--kwami-surface, #e0e5ec) 50%,
+    var(--kwami-surface-dark, #d0d0d0) 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.5),
+    0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.kwami-button-bezel--mini .kwami-button {
+  --kwami-btn-min-width: 36px;
+  --kwami-btn-height: 36px;
+  --kwami-btn-padding-x: 0;
+  --kwami-btn-face-radius: 10px;
+  width: 36px;
+}
+
+.kwami-button-bezel--mini .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ffffff 0%,
+    #f5f5f5 25%,
+    #eaeaea 50%,
+    #e0e0e0 75%,
+    #d6d6d6 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.1),
+    0 2px 5px rgba(0, 0, 0, 0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.04);
+  --kwami-btn-text-color: #5a5a5a;
+}
+
+.kwami-button-bezel--mini .kwami-button-icon {
+  --kwami-btn-icon-size: 20px;
+}
+
+.kwami-button-bezel--mini .kwami-button-highlight {
+  --kwami-btn-highlight-height: 50%;
+}
+
+.kwami-button-bezel--mini:hover .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #ffffff 0%,
+    #fafafa 25%,
+    #f0f0f0 50%,
+    #e8e8e8 75%,
+    #e0e0e0 100%
+  );
+  --kwami-btn-text-color: var(--kwami-accent, #ff9500);
+}
+
+.kwami-button-bezel--mini .kwami-button:active .kwami-button-face,
+.kwami-button-bezel--mini .kwami-button.pressed .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #d5d5d5 0%,
+    #dddddd 25%,
+    #e5e5e5 50%,
+    #ededed 75%,
+    #f5f5f5 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    inset 0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  transform: translateY(1px);
+}
+
+/* Mini - Dark Theme */
+[data-theme="dark"] .kwami-button-bezel--mini {
+  --kwami-btn-bezel-bg: linear-gradient(
+    145deg,
+    #2a2a2a 0%,
+    #1e1e1e 50%,
+    #151515 100%
+  );
+  --kwami-btn-bezel-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02),
+    0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .kwami-button-bezel--mini .kwami-button-face {
+  --kwami-btn-face-bg: linear-gradient(
+    165deg,
+    #484848 0%,
+    #3e3e3e 25%,
+    #333333 50%,
+    #2a2a2a 75%,
+    #232323 100%
+  );
+  --kwami-btn-face-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 2px 5px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  --kwami-btn-text-color: #a0a0a0;
+}
+
+[data-theme="dark"] .kwami-button-bezel--mini:hover .kwami-button-face {
+  --kwami-btn-text-color: var(--kwami-accent, #ff9500);
 }
 
 /* ============================================
@@ -525,20 +864,28 @@
   z-index: 2;
   width: 18px;
   height: 18px;
-  border: 2px solid transparent;
+  border: 2px solid rgba(currentColor, 0.2);
   border-top-color: currentColor;
   border-radius: 50%;
-  animation: kwami-button-spin 0.8s linear infinite;
+  animation: kwami-button-spin 0.7s linear infinite;
 }
 
 .kwami-button-bezel--sm .kwami-button-spinner {
   width: 14px;
   height: 14px;
+  border-width: 1.5px;
 }
 
 .kwami-button-bezel--lg .kwami-button-spinner {
   width: 22px;
   height: 22px;
+  border-width: 2.5px;
+}
+
+.kwami-button-bezel--mini .kwami-button-spinner {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
 }
 
 @keyframes kwami-button-spin {

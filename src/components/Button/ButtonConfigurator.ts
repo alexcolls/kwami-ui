@@ -1,12 +1,12 @@
 import { Component } from '../../core/Component';
-import { Button } from './Button';
+import { Button, ButtonVariant } from './Button';
 import { ColorPicker } from '../ColorPicker/ColorPicker';
 import { adjustBrightness } from '../../utils/color';
 import './ButtonConfigurator.css';
 
 export interface ButtonConfiguration {
   label: string;
-  variant: 'default' | 'primary' | 'danger' | 'ghost' | 'outline';
+  variant: ButtonVariant;
   size: 'sm' | 'md' | 'lg';
   bezel: {
     color: string;
@@ -44,7 +44,7 @@ export interface ButtonConfiguratorProps {
 
 const DEFAULT_CONFIG: ButtonConfiguration = {
   label: 'CLICK',
-  variant: 'default',
+  variant: 'primary',
   size: 'md',
   bezel: { color: '#d0d0d0', radius: 14, padding: 6, shadowDepth: 50 },
   face: { color: '#e8e8e8', radius: 10, depth: 50, brightness: 50 },
@@ -52,7 +52,7 @@ const DEFAULT_CONFIG: ButtonConfiguration = {
   text: { color: '#555555', size: 12, spacing: 2, weight: 600 },
 };
 
-type ConfigPart = 'style' | 'bezel' | 'face' | 'highlight' | 'text';
+type ConfigPart = 'colors' | 'bezel' | 'face' | 'highlight' | 'text';
 
 export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   private config: ButtonConfiguration;
@@ -83,212 +83,234 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
     const controlsHtml = showControls ? this.renderControls() : '';
 
     return `
-      <div class="kwami-button-configurator" data-kwami-id="${this.id}">
-          <div class="kwami-button-configurator-preview">
-        <div class="kwami-button-configurator-container">
-            ${this.button.render()}
-        </div>
-          </div>
-          ${controlsHtml}
-      </div>
+ <div class="kwami-button-configurator" data-kwami-id="${this.id}">
+  <div class="kwami-button-configurator-preview">
+  ${this.renderVariantSelector()}
+  <div class="kwami-button-configurator-stage">
+   <div class="kwami-button-configurator-container">
+   ${this.button.render()}
+   </div>
+  </div>
+  </div>
+  ${controlsHtml}
+ </div>
+      `;
+  }
+
+  private renderVariantSelector(): string {
+    const { variant } = this.config;
+    const variants: { value: ButtonVariant; label: string; icon: string }[] = [
+      { value: 'primary', label: 'Primary', icon: 'solar:star-bold' },
+      { value: 'secondary', label: 'Secondary', icon: 'solar:widget-bold' },
+      { value: 'danger', label: 'Danger', icon: 'solar:danger-triangle-bold' },
+      { value: 'mini', label: 'Mini', icon: 'solar:minimize-square-bold' },
+    ];
+
+    return `
+ <div class="kwami-button-configurator-variant-bar">
+  ${variants
+    .map(
+      (v) => `
+  <button 
+   class="kwami-cfg-variant-btn ${variant === v.value ? 'active' : ''}" 
+   data-variant="${v.value}"
+   title="${v.label}"
+  >
+   <iconify-icon icon="${v.icon}" width="16" height="16"></iconify-icon>
+   <span class="kwami-cfg-variant-label">${v.label}</span>
+  </button>
+   `
+    )
+    .join('')}
+ </div>
       `;
   }
 
   private renderControls(): string {
     return `
-      <div class="kwami-button-configurator-controls">
-          <!-- Part Selector Tabs -->
-          <div class="kwami-button-configurator-parts">
-        <button class="kwami-button-configurator-part-btn active" data-part="style" title="Style (variant & size)">
-            <span class="part-icon">✦</span>
-            <span class="part-label">Style</span>
-        </button>
-        <button class="kwami-button-configurator-part-btn" data-part="bezel" title="Bezel (outer frame)">
-            <span class="part-icon">◰</span>
-            <span class="part-label">Bezel</span>
-        </button>
-        <button class="kwami-button-configurator-part-btn" data-part="face" title="Face (button surface)">
-            <span class="part-icon">▣</span>
-            <span class="part-label">Face</span>
-        </button>
-        <button class="kwami-button-configurator-part-btn" data-part="highlight" title="Highlight (shine effect)">
-            <span class="part-icon">◐</span>
-            <span class="part-label">Shine</span>
-        </button>
-        <button class="kwami-button-configurator-part-btn" data-part="text" title="Text (label)">
-            <span class="part-icon">T</span>
-            <span class="part-label">Text</span>
-        </button>
-          </div>
+ <div class="kwami-button-configurator-controls">
+  <!-- Part Selector Tabs -->
+  <div class="kwami-button-configurator-parts">
+  <button class="kwami-button-configurator-part-btn active" data-part="colors" title="Colors (all button colors)">
+   <span class="part-icon">◆</span>
+   <span class="part-label">Colors</span>
+  </button>
+  <button class="kwami-button-configurator-part-btn" data-part="bezel" title="Bezel (outer frame)">
+   <span class="part-icon">◰</span>
+   <span class="part-label">Bezel</span>
+  </button>
+  <button class="kwami-button-configurator-part-btn" data-part="face" title="Face (button surface)">
+   <span class="part-icon">▣</span>
+   <span class="part-label">Face</span>
+  </button>
+  <button class="kwami-button-configurator-part-btn" data-part="highlight" title="Highlight (shine effect)">
+   <span class="part-icon">◐</span>
+   <span class="part-label">Shine</span>
+  </button>
+  <button class="kwami-button-configurator-part-btn" data-part="text" title="Text (label)">
+   <span class="part-icon">T</span>
+   <span class="part-label">Text</span>
+  </button>
+  </div>
 
-          <!-- Control Panels -->
-          <div class="kwami-button-configurator-panels">
-        ${this.renderStylePanel()}
-        ${this.renderBezelPanel()}
-        ${this.renderFacePanel()}
-        ${this.renderHighlightPanel()}
-        ${this.renderTextPanel()}
-          </div>
-      </div>
+  <!-- Control Panels -->
+  <div class="kwami-button-configurator-panels">
+  ${this.renderColorsPanel()}
+  ${this.renderBezelPanel()}
+  ${this.renderFacePanel()}
+  ${this.renderHighlightPanel()}
+  ${this.renderTextPanel()}
+  </div>
+ </div>
       `;
   }
 
-  private renderStylePanel(): string {
-    const { variant, size } = this.config;
+  private renderColorsPanel(): string {
+    const { size } = this.config;
     return `
-      <div class="kwami-button-configurator-panel active" data-panel="style">
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Variant</label>
-        <div class="kwami-cfg-select-wrap">
-            <select class="kwami-cfg-select" data-prop="variant">
-          <option value="default" ${variant === 'default' ? 'selected' : ''}>Default</option>
-          <option value="primary" ${variant === 'primary' ? 'selected' : ''}>Primary</option>
-          <option value="danger" ${variant === 'danger' ? 'selected' : ''}>Danger</option>
-          <option value="ghost" ${variant === 'ghost' ? 'selected' : ''}>Ghost</option>
-          <option value="outline" ${variant === 'outline' ? 'selected' : ''}>Outline</option>
-            </select>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Size</label>
-        <div class="kwami-cfg-select-wrap">
-            <select class="kwami-cfg-select" data-prop="size">
-          <option value="sm" ${size === 'sm' ? 'selected' : ''}>Small</option>
-          <option value="md" ${size === 'md' ? 'selected' : ''}>Medium</option>
-          <option value="lg" ${size === 'lg' ? 'selected' : ''}>Large</option>
-            </select>
-        </div>
-          </div>
-      </div>
+ <div class="kwami-button-configurator-panel active" data-panel="colors">
+  <div class="kwami-cfg-colors-grid">
+  <div class="kwami-cfg-color-item">
+   <label class="kwami-cfg-color-label">Bezel</label>
+   <div class="kwami-cfg-color" data-color-target="bezel"></div>
+  </div>
+  <div class="kwami-cfg-color-item">
+   <label class="kwami-cfg-color-label">Face</label>
+   <div class="kwami-cfg-color" data-color-target="face"></div>
+  </div>
+  <div class="kwami-cfg-color-item">
+   <label class="kwami-cfg-color-label">Highlight</label>
+   <div class="kwami-cfg-color" data-color-target="highlight"></div>
+  </div>
+  <div class="kwami-cfg-color-item">
+   <label class="kwami-cfg-color-label">Text</label>
+   <div class="kwami-cfg-color" data-color-target="text"></div>
+  </div>
+  </div>
+  <div class="kwami-cfg-row kwami-cfg-row--spaced">
+  <label class="kwami-cfg-label">Size</label>
+  <div class="kwami-cfg-select-wrap">
+   <select class="kwami-cfg-select" data-prop="size">
+  <option value="sm" ${size === 'sm' ? 'selected' : ''}>Small</option>
+  <option value="md" ${size === 'md' ? 'selected' : ''}>Medium</option>
+  <option value="lg" ${size === 'lg' ? 'selected' : ''}>Large</option>
+   </select>
+  </div>
+  </div>
+ </div>
       `;
   }
 
   private renderBezelPanel(): string {
     const { bezel } = this.config;
     return `
-      <div class="kwami-button-configurator-panel" data-panel="bezel">
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Color</label>
-        <div class="kwami-cfg-color" data-color-target="bezel"></div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Border Radius</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="bezel-radius" min="0" max="30" value="${bezel.radius}" />
-            <span class="kwami-cfg-value">${bezel.radius}px</span>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Padding</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="bezel-padding" min="2" max="16" value="${bezel.padding}" />
-            <span class="kwami-cfg-value">${bezel.padding}px</span>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Shadow Depth</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="bezel-shadow" min="0" max="100" value="${bezel.shadowDepth}" />
-            <span class="kwami-cfg-value">${bezel.shadowDepth}%</span>
-        </div>
-          </div>
-      </div>
+ <div class="kwami-button-configurator-panel" data-panel="bezel">
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Border Radius</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="bezel-radius" min="0" max="30" value="${bezel.radius}" />
+   <span class="kwami-cfg-value">${bezel.radius}px</span>
+  </div>
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Padding</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="bezel-padding" min="2" max="16" value="${bezel.padding}" />
+   <span class="kwami-cfg-value">${bezel.padding}px</span>
+  </div>
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Shadow Depth</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="bezel-shadow" min="0" max="100" value="${bezel.shadowDepth}" />
+   <span class="kwami-cfg-value">${bezel.shadowDepth}%</span>
+  </div>
+  </div>
+ </div>
       `;
   }
 
   private renderFacePanel(): string {
     const { face } = this.config;
     return `
-      <div class="kwami-button-configurator-panel" data-panel="face">
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Color</label>
-        <div class="kwami-cfg-color" data-color-target="face"></div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Border Radius</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="face-radius" min="0" max="24" value="${face.radius}" />
-            <span class="kwami-cfg-value">${face.radius}px</span>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">3D Depth</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="face-depth" min="0" max="100" value="${face.depth}" />
-            <span class="kwami-cfg-value">${face.depth}%</span>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Brightness</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="face-brightness" min="0" max="100" value="${face.brightness}" />
-            <span class="kwami-cfg-value">${face.brightness}%</span>
-        </div>
-          </div>
-      </div>
+ <div class="kwami-button-configurator-panel" data-panel="face">
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Border Radius</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="face-radius" min="0" max="24" value="${face.radius}" />
+   <span class="kwami-cfg-value">${face.radius}px</span>
+  </div>
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">3D Depth</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="face-depth" min="0" max="100" value="${face.depth}" />
+   <span class="kwami-cfg-value">${face.depth}%</span>
+  </div>
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Brightness</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="face-brightness" min="0" max="100" value="${face.brightness}" />
+   <span class="kwami-cfg-value">${face.brightness}%</span>
+  </div>
+  </div>
+ </div>
       `;
   }
 
   private renderHighlightPanel(): string {
     const { highlight } = this.config;
     return `
-      <div class="kwami-button-configurator-panel" data-panel="highlight">
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Color</label>
-        <div class="kwami-cfg-color" data-color-target="highlight"></div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Intensity</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="highlight-opacity" min="0" max="100" value="${highlight.opacity}" />
-            <span class="kwami-cfg-value">${highlight.opacity}%</span>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Coverage</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="highlight-height" min="20" max="80" value="${highlight.height}" />
-            <span class="kwami-cfg-value">${highlight.height}%</span>
-        </div>
-          </div>
-      </div>
+ <div class="kwami-button-configurator-panel" data-panel="highlight">
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Intensity</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="highlight-opacity" min="0" max="100" value="${highlight.opacity}" />
+   <span class="kwami-cfg-value">${highlight.opacity}%</span>
+  </div>
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Coverage</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="highlight-height" min="20" max="80" value="${highlight.height}" />
+   <span class="kwami-cfg-value">${highlight.height}%</span>
+  </div>
+  </div>
+ </div>
       `;
   }
 
   private renderTextPanel(): string {
     const { text, label } = this.config;
     return `
-      <div class="kwami-button-configurator-panel" data-panel="text">
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Color</label>
-        <div class="kwami-cfg-color" data-color-target="text"></div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Content</label>
-        <input type="text" class="kwami-cfg-input" data-prop="text-content" value="${label}" maxlength="20" />
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Font Size</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="text-size" min="8" max="18" value="${text.size}" step="1" />
-            <span class="kwami-cfg-value">${text.size}px</span>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Letter Spacing</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="text-spacing" min="0" max="8" value="${text.spacing}" step="0.5" />
-            <span class="kwami-cfg-value">${text.spacing}px</span>
-        </div>
-          </div>
-          <div class="kwami-cfg-row">
-        <label class="kwami-cfg-label">Weight</label>
-        <div class="kwami-cfg-slider-wrap">
-            <input type="range" class="kwami-cfg-slider" data-prop="text-weight" min="400" max="800" value="${text.weight}" step="100" />
-            <span class="kwami-cfg-value">${text.weight}</span>
-        </div>
-          </div>
-      </div>
+ <div class="kwami-button-configurator-panel" data-panel="text">
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Content</label>
+  <input type="text" class="kwami-cfg-input" data-prop="text-content" value="${label}" maxlength="20" />
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Font Size</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="text-size" min="8" max="18" value="${text.size}" step="1" />
+   <span class="kwami-cfg-value">${text.size}px</span>
+  </div>
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Letter Spacing</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="text-spacing" min="0" max="8" value="${text.spacing}" step="0.5" />
+   <span class="kwami-cfg-value">${text.spacing}px</span>
+  </div>
+  </div>
+  <div class="kwami-cfg-row">
+  <label class="kwami-cfg-label">Weight</label>
+  <div class="kwami-cfg-slider-wrap">
+   <input type="range" class="kwami-cfg-slider" data-prop="text-weight" min="400" max="800" value="${text.weight}" step="100" />
+   <span class="kwami-cfg-value">${text.weight}</span>
+  </div>
+  </div>
+ </div>
       `;
   }
 
@@ -306,6 +328,9 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
       this.button.hydrate(this.bezelEl);
     }
 
+    // Setup variant selector at the top
+    this.setupVariantSelector();
+
     // Setup color pickers
     this.setupColorPickers();
 
@@ -318,11 +343,32 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
     // Setup text input
     this.setupTextInput();
 
-    // Setup style controls (variant, size, rounded, ripple)
+    // Setup style controls (size selector in colors panel)
     this.setupStyleControls();
 
     // Initial highlight
-    this.highlightPart('style');
+    this.highlightPart('colors');
+  }
+
+  private setupVariantSelector(): void {
+    if (!this.element) return;
+
+    const variantBtns = this.element.querySelectorAll('.kwami-cfg-variant-btn');
+
+    variantBtns.forEach((btn) => {
+      this.addListener(btn, 'click', () => {
+        const variant = btn.getAttribute('data-variant') as ButtonVariant;
+
+        // Update active state
+        variantBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update config and button
+        this.config.variant = variant;
+        this.updateButtonVariant(variant);
+        this.emitChange();
+      });
+    });
   }
 
   private setupColorPickers(): void {
@@ -431,8 +477,8 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
     this.textEl?.classList.remove('kwami-cfg-editing');
 
     switch (part) {
-      case 'style':
-        /* No specific highlight for style panel */ break;
+      case 'colors':
+        /* No specific highlight for colors panel */ break;
       case 'bezel':
         this.bezelEl?.classList.add('kwami-cfg-editing');
         break;
@@ -557,19 +603,6 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
   private setupStyleControls(): void {
     if (!this.element) return;
 
-    // Variant selector
-    const variantSelect = this.element.querySelector(
-      '.kwami-cfg-select[data-prop="variant"]'
-    ) as HTMLSelectElement;
-    if (variantSelect) {
-      this.addListener(variantSelect, 'change', () => {
-        const variant = variantSelect.value as ButtonConfiguration['variant'];
-        this.config.variant = variant;
-        this.updateButtonVariant(variant);
-        this.emitChange();
-      });
-    }
-
     // Size selector
     const sizeSelect = this.element.querySelector(
       '.kwami-cfg-select[data-prop="size"]'
@@ -584,17 +617,49 @@ export class ButtonConfigurator extends Component<ButtonConfiguratorProps> {
     }
   }
 
-  private updateButtonVariant(variant: ButtonConfiguration['variant']): void {
+  private updateButtonVariant(variant: ButtonVariant): void {
     if (!this.bezelEl) return;
     // Remove all variant classes
     this.bezelEl.classList.remove(
-      'kwami-button-bezel--default',
       'kwami-button-bezel--primary',
+      'kwami-button-bezel--secondary',
       'kwami-button-bezel--danger',
-      'kwami-button-bezel--ghost',
-      'kwami-button-bezel--outline'
+      'kwami-button-bezel--mini'
     );
     this.bezelEl.classList.add(`kwami-button-bezel--${variant}`);
+
+    // For mini variant, we need to handle icon-only display
+    if (variant === 'mini') {
+      // Add an icon if not present
+      const faceEl = this.bezelEl.querySelector('.kwami-button-face');
+      if (faceEl && !faceEl.querySelector('.kwami-button-icon')) {
+        const iconEl = document.createElement('iconify-icon');
+        iconEl.className = 'kwami-button-icon';
+        iconEl.setAttribute('icon', 'solar:heart-bold');
+        iconEl.setAttribute('width', '20');
+        iconEl.setAttribute('height', '20');
+        iconEl.style.position = 'relative';
+        iconEl.style.zIndex = '2';
+        const highlightEl = faceEl.querySelector('.kwami-button-highlight');
+        if (highlightEl) {
+          highlightEl.after(iconEl);
+        }
+      }
+      // Hide text
+      if (this.textEl) {
+        this.textEl.style.display = 'none';
+      }
+    } else {
+      // Remove mini icon if switching away
+      const miniIcon = this.bezelEl.querySelector('.kwami-button-face > iconify-icon');
+      if (miniIcon && !this.bezelEl.classList.contains('kwami-button-bezel--mini')) {
+        // Only remove if it was added by mini variant
+      }
+      // Show text
+      if (this.textEl) {
+        this.textEl.style.display = '';
+      }
+    }
   }
 
   private updateButtonSize(size: ButtonConfiguration['size']): void {

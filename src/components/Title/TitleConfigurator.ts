@@ -34,31 +34,31 @@ export class TitleConfigurator extends Component<TitleConfiguratorProps> {
     this.title = new Title({ text: this.config.text });
 
     return `
-            <div class="kwami-title-configurator" data-kwami-id="${this.id}">
-                <div class="kwami-title-configurator-preview" style="--kwami-accent: ${this.config.glowColor}">
-                    ${this.title.render()}
-                </div>
-                ${showControls ? this.renderControls() : ''}
-            </div>
+   <div class="kwami-title-configurator" data-kwami-id="${this.id}">
+    <div class="kwami-title-configurator-preview" style="--kwami-accent: ${this.config.glowColor}">
+     ${this.title.render()}
+    </div>
+    ${showControls ? this.renderControls() : ''}
+   </div>
         `;
   }
 
   private renderControls(): string {
     const { config } = this;
     return `
-            <div class="kwami-title-configurator-controls">
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Text</label>
-                    <input type="text" class="kwami-cfg-input" data-prop="text" value="${config.text}" />
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Glow Color</label>
-                    <div class="kwami-cfg-color" data-color-target="glow"></div>
-                </div>
-                <div class="kwami-cfg-row kwami-cfg-hint">
-                    <span>Hover over the title to see the glow effect</span>
-                </div>
-            </div>
+   <div class="kwami-title-configurator-controls">
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Text</label>
+     <input type="text" class="kwami-cfg-input" data-prop="text" value="${config.text}" />
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Glow Color</label>
+     <div class="kwami-cfg-color" data-color-target="glow"></div>
+    </div>
+    <div class="kwami-cfg-row kwami-cfg-hint">
+     <span>Hover over the title to see the glow effect</span>
+    </div>
+   </div>
         `;
   }
 

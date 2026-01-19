@@ -41,19 +41,19 @@ export class Switch extends Component<SwitchProps> {
     const disabledAttr = disabled ? 'disabled' : '';
 
     return `
-            <div class="kwami-switch-container ${className}" data-kwami-id="${this.id}">
-                <label class="kwami-switch ${disabled ? 'kwami-switch-disabled' : ''}">
-                    <input type="checkbox" class="kwami-switch-input" ${checkedAttr} ${disabledAttr}>
-                    <span class="kwami-switch-bezel">
-                        <span class="kwami-switch-track">
-                            <span class="kwami-switch-thumb">
-                                <span class="kwami-switch-thumb-highlight"></span>
-                            </span>
-                        </span>
-                    </span>
-                </label>
+   <div class="kwami-switch-container ${className}" data-kwami-id="${this.id}">
+    <label class="kwami-switch ${disabled ? 'kwami-switch-disabled' : ''}">
+     <input type="checkbox" class="kwami-switch-input" ${checkedAttr} ${disabledAttr}>
+     <span class="kwami-switch-bezel">
+      <span class="kwami-switch-track">
+       <span class="kwami-switch-thumb">
+        <span class="kwami-switch-thumb-highlight"></span>
+       </span>
+      </span>
+     </span>
+    </label>
                 ${label ? `<span class="kwami-switch-label">${label}</span>` : ''}
-            </div>
+   </div>
         `;
   }
 

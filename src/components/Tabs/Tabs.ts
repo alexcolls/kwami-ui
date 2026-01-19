@@ -48,12 +48,12 @@ export class Tabs extends Component<TabsProps> {
     const tabButtons = this.tabs
       .map(
         (tab) => `
-            <button 
-                class="kwami-tab${tab.id === this.activeTabId ? ' active' : ''}" 
-                role="tab" 
-                data-tab="${tab.id}" 
-                aria-selected="${tab.id === this.activeTabId}"
-            >${tab.label}</button>
+   <button 
+    class="kwami-tab${tab.id === this.activeTabId ? ' active' : ''}" 
+    role="tab" 
+    data-tab="${tab.id}" 
+    aria-selected="${tab.id === this.activeTabId}"
+   >${tab.label}</button>
         `
       )
       .join('');
@@ -61,27 +61,27 @@ export class Tabs extends Component<TabsProps> {
     const panels = this.tabs
       .map(
         (tab) => `
-            <div 
-                class="kwami-tab-panel${tab.id === this.activeTabId ? ' active' : ''}" 
-                data-panel="${tab.id}" 
-                role="tabpanel"
-            >
-                <span>${tab.content}</span>
-            </div>
+   <div 
+    class="kwami-tab-panel${tab.id === this.activeTabId ? ' active' : ''}" 
+    data-panel="${tab.id}" 
+    role="tabpanel"
+   >
+    <span>${tab.content}</span>
+   </div>
         `
       )
       .join('');
 
     return `
-            <div class="kwami-tabs ${className}" data-kwami-id="${this.id}">
-                <div class="kwami-tabs-list" role="tablist">
-                    ${tabButtons}
-                    <div class="kwami-tabs-indicator"></div>
-                </div>
-                <div class="kwami-tabs-content">
-                    ${panels}
-                </div>
-            </div>
+   <div class="kwami-tabs ${className}" data-kwami-id="${this.id}">
+    <div class="kwami-tabs-list" role="tablist">
+     ${tabButtons}
+     <div class="kwami-tabs-indicator"></div>
+    </div>
+    <div class="kwami-tabs-content">
+     ${panels}
+    </div>
+   </div>
         `;
   }
 

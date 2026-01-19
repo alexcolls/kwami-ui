@@ -43,44 +43,44 @@ export class LabelConfigurator extends Component<LabelConfiguratorProps> {
     });
 
     return `
-            <div class="kwami-label-configurator" data-kwami-id="${this.id}">
-                <div class="kwami-label-configurator-preview">
-                    ${this.label.render()}
-                </div>
-                ${showControls ? this.renderControls() : ''}
-            </div>
+   <div class="kwami-label-configurator" data-kwami-id="${this.id}">
+    <div class="kwami-label-configurator-preview">
+     ${this.label.render()}
+    </div>
+    ${showControls ? this.renderControls() : ''}
+   </div>
         `;
   }
 
   private renderControls(): string {
     const { config } = this;
     return `
-            <div class="kwami-label-configurator-controls">
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Text</label>
-                    <input type="text" class="kwami-cfg-input" data-prop="text" value="${config.text}" />
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Size</label>
-                    <div class="kwami-cfg-select-group">
-                        <button class="kwami-cfg-select-btn ${config.size === 'sm' ? 'active' : ''}" data-size="sm">SM</button>
-                        <button class="kwami-cfg-select-btn ${config.size === 'md' ? 'active' : ''}" data-size="md">MD</button>
-                        <button class="kwami-cfg-select-btn ${config.size === 'lg' ? 'active' : ''}" data-size="lg">LG</button>
-                    </div>
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Color</label>
-                    <div class="kwami-cfg-color" data-color-target="label"></div>
-                </div>
-                <div class="kwami-cfg-row">
-                    <label class="kwami-cfg-label">Required</label>
-                    <button class="kwami-cfg-toggle ${config.required ? 'active' : ''}" data-prop="required">
-                        <span class="kwami-cfg-toggle-track">
-                            <span class="kwami-cfg-toggle-thumb"></span>
-                        </span>
-                    </button>
-                </div>
-            </div>
+   <div class="kwami-label-configurator-controls">
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Text</label>
+     <input type="text" class="kwami-cfg-input" data-prop="text" value="${config.text}" />
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Size</label>
+     <div class="kwami-cfg-select-group">
+      <button class="kwami-cfg-select-btn ${config.size === 'sm' ? 'active' : ''}" data-size="sm">SM</button>
+      <button class="kwami-cfg-select-btn ${config.size === 'md' ? 'active' : ''}" data-size="md">MD</button>
+      <button class="kwami-cfg-select-btn ${config.size === 'lg' ? 'active' : ''}" data-size="lg">LG</button>
+     </div>
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Color</label>
+     <div class="kwami-cfg-color" data-color-target="label"></div>
+    </div>
+    <div class="kwami-cfg-row">
+     <label class="kwami-cfg-label">Required</label>
+     <button class="kwami-cfg-toggle ${config.required ? 'active' : ''}" data-prop="required">
+      <span class="kwami-cfg-toggle-track">
+       <span class="kwami-cfg-toggle-thumb"></span>
+      </span>
+     </button>
+    </div>
+   </div>
         `;
   }
 
